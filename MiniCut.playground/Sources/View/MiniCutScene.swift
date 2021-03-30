@@ -16,6 +16,10 @@ public class MiniCutScene: SKScene {
                                                .removeFromParent()])
         spinnyNode.run(.repeatForever(.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
         spinnyNode.run(fadeAndRemove)
+        
+        let button = Button("Hello")
+        button.position = CGPoint(x: 100, y: 100)
+        addChild(button)
     }
     
     @objc public static override var supportsSecureCoding: Bool {

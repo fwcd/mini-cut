@@ -3,17 +3,13 @@
 import PlaygroundSupport
 import SpriteKit
 
-// Load the SKScene from 'GameScene.sks'
-let sceneView = SKView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
+let width = 640
+let height = 480
 
-if let scene = MiniCutScene(fileNamed: "MiniCutScene") {
-    // Set the scale mode to scale to fit the window
-    scene.scaleMode = .aspectFill
-    
-    // Present the scene
-    sceneView.presentScene(scene)
-} else {
-    fatalError("Could not find scene file!")
-}
+// Create and initialize the scene
+let sceneView = SKView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+let scene = MiniCutScene(size: CGSize(width: width, height: height))
+scene.scaleMode = .aspectFill
+sceneView.presentScene(scene)
 
 PlaygroundSupport.PlaygroundPage.current.liveView = sceneView

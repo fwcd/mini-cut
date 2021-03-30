@@ -2,19 +2,11 @@ import Foundation
 import SpriteKit
 
 public class MiniCutScene: SKScene {
-    private var label: SKLabelNode!
     private var spinnyNode: SKShapeNode!
     
     public override func didMove(to view: SKView) {
-        // Get label node from scene and store it for use later
-        label = childNode(withName: "//helloLabel") as? SKLabelNode
-        label.alpha = 0.0
-        let fadeInOut = SKAction.sequence([.fadeIn(withDuration: 2.0),
-                                           .fadeOut(withDuration: 2.0)])
-        label.run(.repeatForever(fadeInOut))
-        
         // Create shape node to use during mouse interaction
-        let w = (size.width + size.height) * 0.05
+        let w: CGFloat = 50.0
         
         spinnyNode = SKShapeNode(rectOf: CGSize(width: w, height: w), cornerRadius: w * 0.3)
         spinnyNode.lineWidth = 2.5
@@ -29,9 +21,7 @@ public class MiniCutScene: SKScene {
     @objc public static override var supportsSecureCoding: Bool {
         // SKNode conforms to NSSecureCoding, so any subclass going
         // through the decoding process must support secure coding
-        get {
-            return true
-        }
+        get { true }
     }
     
     public func touchDown(atPoint pos : CGPoint) {

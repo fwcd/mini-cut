@@ -3,10 +3,12 @@ import SpriteKit
 
 /// A simple UI control that displays a label and performs an action when clicked.
 public class Button: SKSpriteNode {
+    var label: SKNode!
+    
     private var inactiveBgColor: NSColor!
     private var activeBgColor: NSColor!
     private var padding: CGFloat!
-    private var action: (() -> Void)?
+    private var action: ((Button) -> Void)?
     
     public override var isUserInteractionEnabled: Bool {
         get { true }
@@ -19,9 +21,10 @@ public class Button: SKSpriteNode {
         padding: CGFloat = ViewDefaults.padding,
         inactiveBgColor: NSColor = ViewDefaults.inactiveBgColor,
         activeBgColor: NSColor = ViewDefaults.activeBgColor,
-        action: (() -> Void)? = nil
+        action: ((Button) -> Void)? = nil
     ) {
         self.init(color: inactiveBgColor, size: CGSize(width: size.width + padding, height: size.height + padding))
+        self.label = label
         self.inactiveBgColor = inactiveBgColor
         self.activeBgColor = activeBgColor
         self.padding = padding
@@ -34,7 +37,7 @@ public class Button: SKSpriteNode {
         _ text: String,
         fontSize: CGFloat = ViewDefaults.fontSize,
         fontName: String = ViewDefaults.fontName,
-        action: (() -> Void)? = nil
+        action: ((Button) -> Void)? = nil
     ) {
         let label = SKLabelNode(text: text)
         label.fontSize = fontSize
@@ -45,13 +48,12 @@ public class Button: SKSpriteNode {
     
     /// Creates a textural button.
     public convenience init(
-        iconNamed iconName: String,
+        iconTexture: SKTexture,
         size: CGFloat = ViewDefaults.fontSize,
-        action: (() -> Void)? = nil
+        action: ((Button) -> Void)? = nil
     ) {
-        let label = SKSpriteNode(imageNamed: iconName)
         let size = CGSize(width: size, height: size)
-        label.scale(to: size)
+        let label = SKSpriteNode(texture: iconTexture, size: size)
         self.init(label: label, size: size, action: action)
     }
     
@@ -70,7 +72,7 @@ public class Button: SKSpriteNode {
     public override func mouseUp(with event: NSEvent) {
         color = inactiveBgColor
         if active(with: event) {
-            action?()
+            action?(self)
         }
     }
     

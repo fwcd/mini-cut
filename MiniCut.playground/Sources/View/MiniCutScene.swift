@@ -15,6 +15,10 @@ public final class MiniCutScene: SKScene {
         
         // The core views of the app are initialized here
         
+        let title = SKLabelNode(text: "MiniCut")
+        title.fontSize = 48
+        title.position = CGPoint(x: 0, y: -1.8 * title.frame.height)
+        
         let toolbar = Stack.horizontal([
             Button(iconTexture: backIcon),
             Button(iconTexture: playIcon) { [unowned self] button in
@@ -30,12 +34,13 @@ public final class MiniCutScene: SKScene {
         ])
         
         let aspectRatio: CGFloat = 16 / 9
-        let videoHeight = view.frame.height / 2
+        let videoHeight = view.frame.height / 2.5
         let videoWidth = videoHeight * aspectRatio
-        let panelWidth = (view.frame.width - videoWidth) / 2 - ViewDefaults.padding
-        let timelineHeight = view.frame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - ViewDefaults.padding
+        let panelWidth = (view.frame.width - videoWidth - ViewDefaults.padding) / 2
+        let timelineHeight = view.frame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.frame.height - ViewDefaults.padding
         
         let content = Stack.vertical([
+            title,
             Stack.horizontal([
                 LibraryView(size: CGSize(width: panelWidth, height: videoHeight)),
                 VideoView(size: CGSize(width: videoWidth, height: videoHeight)),

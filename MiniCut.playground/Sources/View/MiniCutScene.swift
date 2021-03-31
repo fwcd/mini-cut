@@ -22,47 +22,9 @@ public class MiniCutScene: SKScene {
         addChild(button)
     }
     
-    @objc public static override var supportsSecureCoding: Bool {
-        // SKNode conforms to NSSecureCoding, so any subclass going
-        // through the decoding process must support secure coding
-        get { true }
-    }
-    
-    public func touchDown(atPoint pos : CGPoint) {
-        guard let n = spinnyNode.copy() as? SKShapeNode else { return }
-        
-        n.position = pos
-        n.strokeColor = SKColor.green
-        addChild(n)
-    }
-    
-    public func touchMoved(toPoint pos : CGPoint) {
-        guard let n = self.spinnyNode.copy() as? SKShapeNode else { return }
-        
-        n.position = pos
-        n.strokeColor = SKColor.blue
-        addChild(n)
-    }
-    
-    public func touchUp(atPoint pos : CGPoint) {
-        guard let n = spinnyNode.copy() as? SKShapeNode else { return }
-        
-        n.position = pos
-        n.strokeColor = SKColor.red
-        addChild(n)
-    }
-    
-    public override func mouseDown(with event: NSEvent) {
-        touchDown(atPoint: event.location(in: self))
-    }
-    
-    public override func mouseDragged(with event: NSEvent) {
-        touchMoved(toPoint: event.location(in: self))
-    }
-    
-    public override func mouseUp(with event: NSEvent) {
-        touchUp(atPoint: event.location(in: self))
-    }
+    // SKNode conforms to NSSecureCoding, so any subclass going
+    // through the decoding process must support secure coding
+    @objc public static override var supportsSecureCoding: Bool { true }
     
     public override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered

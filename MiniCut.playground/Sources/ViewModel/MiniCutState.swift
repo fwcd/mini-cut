@@ -3,13 +3,14 @@ import Foundation
 /// The application's state.
 final class MiniCutState {
     var timeline = Timeline() {
-        willSet { onWillChange.fire(()) }
+        willSet { timelineWillChange.fire() }
     }
     var isPlaying: Bool = false {
-        willSet { onWillChange.fire(()) }
+        willSet { isPlayingWillChange.fire() }
     }
     
-    var onWillChange = ListenerList<Void>()
+    var timelineWillChange = ListenerList<Void>()
+    var isPlayingWillChange = ListenerList<Void>()
     
     init() {}
 }

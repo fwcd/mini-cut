@@ -3,11 +3,15 @@ import SpriteKit
 
 /// A view of the composited video.
 final class VideoView: SKNode {
+    private var state: MiniCutState!
+    private var isPlayingSubscription: Subscription?
+    
     private var size: CGSize!
     private var crop: SKCropNode!
     
-    convenience init(size: CGSize) {
+    convenience init(state: MiniCutState, size: CGSize) {
         self.init()
+        self.state = state
         self.size = size
         
         crop = SKCropNode()
@@ -19,6 +23,13 @@ final class VideoView: SKNode {
         video.size = size
         video.zPosition = 100
         crop.addChild(video)
-        video.play()
+        
+        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring { [unowned state] in
+            if state.isPlaying {
+                video.play()
+            } else {
+                video.pause()
+            }
+        }
     }
 }

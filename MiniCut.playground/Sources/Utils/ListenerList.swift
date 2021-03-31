@@ -15,7 +15,14 @@ class ListenerList<Event> {
         }
     }
     
+    /// Like subscribe, but fires the listener immediately.
+    func subscribeFiring(_ event: Event, _ listener: @escaping (Event) -> Void) -> Subscription {
+        listener(event)
+        return subscribe(listener)
+    }
+    
     /// Performs an action without notifying the listener from the given subscription.
+    /// This can be useful to avoid cyclic listener invocations.
     func silencing(_ subscription: Subscription, _ action: () -> Void) {
         silenced.insert(subscription.id)
         action()
@@ -26,5 +33,15 @@ class ListenerList<Event> {
         for (id, listener) in listeners where !silenced.contains(id) {
             listener(event)
         }
+    }
+}
+
+extension ListenerList where Event == Void {
+    func fire() {
+        fire(())
+    }
+    
+    func subscribeFiring(_ listener: @escaping (Event) -> Void) -> Subscription {
+        subscribeFiring((), listener)
     }
 }

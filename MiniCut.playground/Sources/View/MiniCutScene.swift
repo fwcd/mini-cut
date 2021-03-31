@@ -9,6 +9,7 @@ private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
 /// The application's primary view.
 public final class MiniCutScene: SKScene {
     private var state = MiniCutState()
+    private var isPlayingSubscription: Subscription?
     
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
@@ -18,17 +19,21 @@ public final class MiniCutScene: SKScene {
         // The core views of the app are initialized here
         
         let title = Label("MiniCut", fontSize: 36, fontName: "Helvetica Light")
+        let playButton = Button(iconTexture: playIcon) { [unowned self] _ in
+            state.isPlaying = !state.isPlaying
+        }
+        
+        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring { [unowned self] in
+            if state.isPlaying {
+                (playButton.label as! SKSpriteNode).texture = pauseIcon
+            } else {
+                (playButton.label as! SKSpriteNode).texture = playIcon
+            }
+        }
+        
         let toolbar = Stack.horizontal([
             Button(iconTexture: backIcon),
-            Button(iconTexture: playIcon) { [unowned self] button in
-                let newPlaying = !state.isPlaying
-                if newPlaying {
-                    (button.label as! SKSpriteNode).texture = pauseIcon
-                } else {
-                    (button.label as! SKSpriteNode).texture = playIcon
-                }
-                state.isPlaying = newPlaying
-            },
+            playButton,
             Button(iconTexture: forwardIcon)
         ])
 
@@ -42,11 +47,11 @@ public final class MiniCutScene: SKScene {
             title,
             Stack.horizontal([
                 LibraryView(size: CGSize(width: panelWidth, height: videoHeight)),
-                VideoView(size: CGSize(width: videoWidth, height: videoHeight)),
+                VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
                 InspectorView(size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
-            TimelineView(size: CGSize(width: initialFrame.width, height: timelineHeight))
+            TimelineView(state: state, size: CGSize(width: initialFrame.width, height: timelineHeight))
         ])
         content.position = CGPoint(x: initialFrame.width / 2, y: (initialFrame.height / 2) - 2 * ViewDefaults.padding)
         addChild(content)

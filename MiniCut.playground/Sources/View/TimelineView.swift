@@ -3,22 +3,21 @@ import SpriteKit
 
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler {
+    private var state: MiniCutState!
+    
     /// How zoomed-in the clips and marks on the timeline shall appear.
     var zoomLevel: CGFloat! {
         didSet { update() }
     }
-    
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
     var markStride: Int! {
         didSet { update() }
     }
-    
     private var toViewX: Scaling<CGFloat> { Scaling(factor: zoomLevel) }
     
     private var size: CGSize!
     private var marks: SKNode!
     private var cursor: TimelineCursor!
-    
     private var dragState: DragState!
     
     private enum DragState {
@@ -31,9 +30,10 @@ final class TimelineView: SKNode, SKInputHandler {
         set { /* ignore */ }
     }
     
-    convenience init(size: CGSize, zoomLevel: CGFloat = 10.0, markStride: Int = 10) {
+    convenience init(state: MiniCutState, size: CGSize, zoomLevel: CGFloat = 10.0, markStride: Int = 10) {
         self.init()
         
+        self.state = state
         self.size = size
         self.zoomLevel = zoomLevel
         self.markStride = markStride

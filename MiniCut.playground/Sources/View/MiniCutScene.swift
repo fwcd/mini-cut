@@ -1,22 +1,10 @@
 import Foundation
 import SpriteKit
 
-public class MiniCutScene: SKScene {
-    private var spinnyNode: SKShapeNode!
+public final class MiniCutScene: SKScene {
+    private var state = MiniCutState()
     
     public override func didMove(to view: SKView) {
-        // Create shape node to use during mouse interaction
-        let w: CGFloat = 50.0
-        
-        spinnyNode = SKShapeNode(rectOf: CGSize(width: w, height: w), cornerRadius: w * 0.3)
-        spinnyNode.lineWidth = 2.5
-        
-        let fadeAndRemove = SKAction.sequence([.wait(forDuration: 0.5),
-                                               .fadeOut(withDuration: 0.5),
-                                               .removeFromParent()])
-        spinnyNode.run(.repeatForever(.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-        spinnyNode.run(fadeAndRemove)
-        
         let buttons = Stack.vertical([
             Button("Test"),
             Stack.horizontal([

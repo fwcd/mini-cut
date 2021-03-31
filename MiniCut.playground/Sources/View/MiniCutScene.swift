@@ -15,10 +15,7 @@ public final class MiniCutScene: SKScene {
         
         // The core views of the app are initialized here
         
-        let title = SKLabelNode(text: "MiniCut")
-        title.fontSize = 48
-        title.position = CGPoint(x: 0, y: -1.8 * title.frame.height)
-        
+        let title = Label("MiniCut", fontSize: 36, fontName: "Helvetica Light")
         let toolbar = Stack.horizontal([
             Button(iconTexture: backIcon),
             Button(iconTexture: playIcon) { [unowned self] button in
@@ -37,7 +34,7 @@ public final class MiniCutScene: SKScene {
         let videoHeight = view.frame.height / 2.5
         let videoWidth = videoHeight * aspectRatio
         let panelWidth = (view.frame.width - videoWidth - ViewDefaults.padding) / 2
-        let timelineHeight = view.frame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.frame.height - ViewDefaults.padding
+        let timelineHeight = view.frame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
         
         let content = Stack.vertical([
             title,
@@ -49,7 +46,7 @@ public final class MiniCutScene: SKScene {
             toolbar,
             TimelineView(size: CGSize(width: view.frame.width, height: timelineHeight))
         ])
-        content.position = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
+        content.position = CGPoint(x: view.frame.width / 2, y: (view.frame.height) / 2 - 2 * ViewDefaults.padding)
         addChild(content)
     }
     

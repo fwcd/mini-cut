@@ -39,11 +39,8 @@ public class Button: SKSpriteNode {
         fontName: String = ViewDefaults.fontName,
         action: ((Button) -> Void)? = nil
     ) {
-        let label = SKLabelNode(text: text)
-        label.fontSize = fontSize
-        label.fontName = fontName
+        let label = Label(text, fontSize: fontSize, fontName: fontName)
         self.init(label: label, size: label.frame.size, action: action)
-        label.position = CGPoint(x: 0, y: padding - (size.height / 2))
     }
     
     /// Creates a textural button.

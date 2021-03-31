@@ -9,9 +9,9 @@ public final class MiniCutScene: SKScene {
         // The core views of the app are initialized here
         
         let toolbar = Stack.horizontal([
-            // TODO
-            Button("Play"),
-            Button("Skip")
+            Button(iconNamed: "iconBack.png"),
+            Button(iconNamed: "iconPlay.png"),
+            Button(iconNamed: "iconForward.png")
         ])
         
         let aspectRatio: CGFloat = 16 / 9

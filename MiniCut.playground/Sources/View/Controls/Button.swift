@@ -15,12 +15,13 @@ public class Button: SKSpriteNode {
     
     public convenience init(
         label: SKNode,
+        size: CGSize,
         padding: CGFloat = ViewDefaults.padding,
         inactiveBgColor: NSColor = ViewDefaults.inactiveBgColor,
         activeBgColor: NSColor = ViewDefaults.activeBgColor,
         action: (() -> Void)? = nil
     ) {
-        self.init(color: inactiveBgColor, size: CGSize(width: label.frame.width + padding, height: label.frame.height + padding))
+        self.init(color: inactiveBgColor, size: CGSize(width: size.width + padding, height: size.height + padding))
         self.inactiveBgColor = inactiveBgColor
         self.activeBgColor = activeBgColor
         self.padding = padding
@@ -38,8 +39,20 @@ public class Button: SKSpriteNode {
         let label = SKLabelNode(text: text)
         label.fontSize = fontSize
         label.fontName = fontName
-        self.init(label: label, action: action)
+        self.init(label: label, size: label.frame.size, action: action)
         label.position = CGPoint(x: 0, y: padding - (size.height / 2))
+    }
+    
+    /// Creates a textural button.
+    public convenience init(
+        iconNamed iconName: String,
+        size: CGFloat = ViewDefaults.fontSize,
+        action: (() -> Void)? = nil
+    ) {
+        let label = SKSpriteNode(imageNamed: iconName)
+        let size = CGSize(width: size, height: size)
+        label.scale(to: size)
+        self.init(label: label, size: size, action: action)
     }
     
     private func active(with event: NSEvent) -> Bool {

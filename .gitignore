@@ -1,3 +1,11 @@
 .DS_Store
+.build
+.swiftpm
 .vscode
-xcuserdata
+__pycache__
+*.pyc
+*~
+Packages
+xcuserdata/
+node_modules
+local

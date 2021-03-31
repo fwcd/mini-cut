@@ -24,8 +24,8 @@ final class VideoView: SKNode {
         video.zPosition = 100
         crop.addChild(video)
         
-        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring { [unowned state] in
-            if state.isPlaying {
+        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
+            if $0 {
                 video.play()
             } else {
                 video.pause()

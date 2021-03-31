@@ -23,8 +23,8 @@ public final class MiniCutScene: SKScene {
             state.isPlaying = !state.isPlaying
         }
         
-        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring { [unowned self] in
-            if state.isPlaying {
+        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
+            if $0 {
                 (playButton.label as! SKSpriteNode).texture = pauseIcon
             } else {
                 (playButton.label as! SKSpriteNode).texture = playIcon

@@ -17,11 +17,25 @@ public class MiniCutScene: SKScene {
         spinnyNode.run(.repeatForever(.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
         spinnyNode.run(fadeAndRemove)
         
-        let button = Button("Hello") {
-            print("Clicked!")
-        }
-        button.position = CGPoint(x: 100, y: 100)
-        addChild(button)
+        let buttons = Stack.vertical([
+            Button("Test"),
+            Stack.horizontal([
+                Button("This is a looooooooooooong button"),
+                Button("This one not so much")
+            ]),
+            Button("Test"),
+            Stack.horizontal([
+                Button("Hello") { print("Hello") },
+                Button("World") { print("World") },
+                SKSpriteNode(color: .blue, size: CGSize(width: 25, height: 25)),
+                Stack.vertical([
+                    Button("123"),
+                    SKSpriteNode(color: .red, size: CGSize(width: 25, height: 25))
+                ])
+            ])
+        ])
+        buttons.position = CGPoint(x: 200, y: 300)
+        addChild(buttons)
     }
     
     // SKNode conforms to NSSecureCoding, so any subclass going

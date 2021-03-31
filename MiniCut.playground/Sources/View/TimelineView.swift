@@ -33,7 +33,7 @@ final class TimelineView: SKNode {
     
     private func update() {
         for i in stride(from: 0, to: Int(toViewX.inverseApply(size.width)), by: markStride) {
-            let mark = SKSpriteNode(color: .red, size: CGSize(width: 1, height: size.height))
+            let mark = TimelineMark(height: size.height)
             mark.position = CGPoint(x: toViewX.apply(CGFloat(i)) - (size.width / 2), y: 0)
             marks.addChild(mark)
         }

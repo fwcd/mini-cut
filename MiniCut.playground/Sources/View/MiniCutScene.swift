@@ -11,6 +11,12 @@ public final class MiniCutScene: SKScene {
     private var state = MiniCutState()
     
     public override func didMove(to view: SKView) {
+        #if os(iOS)
+        let initialFrame = CGSize(width: 640, height: 480)
+        #else
+        let initialFrame = view.frame.size
+        #endif
+        
         backgroundColor = ViewDefaults.background
         
         // The core views of the app are initialized here
@@ -31,10 +37,10 @@ public final class MiniCutScene: SKScene {
         ])
         
         let aspectRatio: CGFloat = 16 / 9
-        let videoHeight = view.frame.height / 2.5
+        let videoHeight = initialFrame.height / 2.5
         let videoWidth = videoHeight * aspectRatio
-        let panelWidth = (view.frame.width - videoWidth - ViewDefaults.padding) / 2
-        let timelineHeight = view.frame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
+        let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
+        let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
         
         let content = Stack.vertical([
             title,
@@ -44,9 +50,9 @@ public final class MiniCutScene: SKScene {
                 InspectorView(size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
-            TimelineView(size: CGSize(width: view.frame.width, height: timelineHeight))
+            TimelineView(size: CGSize(width: initialFrame.width, height: timelineHeight))
         ])
-        content.position = CGPoint(x: view.frame.midX, y: view.frame.midY - 2 * ViewDefaults.padding)
+        content.position = CGPoint(x: initialFrame.width / 2, y: (initialFrame.height / 2) - 2 * ViewDefaults.padding)
         addChild(content)
     }
     

@@ -17,6 +17,7 @@ final class TimelineView: SKNode {
     
     private var size: CGSize!
     private var marks: SKNode!
+    private var cursor: TimelineCursor!
     
     convenience init(size: CGSize, zoomLevel: CGFloat = 10.0, markStride: Int = 10) {
         self.init()
@@ -28,6 +29,9 @@ final class TimelineView: SKNode {
         marks = SKNode()
         addChild(marks)
         
+        cursor = TimelineCursor(height: size.height)
+        addChild(cursor)
+        
         update()
     }
     
@@ -37,5 +41,7 @@ final class TimelineView: SKNode {
             mark.position = CGPoint(x: toViewX.apply(CGFloat(i)) - (size.width / 2), y: 0)
             marks.addChild(mark)
         }
+        
+        // TODO: Cursor
     }
 }

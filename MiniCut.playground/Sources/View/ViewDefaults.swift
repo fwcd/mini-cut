@@ -17,4 +17,5 @@ public enum ViewDefaults {
     public static let quaternary: NSColor = NSColor(white: 1, alpha: 0.1)
     public static let inactiveBgColor: NSColor = tertiary
     public static let activeBgColor: NSColor = quaternary
+    public static let cursorColor: NSColor = NSColor(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
 }

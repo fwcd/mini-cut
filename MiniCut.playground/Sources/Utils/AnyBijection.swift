@@ -16,3 +16,10 @@ struct AnyBijection<Input, Output>: Bijection {
         _inverseApply(value)
     }
 }
+
+extension Bijection {
+    /// Type-erases the bijection.
+    func erase() -> AnyBijection<Input, Output> {
+        AnyBijection(self)
+    }
+}

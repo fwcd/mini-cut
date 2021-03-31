@@ -1,4 +1,4 @@
-//: A SpriteKit based Playground
+//: A tiny video editor
 
 import PlaygroundSupport
 import SpriteKit

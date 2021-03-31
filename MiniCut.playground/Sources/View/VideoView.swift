@@ -5,8 +5,8 @@ import SpriteKit
 /// A view of the composited video.
 final class VideoView: SKNode {
     private var state: MiniCutState!
-    private var isPlayingSubscription: Subscription?
-    private var cursorSubscription: Subscription?
+    private var isPlayingSubscription: Subscription!
+    private var cursorSubscription: Subscription!
     
     private var size: CGSize!
     private var crop: SKCropNode!
@@ -37,6 +37,11 @@ final class VideoView: SKNode {
         }
         cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) {
             player.seek(to: CMTime(seconds: $0, preferredTimescale: 1_000_000))
+        }
+        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.01, preferredTimescale: 1_000), queue: .main) { [unowned self] cmt in
+            state.cursorWillChange.silencing(cursorSubscription) {
+                state.cursor = cmt.seconds
+            }
         }
     }
 }

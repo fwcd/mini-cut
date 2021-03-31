@@ -4,17 +4,20 @@ import SpriteKit
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler {
     private var state: MiniCutState!
+    private var cursorSubscription: Subscription!
     
     /// How zoomed-in the clips and marks on the timeline shall appear.
-    var zoomLevel: CGFloat! {
+    var zoomLevel: Double! {
         didSet { updateMarks() }
     }
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
     var markStride: Int! {
         didSet { updateMarks() }
     }
-    private var toViewX: AnyBijection<CGFloat, CGFloat> {
-        (Scaling(factor: zoomLevel) - (size.width / 2))
+    private var toViewX: AnyBijection<TimeInterval, CGFloat> {
+        Scaling(factor: zoomLevel)
+            .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
+            .then(InverseTranslation(offset: size.width / 2))
             .erase()
     }
     
@@ -33,7 +36,7 @@ final class TimelineView: SKNode, SKInputHandler {
         set { /* ignore */ }
     }
     
-    convenience init(state: MiniCutState, size: CGSize, zoomLevel: CGFloat = 10.0, markStride: Int = 10) {
+    convenience init(state: MiniCutState, size: CGSize, zoomLevel: Double = 10.0, markStride: Int = 10) {
         self.init()
         
         self.state = state
@@ -48,6 +51,10 @@ final class TimelineView: SKNode, SKInputHandler {
         cursor = TimelineCursor(height: size.height)
         addChild(cursor)
         
+        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
+            cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
+        }
+        
         updateMarks()
     }
     
@@ -59,9 +66,6 @@ final class TimelineView: SKNode, SKInputHandler {
         switch dragState! {
         case .cursor:
             state.cursor = TimeInterval(toViewX.inverseApply(point.x))
-            print(state.cursor)
-            // TODO: Bounds check, go through model first?
-            cursor.position = CGPoint(x: point.x, y: cursor.position.y)
         default:
             break
         }
@@ -74,7 +78,7 @@ final class TimelineView: SKNode, SKInputHandler {
     private func updateMarks() {
         for i in stride(from: 0, to: Int(toViewX.inverseApply(size.width)), by: markStride) {
             let mark = TimelineMark(height: size.height)
-            mark.position = CGPoint(x: toViewX.apply(CGFloat(i)) - (size.width / 2), y: 0)
+            mark.position = CGPoint(x: toViewX.apply(TimeInterval(i)) - (size.width / 2), y: 0)
             marks.addChild(mark)
         }
     }

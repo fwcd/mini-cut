@@ -19,12 +19,25 @@ final class TimelineView: SKNode {
     private var marks: SKNode!
     private var cursor: TimelineCursor!
     
+    private var dragState: DragState!
+    
+    private enum DragState {
+        case cursor
+        case inactive
+    }
+    
+    public override var isUserInteractionEnabled: Bool {
+        get { true }
+        set { /* ignore */ }
+    }
+    
     convenience init(size: CGSize, zoomLevel: CGFloat = 10.0, markStride: Int = 10) {
         self.init()
         
         self.size = size
         self.zoomLevel = zoomLevel
         self.markStride = markStride
+        dragState = .inactive
         
         marks = SKNode()
         addChild(marks)
@@ -33,6 +46,24 @@ final class TimelineView: SKNode {
         addChild(cursor)
         
         update()
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        dragState = .cursor
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        switch dragState! {
+        case .cursor:
+            // TODO: Bounds check, go through model first?
+            cursor.position = CGPoint(x: event.location(in: self).x, y: cursor.position.y)
+        default:
+            break
+        }
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        dragState = .inactive
     }
     
     private func update() {

@@ -31,13 +31,13 @@ public final class MiniCutScene: SKScene {
             },
             Button(iconTexture: forwardIcon)
         ])
-        
+
         let aspectRatio: CGFloat = 16 / 9
         let videoHeight = initialFrame.height / 2.5
         let videoWidth = videoHeight * aspectRatio
         let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
         let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
-        
+
         let content = Stack.vertical([
             title,
             Stack.horizontal([

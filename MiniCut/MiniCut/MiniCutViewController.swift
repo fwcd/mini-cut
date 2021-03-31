@@ -15,6 +15,12 @@ class MiniCutViewController: UIViewController {
         if let view = view as? SKView {
             let scene = MiniCutScene()
             
+            let camera = SKCameraNode()
+            camera.position = CGPoint(x: view.frame.midX, y: view.frame.midY)
+            camera.setScale(view.frame.width)
+            scene.addChild(camera)
+            scene.camera = camera
+            
             scene.scaleMode = .aspectFill
             view.presentScene(scene)
             
@@ -29,7 +35,7 @@ class MiniCutViewController: UIViewController {
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
+            return .landscape
         } else {
             return .all
         }

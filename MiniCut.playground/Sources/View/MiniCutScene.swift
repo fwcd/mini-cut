@@ -46,7 +46,7 @@ public final class MiniCutScene: SKScene {
             toolbar,
             TimelineView(size: CGSize(width: view.frame.width, height: timelineHeight))
         ])
-        content.position = CGPoint(x: view.frame.width / 2, y: (view.frame.height) / 2 - 2 * ViewDefaults.padding)
+        content.position = CGPoint(x: view.frame.midX, y: view.frame.midY - 2 * ViewDefaults.padding)
         addChild(content)
     }
     

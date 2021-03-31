@@ -17,7 +17,9 @@ public class MiniCutScene: SKScene {
         spinnyNode.run(.repeatForever(.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
         spinnyNode.run(fadeAndRemove)
         
-        let button = Button("Hello")
+        let button = Button("Hello") {
+            print("Clicked!")
+        }
         button.position = CGPoint(x: 100, y: 100)
         addChild(button)
     }

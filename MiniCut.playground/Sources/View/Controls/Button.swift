@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 /// A simple UI control that displays a label and performs an action when clicked.
-public class Button: SKSpriteNode {
+public class Button: SKSpriteNode, SKInputHandler {
     var label: SKNode!
     
     private var inactiveBgColor: Color!
@@ -54,21 +54,21 @@ public class Button: SKSpriteNode {
         self.init(label: label, size: size, action: action)
     }
     
-    private func active(with event: NSEvent) -> Bool {
-        parent.map { contains(event.location(in: $0)) } ?? false
+    private func active(at point: CGPoint) -> Bool {
+        parent.map { contains(convert(point, to: $0)) } ?? false
     }
     
-    public override func mouseDown(with event: NSEvent) {
+    public func inputDown(at point: CGPoint) {
         color = activeBgColor
     }
     
-    public override func mouseDragged(with event: NSEvent) {
-        color = active(with: event) ? activeBgColor : inactiveBgColor
+    public func inputDragged(to point: CGPoint) {
+        color = active(at: point) ? activeBgColor : inactiveBgColor
     }
     
-    public override func mouseUp(with event: NSEvent) {
+    public func inputUp(at point: CGPoint) {
         color = inactiveBgColor
-        if active(with: event) {
+        if active(at: point) {
             action?(self)
         }
     }

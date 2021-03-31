@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 /// A visual representation of a project's timeline.
-final class TimelineView: SKNode {
+final class TimelineView: SKNode, SKInputHandler {
     /// How zoomed-in the clips and marks on the timeline shall appear.
     var zoomLevel: CGFloat! {
         didSet { update() }
@@ -48,21 +48,21 @@ final class TimelineView: SKNode {
         update()
     }
     
-    override func mouseDown(with event: NSEvent) {
+    func inputDown(at point: CGPoint) {
         dragState = .cursor
     }
     
-    override func mouseDragged(with event: NSEvent) {
+    func inputDragged(to point: CGPoint) {
         switch dragState! {
         case .cursor:
             // TODO: Bounds check, go through model first?
-            cursor.position = CGPoint(x: event.location(in: self).x, y: cursor.position.y)
+            cursor.position = CGPoint(x: point.x, y: cursor.position.y)
         default:
             break
         }
     }
     
-    override func mouseUp(with event: NSEvent) {
+    func inputUp(at point: CGPoint) {
         dragState = .inactive
     }
     

@@ -11,24 +11,35 @@ enum ClipContent {
     case color(Color)
     
     struct Text {
-        let text: String
-        let size: CGFloat
-        let color: NSColor
+        var text: String
+        var size: CGFloat
+        var color: NSColor
     }
     
     struct Video {
-        let asset: AVAsset
+        var asset: AVAsset
     }
     
     struct Audio {
-        let asset: AVAsset
+        var asset: AVAsset
     }
     
     struct Image {
-        let image: NSImage
+        var image: NSImage
     }
     
     struct Color {
-        let color: NSColor
+        var color: NSColor
+    }
+    
+    var duration: TimeInterval? {
+        switch self {
+        case .video(let video):
+            return video.asset.duration.seconds
+        case .audio(let audio):
+            return audio.asset.duration.seconds
+        default:
+            return nil
+        }
     }
 }

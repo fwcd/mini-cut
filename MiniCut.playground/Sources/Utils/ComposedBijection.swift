@@ -13,11 +13,11 @@ struct ComposedBijection<Outer, Inner>: Bijection where Outer: Bijection, Inner:
 }
 
 extension Bijection {
-    func compose<Inner>(_ inner: Inner) -> ComposedBijection<Self, Inner> {
+    func compose<Inner>(_ inner: Inner) -> ComposedBijection<Self, Inner> where Inner: Bijection, Inner.Output == Self.Input {
         ComposedBijection(outer: self, inner: inner)
     }
     
-    func then<Outer>(_ outer: Outer) -> ComposedBijection<Outer, Self> {
+    func then<Outer>(_ outer: Outer) -> ComposedBijection<Outer, Self> where Outer: Bijection, Outer.Input == Self.Output {
         ComposedBijection(outer: outer, inner: self)
     }
 }

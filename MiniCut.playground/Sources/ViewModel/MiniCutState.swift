@@ -2,7 +2,7 @@ import Foundation
 
 final class MiniCutState {
     let timeline = Timeline()
-    var bijection: AnyBijection<Never, Never>!
+    var bijection = (IdentityBijection<CGFloat>() * 4) + 5
     
     init() {}
 }

@@ -35,16 +35,34 @@ public class Stack: SKSpriteNode {
     }
     
     public override func addChild(_ node: SKNode) {
+        let shiftDelta: CGFloat
+        
         if let last = children.last {
-            let frame = last.calculateAccumulatedFrame()
+            let lastFrame = last.calculateAccumulatedFrame()
             let nodeFrame = node.calculateAccumulatedFrame()
+            let delta: CGFloat
+            
             switch direction! {
             case .horizontal:
-                node.position = CGPoint(x: last.position.x + (frame.width / 2) + (nodeFrame.width / 2) + padding, y: last.position.y)
+                shiftDelta = (nodeFrame.width / 2) + padding
+                node.position = CGPoint(x: last.position.x + (lastFrame.width / 2) + shiftDelta, y: last.position.y)
             case .vertical:
-                node.position = CGPoint(x: last.position.x, y: last.position.y - (frame.height / 2) - (nodeFrame.height / 2) - padding)
+                shiftDelta = (nodeFrame.height / 2) + padding
+                node.position = CGPoint(x: last.position.x, y: last.position.y - (lastFrame.height / 2) - shiftDelta)
+            }
+        } else {
+            shiftDelta = 0
+        }
+        
+        super.addChild(node)
+        
+        for child in children {
+            switch direction! {
+            case .horizontal:
+                child.position = CGPoint(x: child.position.x - shiftDelta, y: child.position.y)
+            case .vertical:
+                child.position = CGPoint(x: child.position.x, y: child.position.y + shiftDelta)
             }
         }
-        super.addChild(node)
     }
 }

@@ -27,14 +27,14 @@ public class MiniCutScene: SKScene {
             Stack.horizontal([
                 Button("Hello") { print("Hello") },
                 Button("World") { print("World") },
-                SKSpriteNode(color: .blue, size: CGSize(width: 25, height: 25)),
+                SKSpriteNode(color: .blue, size: CGSize(width: 25, height: 50)),
                 Stack.vertical([
                     Button("123"),
-                    SKSpriteNode(color: .red, size: CGSize(width: 25, height: 25))
+                    SKSpriteNode(color: .red, size: CGSize(width: 25, height: 80))
                 ])
             ])
         ])
-        buttons.position = CGPoint(x: 200, y: 300)
+        buttons.position = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
         addChild(buttons)
     }
     

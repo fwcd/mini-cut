@@ -11,6 +11,8 @@ public final class MiniCutScene: SKScene {
     private var state = MiniCutState()
     
     public override func didMove(to view: SKView) {
+        backgroundColor = ViewDefaults.background
+        
         // The core views of the app are initialized here
         
         let toolbar = Stack.horizontal([

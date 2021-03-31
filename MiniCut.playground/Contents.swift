@@ -12,4 +12,4 @@ let scene = MiniCutScene(size: CGSize(width: width, height: height))
 scene.scaleMode = .aspectFill
 sceneView.presentScene(scene)
 
-PlaygroundSupport.PlaygroundPage.current.liveView = sceneView
+PlaygroundPage.current.liveView = sceneView

@@ -3,7 +3,7 @@
 import PlaygroundSupport
 import SpriteKit
 
-let width = 800
+let width = 900
 let height = 600
 
 // Create and initialize the scene

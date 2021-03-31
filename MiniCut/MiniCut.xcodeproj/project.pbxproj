@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C7590EF4261524F900A02167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7590EF3261524F900A02167 /* Assets.xcassets */; };
-		C7590F012615259F00A02167 /* MiniCutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F002615259F00A02167 /* MiniCutApp.swift */; };
 		C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F182615276100A02167 /* CompatibilityLayer.swift */; };
 		C7590F212615277F00A02167 /* OffsetClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1D2615277F00A02167 /* OffsetClip.swift */; };
 		C7590F222615277F00A02167 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1E2615277F00A02167 /* Clip.swift */; };
@@ -43,13 +42,15 @@
 		C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = C7590F60261528AA00A02167 /* bigBuckBunnyLicense.txt */; };
 		C7590F67261528AB00A02167 /* bigBuckBunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C7590F61261528AA00A02167 /* bigBuckBunny.mp4 */; };
 		C7590F68261528AB00A02167 /* iconBack.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F62261528AA00A02167 /* iconBack.png */; };
+		C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F6B26152B0A00A02167 /* Main.storyboard */; };
+		C7590F7226152B2B00A02167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F7126152B2B00A02167 /* AppDelegate.swift */; };
+		C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F6E26152B2300A02167 /* MiniCutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C7590EE3261524F400A02167 /* MiniCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7590EF3261524F900A02167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7590EF5261524F900A02167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7590F002615259F00A02167 /* MiniCutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCutApp.swift; sourceTree = "<group>"; };
 		C7590F182615276100A02167 /* CompatibilityLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompatibilityLayer.swift; path = ../../MiniCut.playground/Sources/CompatibilityLayer.swift; sourceTree = "<group>"; };
 		C7590F1D2615277F00A02167 /* OffsetClip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OffsetClip.swift; path = ../../MiniCut.playground/Sources/Model/OffsetClip.swift; sourceTree = "<group>"; };
 		C7590F1E2615277F00A02167 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Clip.swift; path = ../../MiniCut.playground/Sources/Model/Clip.swift; sourceTree = "<group>"; };
@@ -84,6 +85,9 @@
 		C7590F60261528AA00A02167 /* bigBuckBunnyLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bigBuckBunnyLicense.txt; path = ../../MiniCut.playground/Resources/bigBuckBunnyLicense.txt; sourceTree = "<group>"; };
 		C7590F61261528AA00A02167 /* bigBuckBunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bigBuckBunny.mp4; path = ../../MiniCut.playground/Resources/bigBuckBunny.mp4; sourceTree = "<group>"; };
 		C7590F62261528AA00A02167 /* iconBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconBack.png; path = ../../MiniCut.playground/Resources/iconBack.png; sourceTree = "<group>"; };
+		C7590F6B26152B0A00A02167 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C7590F6E26152B2300A02167 /* MiniCutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCutViewController.swift; sourceTree = "<group>"; };
+		C7590F7126152B2B00A02167 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +122,11 @@
 			children = (
 				C7590F172615274400A02167 /* PlaygroundSources */,
 				C7590F5C2615289500A02167 /* PlaygroundResources */,
+				C7590F6B26152B0A00A02167 /* Main.storyboard */,
+				C7590F7126152B2B00A02167 /* AppDelegate.swift */,
+				C7590F6E26152B2300A02167 /* MiniCutViewController.swift */,
 				C7590EF3261524F900A02167 /* Assets.xcassets */,
 				C7590EF5261524F900A02167 /* Info.plist */,
-				C7590F002615259F00A02167 /* MiniCutApp.swift */,
 			);
 			path = MiniCut;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				C7590F67261528AB00A02167 /* bigBuckBunny.mp4 in Resources */,
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,
+				C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */,
 				C7590F64261528AB00A02167 /* iconPause.png in Resources */,
 				C7590F63261528AB00A02167 /* iconForward.png in Resources */,
 				C7590F65261528AB00A02167 /* iconPlay.png in Resources */,
@@ -306,13 +313,14 @@
 				C7590F222615277F00A02167 /* Clip.swift in Sources */,
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,
+				C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */,
 				C7590F37261527A700A02167 /* ListenerList.swift in Sources */,
 				C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */,
 				C7590F51261527CB00A02167 /* TimelineView.swift in Sources */,
+				C7590F7226152B2B00A02167 /* AppDelegate.swift in Sources */,
 				C7590F3A261527A700A02167 /* Bijection.swift in Sources */,
 				C7590F5A261527E300A02167 /* Stack.swift in Sources */,
 				C7590F4B261527CB00A02167 /* LibraryView.swift in Sources */,
-				C7590F012615259F00A02167 /* MiniCutApp.swift in Sources */,
 				C7590F58261527E300A02167 /* Label.swift in Sources */,
 				C7590F4E261527CB00A02167 /* VideoView.swift in Sources */,
 				C7590F38261527A700A02167 /* Translation.swift in Sources */,

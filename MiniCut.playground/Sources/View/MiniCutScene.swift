@@ -11,11 +11,7 @@ public final class MiniCutScene: SKScene {
     private var state = MiniCutState()
     
     public override func didMove(to view: SKView) {
-        #if os(iOS)
-        let initialFrame = CGSize(width: 640, height: 480)
-        #else
         let initialFrame = view.frame.size
-        #endif
         
         backgroundColor = ViewDefaults.background
         

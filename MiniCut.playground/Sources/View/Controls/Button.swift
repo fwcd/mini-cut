@@ -5,6 +5,7 @@ import SpriteKit
 public class Button: SKSpriteNode {
     private var inactiveBgColor: NSColor!
     private var activeBgColor: NSColor!
+    private var padding: CGFloat!
     private var action: (() -> Void)?
     
     public override var isUserInteractionEnabled: Bool {
@@ -22,6 +23,7 @@ public class Button: SKSpriteNode {
         self.init(color: inactiveBgColor, size: CGSize(width: label.frame.width + padding, height: label.frame.height + padding))
         self.inactiveBgColor = inactiveBgColor
         self.activeBgColor = activeBgColor
+        self.padding = padding
         self.action = action
         addChild(label)
     }
@@ -36,8 +38,8 @@ public class Button: SKSpriteNode {
         let label = SKLabelNode(text: text)
         label.fontSize = fontSize
         label.fontName = fontName
-        label.position = CGPoint(x: 0, y: -label.frame.size.height / 2)
         self.init(label: label, action: action)
+        label.position = CGPoint(x: 0, y: padding - (size.height / 2))
     }
     
     private func active(with event: NSEvent) -> Bool {

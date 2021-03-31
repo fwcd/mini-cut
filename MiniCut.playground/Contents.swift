@@ -4,7 +4,7 @@ import PlaygroundSupport
 import SpriteKit
 
 let width = 800
-let height = 500
+let height = 600
 
 // Create and initialize the scene
 let sceneView = SKView(frame: CGRect(x: 0, y: 0, width: width, height: height))

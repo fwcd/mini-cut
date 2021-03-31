@@ -6,7 +6,7 @@ final class TimelineMark: SKSpriteNode {
     convenience init(
         height: CGFloat,
         thickness: CGFloat = 1,
-        color: NSColor = ViewDefaults.quaternary
+        color: Color = ViewDefaults.quaternary
     ) {
         self.init(color: color, size: CGSize(width: thickness, height: height))
     }

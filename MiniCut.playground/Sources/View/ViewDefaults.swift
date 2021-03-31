@@ -11,12 +11,12 @@ public enum ViewDefaults {
     
     // MARK: Color scheme
     
-    public static let primary: NSColor = .white
-    public static let secondary: NSColor = NSColor(white: 1, alpha: 0.5)
-    public static let tertiary: NSColor = NSColor(white: 1, alpha: 0.2)
-    public static let quaternary: NSColor = NSColor(white: 1, alpha: 0.1)
-    public static let background: NSColor = NSColor(white: 0.15, alpha: 1)
-    public static let inactiveBgColor: NSColor = tertiary
-    public static let activeBgColor: NSColor = quaternary
-    public static let cursorColor: NSColor = NSColor(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
+    public static let primary: Color = .white
+    public static let secondary: Color = Color(white: 1, alpha: 0.5)
+    public static let tertiary: Color = Color(white: 1, alpha: 0.2)
+    public static let quaternary: Color = Color(white: 1, alpha: 0.1)
+    public static let background: Color = Color(white: 0.15, alpha: 1)
+    public static let inactiveBgColor: Color = tertiary
+    public static let activeBgColor: Color = quaternary
+    public static let cursorColor: Color = Color(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
 }

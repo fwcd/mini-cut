@@ -7,7 +7,7 @@ final class TimelineCursor: SKShapeNode {
         height: CGFloat,
         thickness: CGFloat = 0.5,
         knobWidth: CGFloat = 20,
-        color: NSColor = ViewDefaults.cursorColor
+        color: Color = ViewDefaults.cursorColor
     ) {
         let knobBezelHeight = knobWidth / 4
         let knobRestHeight = knobWidth / 2

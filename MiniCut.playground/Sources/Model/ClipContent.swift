@@ -4,32 +4,32 @@ import AVFoundation
 
 /// Some form of audiovisual content.
 enum ClipContent {
-    case text(Text)
-    case video(Video)
-    case audio(Audio)
-    case image(Image)
-    case color(Color)
+    case text(ClipText)
+    case video(ClipVideo)
+    case audio(ClipAudio)
+    case image(ClipImage)
+    case color(ClipColor)
     
-    struct Text {
+    struct ClipText {
         var text: String
         var size: CGFloat
-        var color: NSColor
+        var color: Color
     }
     
-    struct Video {
+    struct ClipVideo {
         var asset: AVAsset
     }
     
-    struct Audio {
+    struct ClipAudio {
         var asset: AVAsset
     }
     
-    struct Image {
-        var image: NSImage
+    struct ClipImage {
+        var image: Image
     }
     
-    struct Color {
-        var color: NSColor
+    struct ClipColor {
+        var color: Color
     }
     
     var duration: TimeInterval? {

@@ -5,8 +5,8 @@ import SpriteKit
 public class Button: SKSpriteNode {
     var label: SKNode!
     
-    private var inactiveBgColor: NSColor!
-    private var activeBgColor: NSColor!
+    private var inactiveBgColor: Color!
+    private var activeBgColor: Color!
     private var padding: CGFloat!
     private var action: ((Button) -> Void)?
     
@@ -19,8 +19,8 @@ public class Button: SKSpriteNode {
         label: SKNode,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding,
-        inactiveBgColor: NSColor = ViewDefaults.inactiveBgColor,
-        activeBgColor: NSColor = ViewDefaults.activeBgColor,
+        inactiveBgColor: Color = ViewDefaults.inactiveBgColor,
+        activeBgColor: Color = ViewDefaults.activeBgColor,
         action: ((Button) -> Void)? = nil
     ) {
         self.init(color: inactiveBgColor, size: CGSize(width: size.width + padding, height: size.height + padding))

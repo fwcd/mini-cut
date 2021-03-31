@@ -40,7 +40,6 @@ public class Stack: SKSpriteNode {
         if let last = children.last {
             let lastFrame = last.calculateAccumulatedFrame()
             let nodeFrame = node.calculateAccumulatedFrame()
-            let delta: CGFloat
             
             switch direction! {
             case .horizontal:

@@ -1,7 +1,10 @@
 import Foundation
 import SpriteKit
 
-/// A small compatibility layer for running the playground on different platforms.
+/// A small compatibility layer for running the playground on different platforms
+/// like macOS and iOS while sharing a common codebase. This works, since AppKit
+/// and UIKit share many similarities, making it easy to abstract over the (few)
+/// differences.
 
 protocol SKInputHandler {
     func inputDown(at point: CGPoint)
@@ -9,6 +12,14 @@ protocol SKInputHandler {
     func inputDragged(to point: CGPoint)
     
     func inputUp(at point: CGPoint)
+}
+
+extension SKInputHandler {
+    func inputDown(at point: CGPoint) {}
+    
+    func inputDragged(to point: CGPoint) {}
+    
+    func inputUp(at point: CGPoint) {}
 }
 
 #if canImport(AppKit)

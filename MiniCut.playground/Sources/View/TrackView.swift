@@ -5,7 +5,7 @@ import SpriteKit
 final class TrackView: SKSpriteNode {
     private var clipsSubscription: Subscription!
     
-    private(set) var clipNodes: [UUID: SKNode] = [:]
+    private(set) var clipNodes: [UUID: TrackClipView] = [:]
     
     convenience init(
         state: MiniCutState,

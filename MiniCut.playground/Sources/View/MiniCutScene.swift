@@ -7,13 +7,15 @@ private let pauseIcon = SKTexture(imageNamed: "iconPause.png")
 private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
 
 /// The application's primary view.
-public final class MiniCutScene: SKScene {
+public final class MiniCutScene: SKScene, SKInputHandler {
     private var state = MiniCutState()
+    private var dragNDrop: DragNDropController!
     private var isPlayingSubscription: Subscription!
     
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
         
+        dragNDrop = DragNDropController(parent: self)
         backgroundColor = ViewDefaults.background
         
         // Initialize the app's core views
@@ -49,18 +51,21 @@ public final class MiniCutScene: SKScene {
         let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
         let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
 
+        let timeline = TimelineView(state: state, size: CGSize(width: initialFrame.width, height: timelineHeight))
         let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([
-                LibraryView(state: state, size: CGSize(width: panelWidth, height: videoHeight)),
+                LibraryView(state: state, dragNDrop: dragNDrop, size: CGSize(width: panelWidth, height: videoHeight)),
                 VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
                 InspectorView(size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
-            TimelineView(state: state, size: CGSize(width: initialFrame.width, height: timelineHeight))
+            timeline
         ])
         content.position = CGPoint(x: initialFrame.width / 2, y: (initialFrame.height / 2) - 2 * ViewDefaults.padding)
         addChild(content)
+        
+        dragNDrop.register(target: timeline)
     }
     
     // SKNode conforms to NSSecureCoding, so any subclass going
@@ -69,5 +74,17 @@ public final class MiniCutScene: SKScene {
     
     public override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    func inputDown(at point: CGPoint) {
+        if dragNDrop.handleInputDown(at: point) { return }
+    }
+    
+    func inputDragged(to point: CGPoint) {
+        if dragNDrop.handleInputDragged(at: point) { return }
+    }
+    
+    func inputUp(at point: CGPoint) {
+        if dragNDrop.handleInputUp(at: point) { return }
     }
 }

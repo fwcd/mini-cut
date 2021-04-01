@@ -5,16 +5,18 @@ import SpriteKit
 final class LibraryView: SKSpriteNode {
     private var librarySubscription: Subscription!
     
-    convenience init(state: MiniCutState, size: CGSize) {
+    convenience init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
         self.init(color: ViewDefaults.quaternary, size: size)
         
         librarySubscription = state.libraryWillChange.subscribeFiring(state.library) { [unowned self] in
             let header = Label("Library", fontSize: ViewDefaults.headerFontSize, fontColor: ViewDefaults.secondary)
             let clips = Flow(size: CGSize(width: size.width, height: size.height - header.calculateAccumulatedFrame().height - ViewDefaults.padding))
-            clips.removeAllChildren()
+            dragNDrop.clearSources()
             
             for clip in $0.clips {
-                clips.addChild(LibraryClipView(clip: clip))
+                let clip = LibraryClipView(clip: clip)
+                clips.addChild(clip)
+                dragNDrop.register(source: clip)
             }
             
             let stack = Stack.vertical(anchored: true, [header])

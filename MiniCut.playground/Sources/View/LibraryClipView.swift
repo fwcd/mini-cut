@@ -23,11 +23,23 @@ private func generateThumbnail(from clip: Clip, size: CGSize) -> SKSpriteNode {
 }
 
 /// A clip with thumbnail in the user's library.
-final class LibraryClipView: SKSpriteNode {
+final class LibraryClipView: SKNode, DragSource {
+    private var clip: Clip!
+    private var size: CGSize!
+    private var customSize: CGSize!
+    
+    var draggableValue: Any { clip! }
+    
     convenience init(clip: Clip, size: CGSize = CGSize(width: 90, height: 50.625)) {
         self.init()
+        self.clip = clip
+        self.size = size
         
         addChild(generateThumbnail(from: clip, size: size))
+    }
+    
+    func makeHoverNode() -> SKNode {
+        generateThumbnail(from: clip, size: size)
     }
 }
 

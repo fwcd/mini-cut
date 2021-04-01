@@ -87,6 +87,8 @@ class DragNDropController {
         hoverNode?.removeFromParent()
         hoverNode = nil
         
+        self.inFlight = nil
+        
         for node in nodes {
             if self.node(node, contains: point), let target = node as? DropTarget {
                 target.onDrop(value: inFlight, at: self.point(point, in: node))

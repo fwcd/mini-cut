@@ -1,7 +1,7 @@
 import Foundation
 import SpriteKit
 
-/// Handles drag events.
+/// Implement drag-n-drop over SpriteKit nodes.
 class DragNDropController {
     private weak var parent: SKNode!
     private var nodes: [SKNode] = []

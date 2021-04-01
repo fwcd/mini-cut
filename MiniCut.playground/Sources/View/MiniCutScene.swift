@@ -49,7 +49,7 @@ public final class MiniCutScene: SKScene {
         let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
         let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
 
-        let content = Stack.vertical([
+        let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([
                 LibraryView(size: CGSize(width: panelWidth, height: videoHeight)),

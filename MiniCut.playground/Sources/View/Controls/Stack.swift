@@ -5,6 +5,7 @@ import SpriteKit
 public class Stack: SKSpriteNode {
     private var direction: Direction!
     private var padding: CGFloat!
+    private var useFixedPositions: Bool!
     private var anchored: Bool!
     
     public enum Direction {
@@ -15,6 +16,7 @@ public class Stack: SKSpriteNode {
     public convenience init(
         _ direction: Direction,
         padding: CGFloat = ViewDefaults.padding,
+        useFixedPositions: Bool = false,
         anchored: Bool = false,
         childs: [SKNode]
     ) {
@@ -22,6 +24,7 @@ public class Stack: SKSpriteNode {
         
         self.direction = direction
         self.padding = padding
+        self.useFixedPositions = useFixedPositions
         self.anchored = anchored
         
         for child in childs {
@@ -29,12 +32,12 @@ public class Stack: SKSpriteNode {
         }
     }
     
-    public static func horizontal(anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
-        Stack(.horizontal, anchored: anchored, childs: childs)
+    public static func horizontal(useFixedPositions: Bool = false, anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
+        Stack(.horizontal, useFixedPositions: useFixedPositions, anchored: anchored, childs: childs)
     }
     
-    public static func vertical(anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
-        Stack(.vertical, anchored: anchored, childs: childs)
+    public static func vertical(useFixedPositions: Bool = false, anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
+        Stack(.vertical, useFixedPositions: useFixedPositions, anchored: anchored, childs: childs)
     }
     
     public override func addChild(_ node: SKNode) {
@@ -47,10 +50,18 @@ public class Stack: SKSpriteNode {
             switch direction! {
             case .horizontal:
                 shiftDelta = (nodeFrame.width / 2) + padding
-                node.centerPosition = CGPoint(x: lastFrame.maxX + shiftDelta, y: last.centerPosition.y)
+                if useFixedPositions {
+                    node.position = CGPoint(x: lastFrame.maxX + shiftDelta, y: last.position.y)
+                } else {
+                    node.centerPosition = CGPoint(x: lastFrame.maxX + shiftDelta, y: last.centerPosition.y)
+                }
             case .vertical:
                 shiftDelta = (nodeFrame.height / 2) + padding
-                node.centerPosition = CGPoint(x: last.centerPosition.x, y: lastFrame.minY - shiftDelta)
+                if useFixedPositions {
+                    node.position = CGPoint(x: last.position.x, y: lastFrame.minY - shiftDelta)
+                } else {
+                    node.centerPosition = CGPoint(x: last.centerPosition.x, y: lastFrame.minY - shiftDelta)
+                }
             }
         } else {
             shiftDelta = 0

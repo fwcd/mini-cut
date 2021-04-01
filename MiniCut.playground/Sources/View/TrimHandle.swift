@@ -5,7 +5,7 @@ import SpriteKit
 final class TrimHandle: SKShapeNode {
     convenience init(
         in size: CGSize,
-        thickness: CGFloat = 4,
+        thickness: CGFloat = ViewDefaults.trimHandleThickness,
         color: Color = ViewDefaults.trimHandleColor
     ) {
         let path = CGMutablePath()

@@ -13,7 +13,8 @@ public enum ViewDefaults {
     public static let thumbnailSize: CGSize = CGSize(width: 90, height: 50.625)
     public static let trackHeight: CGFloat = 36
     public static let trackControlsWidth: CGFloat = 100
-    public static let trimHandleWidth: CGFloat = 15
+    public static let trimHandleWidth: CGFloat = 10
+    public static let trimHandleThickness: CGFloat = 6
     
     // MARK: Color scheme
     

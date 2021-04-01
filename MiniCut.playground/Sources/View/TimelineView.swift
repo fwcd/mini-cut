@@ -2,7 +2,6 @@ import Foundation
 import SpriteKit
 
 private let cursorZPosition: CGFloat = 100
-private let trimHandleZPosition: CGFloat = 50
 
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler, DropTarget {
@@ -38,7 +37,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var trackNodes: [UUID: TrackView] = [:]
     
     private var dragState: DragState? = nil
-    private var selection: Selection? = nil
     
     private enum DragState {
         case cursor
@@ -50,33 +48,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         var trackId: UUID
         var clipId: UUID
         let dxInClip: CGFloat
-    }
-    
-    private class Selection {
-        var trackId: UUID
-        var clipId: UUID
-        var leftHandle: TrimHandle
-        var rightHandle: TrimHandle
-        
-        init(trackId: UUID, clipId: UUID, in parent: SKNode) {
-            self.trackId = trackId
-            self.clipId = clipId
-            
-            let handleSize = CGSize(width: ViewDefaults.trimHandleWidth, height: ViewDefaults.trackHeight)
-            leftHandle = TrimHandle(in: handleSize)
-            rightHandle = TrimHandle(in: handleSize)
-            
-            leftHandle.zPosition = trimHandleZPosition
-            rightHandle.zPosition = trimHandleZPosition
-            
-            parent.addChild(leftHandle)
-            parent.addChild(rightHandle)
-        }
-        
-        deinit {
-            leftHandle.removeFromParent()
-            rightHandle.removeFromParent()
-        }
     }
     
     public override var isUserInteractionEnabled: Bool {
@@ -127,13 +98,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
                     let corner = clip.topLeftPosition
                     let dx = pointInClipParent.x - corner.x
                     dragState = .clip(ClipDragState(trackId: trackId, clipId: clipId, dxInClip: dx))
-                    selection = Selection(trackId: trackId, clipId: clipId, in: self)
+                    state.selection = Selection(trackId: trackId, clipId: clipId)
                     return
                 }
             }
         }
         
-        selection = nil
+        state.selection = nil
         dragState = .cursor
     }
     
@@ -152,6 +123,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
                         clip.id = UUID()
                         newState.clipId = clip.id
                         state.timeline[trackId]?.insert(clip: clip)
+                        // ...and we have to update the selection with the new ids too
+                        state.selection?.clipId = clip.id
+                        state.selection?.trackId = trackId
                     }
                     dragState = .clip(newState)
                     break

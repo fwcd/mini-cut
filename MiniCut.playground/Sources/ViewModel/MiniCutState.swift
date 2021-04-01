@@ -17,6 +17,9 @@ final class MiniCutState {
         get { _cursor }
         set { _cursor = max(0, newValue) }
     }
+    var selection: Selection? = nil {
+        didSet { selectionDidChange.fire(selection) }
+    }
     var isPlaying: Bool = false {
         willSet { isPlayingWillChange.fire(newValue) }
         didSet { isPlayingDidChange.fire(isPlaying) }
@@ -29,6 +32,7 @@ final class MiniCutState {
     
     var timelineDidChange = ListenerList<Timeline>()
     var cursorDidChange = ListenerList<TimeInterval>()
+    var selectionDidChange = ListenerList<Selection?>()
     var isPlayingDidChange = ListenerList<Bool>()
     
     init() {}

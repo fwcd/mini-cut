@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C758D410261674AA0049301B /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D40F261674AA0049301B /* LRUCache.swift */; };
 		C758D413261684F90049301B /* TrimHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D412261684F90049301B /* TrimHandle.swift */; };
+		C758D416261688250049301B /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D415261688250049301B /* Selection.swift */; };
 		C7590EF4261524F900A02167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7590EF3261524F900A02167 /* Assets.xcassets */; };
 		C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F182615276100A02167 /* CompatibilityLayer.swift */; };
 		C7590F212615277F00A02167 /* OffsetClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1D2615277F00A02167 /* OffsetClip.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		C758D40F261674AA0049301B /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LRUCache.swift; path = ../../MiniCut.playground/Sources/Utils/LRUCache.swift; sourceTree = "<group>"; };
 		C758D412261684F90049301B /* TrimHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrimHandle.swift; path = ../../MiniCut.playground/Sources/View/TrimHandle.swift; sourceTree = "<group>"; };
+		C758D415261688250049301B /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../../MiniCut.playground/Sources/ViewModel/Selection.swift; sourceTree = "<group>"; };
 		C7590EE3261524F400A02167 /* MiniCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7590EF3261524F900A02167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7590EF5261524F900A02167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C7590F272615279200A02167 /* MiniCutState.swift */,
+				C758D415261688250049301B /* Selection.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				C7590F3B261527A700A02167 /* IdentityBijection.swift in Sources */,
 				C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
+				C758D416261688250049301B /* Selection.swift in Sources */,
 				C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */,
 				C7590F4D261527CB00A02167 /* ViewDefaults.swift in Sources */,
 				C7590F212615277F00A02167 /* OffsetClip.swift in Sources */,

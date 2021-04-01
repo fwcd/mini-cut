@@ -1,5 +1,26 @@
 import SpriteKit
 
+/// Performs an efficient update of the given nodes that only adds/removes
+/// what has changed between the nodes and the model items.
+func diffUpdate<N, I>(nodes: inout [I.ID: N], in parent: SKNode, with items: [I], using factory: (I) -> N) where N: SKNode, I: Identifiable {
+    let itemDict = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
+    let nodeIds = Set(nodes.keys)
+    let itemIds = Set(itemDict.keys)
+    let removedIds = nodeIds.subtracting(itemIds)
+    let addedIds = itemIds.subtracting(nodeIds)
+    
+    for id in removedIds {
+        nodes[id]!.removeFromParent()
+        nodes[id] = nil
+    }
+    
+    for id in addedIds {
+        let node = factory(itemDict[id]!)
+        nodes[id] = node
+        parent.addChild(node)
+    }
+}
+
 extension SKNode {
     /// The top-left position of the accumulated frame in the parent's coordinate space.
     var topLeftPosition: CGPoint {

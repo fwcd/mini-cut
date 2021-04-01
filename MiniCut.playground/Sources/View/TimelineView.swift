@@ -5,6 +5,7 @@ import SpriteKit
 final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var state: MiniCutState!
     private var cursorSubscription: Subscription!
+    private var tracksSubscription: Subscription!
     
     /// How zoomed-in the clips and marks on the timeline shall appear.
     var zoomLevel: Double! {
@@ -30,6 +31,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var background: SKSpriteNode!
     private var marks: SKNode!
     private var cursor: TimelineCursor!
+    private var trackNodes: [UUID: TrackView] = [:]
     private var dragState: DragState!
     
     private enum DragState {
@@ -56,6 +58,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         marks = SKNode()
         addChild(marks)
+        updateMarks()
         
         cursor = TimelineCursor(height: size.height)
         addChild(cursor)
@@ -64,16 +67,16 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
         }
         
-        updateMarks()
-        
-        // TODO: Real tracks
-        
         let tracks = Stack(.vertical, padding: 0, childs: [])
-        for (i, track) in [Track(name: "First"), Track(name: "Second"), Track(name: "Third")].enumerated() {
-            let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)
-            tracks.addChild(TrackView(track: track, size: trackSize, marked: i % 2 == 0))
-        }
         addChild(tracks)
+        
+        let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)
+        
+        tracksSubscription = state.timelineWillChange.subscribeFiring(state.timeline) { [unowned self] tl in
+            diffUpdate(nodes: &trackNodes, in: tracks, with: tl.tracks) {
+                TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0)
+            }
+        }
     }
     
     func inputDown(at point: CGPoint) {

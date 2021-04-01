@@ -17,14 +17,15 @@ final class TrackView: SKSpriteNode {
         addChild(controls)
         
         let clips = SKNode()
-        clips.position = CGPoint(x: trackControlsWidth, y: 0)
         addChild(clips)
+        
+        let toClipPos = toViewScale + (trackControlsWidth - (size.width / 2))
         
         clipsSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
             guard let track = $0[id] else { return }
             clips.diffUpdate(nodes: &clipNodes, with: track.clips) {
                 let clip = TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale)
-                // TODO: Positioning
+                clip.centerLeftPosition = CGPoint(x: toClipPos.apply($0.offset), y: 0)
                 return clip
             }
         }

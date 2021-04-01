@@ -44,7 +44,7 @@ extension SKNode {
             return CGPoint(x: frame.midX, y: frame.maxY)
         }
         set {
-            let oldValue = topLeftPosition
+            let oldValue = topCenterPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
@@ -55,7 +55,7 @@ extension SKNode {
             return CGPoint(x: frame.maxX, y: frame.maxY)
         }
         set {
-            let oldValue = topLeftPosition
+            let oldValue = topRightPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
@@ -77,7 +77,7 @@ extension SKNode {
             return CGPoint(x: frame.midX, y: frame.minY)
         }
         set {
-            let oldValue = topLeftPosition
+            let oldValue = bottomCenterPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
@@ -88,7 +88,7 @@ extension SKNode {
             return CGPoint(x: frame.maxX, y: frame.minY)
         }
         set {
-            let oldValue = bottomLeftPosition
+            let oldValue = bottomRightPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
@@ -99,7 +99,7 @@ extension SKNode {
             return CGPoint(x: frame.minX, y: frame.midY)
         }
         set {
-            let oldValue = centerPosition
+            let oldValue = centerLeftPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
@@ -121,7 +121,7 @@ extension SKNode {
             return CGPoint(x: frame.maxX, y: frame.midY)
         }
         set {
-            let oldValue = centerPosition
+            let oldValue = centerRightPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }

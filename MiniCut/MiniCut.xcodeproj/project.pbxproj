@@ -55,6 +55,8 @@
 		C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */; };
 		C7590FA0261637DA00A02167 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F9F261637DA00A02167 /* TrackView.swift */; };
 		C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FA226163B7000A02167 /* TrackControlsView.swift */; };
+		C7590FA72616426500A02167 /* iconPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA52616426400A02167 /* iconPlus.png */; };
+		C7590FA82616426500A02167 /* iconBackToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA62616426400A02167 /* iconBackToStart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +110,8 @@
 		C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7590F9F261637DA00A02167 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackView.swift; path = ../../MiniCut.playground/Sources/View/TrackView.swift; sourceTree = "<group>"; };
 		C7590FA226163B7000A02167 /* TrackControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackControlsView.swift; path = ../../MiniCut.playground/Sources/View/TrackControlsView.swift; sourceTree = "<group>"; };
+		C7590FA52616426400A02167 /* iconPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconPlus.png; path = ../../MiniCut.playground/Resources/iconPlus.png; sourceTree = "<group>"; };
+		C7590FA62616426400A02167 /* iconBackToStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconBackToStart.png; path = ../../MiniCut.playground/Resources/iconBackToStart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,8 @@
 				C7590F5D261528AA00A02167 /* iconForward.png */,
 				C7590F5E261528AA00A02167 /* iconPause.png */,
 				C7590F5F261528AA00A02167 /* iconPlay.png */,
+				C7590FA62616426400A02167 /* iconBackToStart.png */,
+				C7590FA52616426400A02167 /* iconPlus.png */,
 			);
 			name = PlaygroundResources;
 			sourceTree = "<group>";
@@ -315,8 +321,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7590FA72616426500A02167 /* iconPlus.png in Resources */,
 				C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */,
 				C7590F67261528AB00A02167 /* bigBuckBunny.mp4 in Resources */,
+				C7590FA82616426500A02167 /* iconBackToStart.png in Resources */,
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,
 				C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */,

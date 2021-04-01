@@ -11,7 +11,7 @@ private func generateThumbnail(from clip: Clip, size: CGSize) -> SKSpriteNode {
             let gen = AVAssetImageGenerator(asset: video.asset)
             let duration = video.asset.duration
             let cgThumb = try gen.copyCGImage(at: CMTime(seconds: duration.seconds / 2, preferredTimescale: duration.timescale), actualTime: nil)
-            let thumb = Image(cgImage: cgThumb, size: CGSize(width: cgThumb.width, height: cgThumb.height))
+            let thumb = Image(fromCG: cgThumb)
             return SKSpriteNode(texture: SKTexture(image: thumb), size: size)
         default:
             break

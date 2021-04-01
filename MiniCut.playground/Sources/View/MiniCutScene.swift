@@ -1,10 +1,12 @@
 import Foundation
 import SpriteKit
 
+private let backToStartIcon = SKTexture(imageNamed: "iconBackToStart.png")
 private let backIcon = SKTexture(imageNamed: "iconBack.png")
 private let playIcon = SKTexture(imageNamed: "iconPlay.png")
 private let pauseIcon = SKTexture(imageNamed: "iconPause.png")
 private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
+private let plusIcon = SKTexture(imageNamed: "iconPlus.png")
 
 /// The application's primary view.
 public final class MiniCutScene: SKScene, SKInputHandler {
@@ -34,14 +36,18 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         }
         
         let toolbar = Stack.horizontal([
+            Button(iconTexture: backToStartIcon) { [unowned self] _ in
+                state.cursor = 0
+            },
             Button(iconTexture: backIcon) { [unowned self] _ in
-                // TODO: Bound checks
                 state.cursor -= 10
             },
             playButton,
             Button(iconTexture: forwardIcon) { [unowned self] _ in
-                // TODO: Bound checks
                 state.cursor += 10
+            },
+            Button(iconTexture: plusIcon) { [unowned self] _ in
+                state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
             }
         ])
 

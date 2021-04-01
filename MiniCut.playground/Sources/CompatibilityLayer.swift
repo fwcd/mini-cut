@@ -18,6 +18,12 @@ import AppKit
 public typealias Image = NSImage
 public typealias Color = NSColor
 
+extension NSImage {
+    public convenience init(fromCG cgImage: CGImage) {
+        self.init(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
+    }
+}
+
 // Slightly hacky, relies on the fact that the Objective-C runtime
 // allows us to override methods from extensions.
 
@@ -41,6 +47,12 @@ import UIKit
 
 public typealias Image = UIImage
 public typealias Color = UIColor
+
+extension UIImage {
+    public convenience init(fromCG cgImage: CGImage) {
+        self.init(cgImage: cgImage)
+    }
+}
 
 extension SKNode {
     public dynamic override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

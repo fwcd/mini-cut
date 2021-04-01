@@ -42,16 +42,15 @@ enum ClipContent {
         }
     }
     var color: Color {
-        // TODO: Improve colors
         switch self {
         case .text(_):
-            return .purple
+            return Color(red: 0.6, green: 0.3, blue: 0.7, alpha: 1) // purple-ish
         case .audio(_):
-            return .green
+            return Color(red: 0, green: 0.5, blue: 0, alpha: 1) // green-ish
         case .color(let color):
             return color.color
         default:
-            return .blue
+            return Color(red: 0, green: 0.4, blue: 0.7, alpha: 1) // blue-ish
         }
     }
 }

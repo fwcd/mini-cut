@@ -73,7 +73,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)
         
         tracksSubscription = state.timelineWillChange.subscribeFiring(state.timeline) { [unowned self] tl in
-            diffUpdate(nodes: &trackNodes, in: tracks, with: tl.tracks) {
+            tracks.diffUpdate(nodes: &trackNodes, with: tl.tracks) {
                 TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0)
             }
         }

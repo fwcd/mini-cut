@@ -9,6 +9,7 @@ private let cursorStride: TimeInterval = 0.1
 final class VideoView: SKSpriteNode {
     private var state: MiniCutState!
     private var isPlayingSubscription: Subscription!
+    private var timelineSubscription: Subscription!
     private var cursorSubscription: Subscription!
     private var updateStartSubscription: Subscription!
     
@@ -32,6 +33,12 @@ final class VideoView: SKSpriteNode {
         }
         cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] in
             let playing = Array(state.timeline.playingClips(at: $0).reversed())
+            crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
+                VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size)
+            }
+        }
+        timelineSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
+            let playing = Array($0.playingClips(at: state.cursor).reversed())
             crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
                 VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size)
             }

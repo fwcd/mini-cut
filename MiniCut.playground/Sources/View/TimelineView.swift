@@ -93,15 +93,15 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         dragState = .inactive
     }
     
-    func onHover(value: Any) {
+    func onHover(value: Any, at position: CGPoint) {
         background.color = ViewDefaults.activeBgColor
     }
     
-    func onUnHover(value: Any) {
+    func onUnHover(value: Any, at position: CGPoint) {
         background.color = ViewDefaults.transparent
     }
     
-    func onDrop(value: Any) {
+    func onDrop(value: Any, at position: CGPoint) {
         // TODO
     }
     

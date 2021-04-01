@@ -29,9 +29,12 @@ class DragNDropController {
         nodes.append(node)
     }
     
+    private func point(_ point: CGPoint, inParentOf node: SKNode) -> CGPoint {
+        parent.convert(point, to: node.parent!)
+    }
+    
     private func node(_ node: SKNode, contains point: CGPoint) -> Bool {
-        guard let nodeParent = node.parent else { return false }
-        return node.contains(parent.convert(point, to: nodeParent))
+        node.contains(self.point(point, inParentOf: node))
     }
     
     func handleInputDown(at point: CGPoint) -> Bool {
@@ -57,13 +60,13 @@ class DragNDropController {
         hoverNode?.position = point
         
         if let hovering = hoveringNode, !node(hovering, contains: point) {
-            (hovering as? DropTarget)?.onUnHover(value: inFlight)
+            (hovering as? DropTarget)?.onUnHover(value: inFlight, at: self.point(point, inParentOf: hovering))
             hoveringNode = nil
         }
         
         for node in nodes {
             if hoveringNode !== node, self.node(node, contains: point), let target = node as? DropTarget {
-                target.onHover(value: inFlight)
+                target.onHover(value: inFlight, at: self.point(point, inParentOf: node))
                 hoveringNode = node
                 return true
             }
@@ -75,15 +78,17 @@ class DragNDropController {
     func handleInputUp(at point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
         
-        (hoveringNode as? DropTarget)?.onUnHover(value: inFlight)
-        hoveringNode = nil
+        if let hovering = hoveringNode {
+            (hoveringNode as? DropTarget)?.onUnHover(value: inFlight, at: self.point(point, inParentOf: hovering))
+            hoveringNode = nil
+        }
         
         hoverNode?.removeFromParent()
         hoverNode = nil
         
         for node in nodes {
             if self.node(node, contains: point), let target = node as? DropTarget {
-                target.onDrop(value: inFlight)
+                target.onDrop(value: inFlight, at: self.point(point, inParentOf: node))
                 return true
             }
         }

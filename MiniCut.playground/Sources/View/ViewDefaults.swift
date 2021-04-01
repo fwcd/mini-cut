@@ -13,6 +13,7 @@ public enum ViewDefaults {
     public static let thumbnailSize: CGSize = CGSize(width: 90, height: 50.625)
     public static let trackHeight: CGFloat = 36
     public static let trackControlsWidth: CGFloat = 100
+    public static let trimHandleWidth: CGFloat = 15
     
     // MARK: Color scheme
     
@@ -25,4 +26,5 @@ public enum ViewDefaults {
     public static let inactiveBgColor: Color = tertiary
     public static let activeBgColor: Color = quaternary
     public static let cursorColor: Color = Color(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
+    public static let trimHandleColor: Color = .yellow
 }

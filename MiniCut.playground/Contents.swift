@@ -1,5 +1,10 @@
 //: A tiny video editor
 
+// +------------------------------------------------+
+// | Please make sure that your playgrounds preview |
+// | is wide enough to display the app!             |
+// +------------------------------------------------+
+
 import PlaygroundSupport
 import SpriteKit
 

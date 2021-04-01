@@ -3,6 +3,10 @@ import SpriteKit
 
 /// A visual representation of a single track.
 final class TrackView: SKSpriteNode {
+    private var clipsSubscription: Subscription!
+    
+    private var clipNodes: [UUID: SKNode] = [:]
+    
     convenience init(state: MiniCutState, id: UUID, size: CGSize, marked: Bool, toViewScale: AnyBijection<TimeInterval, CGFloat>) {
         self.init(color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
         
@@ -11,10 +15,14 @@ final class TrackView: SKSpriteNode {
         controls.topLeftPosition = CGPoint(x: -(size.width / 2), y: size.height / 2)
         addChild(controls)
         
-        // TODO: Subscribe to changes
+        let clips = SKNode()
+        addChild(clips)
         
-        for clip in track.clips {
-            addChild(TrackClipView(state: state, trackId: id, id: clip.id, height: size.height, toViewScale: toViewScale))
+        clipsSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
+            guard let track = $0[id] else { return }
+            clips.diffUpdate(nodes: &clipNodes, with: track.clips) {
+                TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale)
+            }
         }
     }
 }

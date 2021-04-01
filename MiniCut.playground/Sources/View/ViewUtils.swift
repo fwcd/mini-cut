@@ -22,6 +22,10 @@ extension SKNode {
         }
     }
     
+    func move(dx: CGFloat, dy: CGFloat) {
+        position = CGPoint(x: position.x + dx, y: position.y + dy)
+    }
+    
     /// The top-left position of the accumulated frame in the parent's coordinate space.
     var topLeftPosition: CGPoint {
         get {
@@ -30,9 +34,7 @@ extension SKNode {
         }
         set {
             let oldValue = topLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The top-center position of the accumulated frame in the parent's coordinate space.
@@ -43,9 +45,7 @@ extension SKNode {
         }
         set {
             let oldValue = topLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The top-right position of the accumulated frame in the parent's coordinate space.
@@ -56,9 +56,7 @@ extension SKNode {
         }
         set {
             let oldValue = topLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The bottom-left position of the accumulated frame in the parent's coordinate space.
@@ -69,9 +67,7 @@ extension SKNode {
         }
         set {
             let oldValue = bottomLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The bottom-center position of the accumulated frame in the parent's coordinate space.
@@ -82,9 +78,7 @@ extension SKNode {
         }
         set {
             let oldValue = topLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The bottom-right position of the accumulated frame in the parent's coordinate space.
@@ -95,9 +89,7 @@ extension SKNode {
         }
         set {
             let oldValue = bottomLeftPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The center-left position of the accumulated frame in the parent's coordinate space.
@@ -108,9 +100,7 @@ extension SKNode {
         }
         set {
             let oldValue = centerPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The center position of the accumulated frame in the parent's coordinate space.
@@ -121,9 +111,7 @@ extension SKNode {
         }
         set {
             let oldValue = centerPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
     /// The center-right position of the accumulated frame in the parent's coordinate space.
@@ -134,9 +122,7 @@ extension SKNode {
         }
         set {
             let oldValue = centerPosition
-            let dx = newValue.x - oldValue.x
-            let dy = newValue.y - oldValue.y
-            position = CGPoint(x: position.x + dx, y: position.y + dy)
+            move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
 }

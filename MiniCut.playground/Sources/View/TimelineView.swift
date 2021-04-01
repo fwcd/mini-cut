@@ -61,13 +61,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         addChild(marks)
         updateMarks()
         
-        cursor = TimelineCursor(height: size.height)
-        addChild(cursor)
-        
-        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
-            cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
-        }
-        
         tracks = Stack(.vertical, padding: 0, childs: [])
         addChild(tracks)
         
@@ -77,6 +70,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             tracks.diffUpdate(nodes: &trackNodes, with: tl.tracks) {
                 TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0, toViewScale: toViewScale)
             }
+        }
+        
+        cursor = TimelineCursor(height: size.height)
+        addChild(cursor)
+        
+        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
+            cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
         }
     }
     

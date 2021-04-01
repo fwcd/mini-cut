@@ -32,6 +32,8 @@ class MiniCutViewController: UIViewController {
     }
 
     override var shouldAutorotate: Bool { true }
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
+    override var prefersStatusBarHidden: Bool { true }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -40,6 +42,4 @@ class MiniCutViewController: UIViewController {
             return .all
         }
     }
-
-    override var prefersStatusBarHidden: Bool { true }
 }

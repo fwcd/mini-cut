@@ -8,8 +8,12 @@ final class MiniCutState {
     var timeline = Timeline() {
         willSet { timelineWillChange.fire(newValue) }
     }
-    var cursor: TimeInterval = 0 {
+    private var _cursor: TimeInterval = 0 {
         willSet { cursorWillChange.fire(newValue) }
+    }
+    var cursor: TimeInterval {
+        get { _cursor }
+        set { _cursor = max(0, newValue) }
     }
     var isPlaying: Bool = false {
         willSet { isPlayingWillChange.fire(newValue) }

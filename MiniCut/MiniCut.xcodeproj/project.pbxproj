@@ -52,6 +52,7 @@
 		C7590F92261626A900A02167 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F91261626A900A02167 /* DropTarget.swift */; };
 		C7590F962616274A00A02167 /* DragSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F952616274A00A02167 /* DragSource.swift */; };
 		C7590F992616279600A02167 /* DragNDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F982616279600A02167 /* DragNDropController.swift */; };
+		C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		C7590F91261626A900A02167 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropTarget.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DropTarget.swift; sourceTree = "<group>"; };
 		C7590F952616274A00A02167 /* DragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragSource.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragSource.swift; sourceTree = "<group>"; };
 		C7590F982616279600A02167 /* DragNDropController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragNDropController.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragNDropController.swift; sourceTree = "<group>"; };
+		C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				C7590F172615274400A02167 /* PlaygroundSources */,
 				C7590F5C2615289500A02167 /* PlaygroundResources */,
 				C7590F6B26152B0A00A02167 /* Main.storyboard */,
+				C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */,
 				C7590F7126152B2B00A02167 /* AppDelegate.swift */,
 				C7590F6E26152B2300A02167 /* MiniCutViewController.swift */,
 				C7590EF3261524F900A02167 /* Assets.xcassets */,
@@ -306,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */,
 				C7590F67261528AB00A02167 /* bigBuckBunny.mp4 in Resources */,
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,

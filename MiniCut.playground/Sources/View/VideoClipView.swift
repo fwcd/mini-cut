@@ -8,9 +8,9 @@ private let cursorStride: TimeInterval = 0.1
 /// A view of a single clip's video.
 final class VideoClipView: SKNode {
     private var state: MiniCutState!
-    private var clipSubscription: Subscription!
-    private var isPlayingSubscription: Subscription!
-    private(set) var cursorSubscription: Subscription!
+    private var clipSubscription: Subscription?
+    private var isPlayingSubscription: Subscription?
+    private(set) var cursorSubscription: Subscription?
     
     private var player: AVPlayer!
     
@@ -20,33 +20,43 @@ final class VideoClipView: SKNode {
         
         print("[DEBUG] Creating VideoClipView")
         
-        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
-            guard let clip = $0[trackId]?[id] else { return }
+        // We don't attach the entire thing as a timeline listener since we don't want to create a
+        // new video node every time the timeline changes. Unfortunately this also means
+        // that we cannot swap out the video URL while a VideoClipView is playing
+        // (or: we can, but it won't be detected, if the clip's ID stays the same)
+        // However, since this is probably an uncommon use case, we ignore it for now.
+        
+        guard let clip = state.timeline[trackId]?[id] else { return }
+        
+        switch clip.clip.content {
+        case .video(let content):
+            player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+            let video = SKVideoNode(avPlayer: player)
+            video.size = size
+            addChild(video)
             
-            switch clip.clip.content {
-            case .video(let content):
-                let player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
-                let video = SKVideoNode(avPlayer: player)
-                video.size = size
-                self?.player = player
-                self?.addChild(video)
-                
-                self?.cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) {
-                    let relative = $0 - clip.offset
-                    self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
-                }
-                
-                self?.isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
-                    if $0 {
-                        video.play()
-                    } else {
-                        video.pause()
-                    }
-                }
-            default:
-                // TODO: Deal with other clip types
-                break
+            clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
+                guard let currentClip = $0[trackId]?[id] else { return }
+                let relative = state.cursor - currentClip.offset
+                self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
             }
+            
+            cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [weak self] in
+                guard let currentClip = state.timeline[trackId]?[id] else { return }
+                let relative = $0 - currentClip.offset
+                self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
+            }
+            
+            isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
+                if $0 {
+                    video.play()
+                } else {
+                    video.pause()
+                }
+            }
+        default:
+            // TODO: Deal with other clip types
+            break
         }
     }
     

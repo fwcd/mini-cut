@@ -5,7 +5,7 @@ import SpriteKit
 final class TrackView: SKSpriteNode {
     private var clipsSubscription: Subscription!
     
-    private var clipNodes: [UUID: SKNode] = [:]
+    private(set) var clipNodes: [UUID: SKNode] = [:]
     
     convenience init(state: MiniCutState, id: UUID, size: CGSize, marked: Bool, toViewScale: AnyBijection<TimeInterval, CGFloat>) {
         self.init(color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)

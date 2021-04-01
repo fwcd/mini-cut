@@ -37,7 +37,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     
     private enum DragState {
         case cursor
+        case clip(ClipDragState)
         case inactive
+    }
+    
+    private struct ClipDragState {
+        let trackId: UUID
+        let id: UUID
     }
     
     public override var isUserInteractionEnabled: Bool {
@@ -82,6 +88,16 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     func inputDown(at point: CGPoint) {
+        for (trackId, track) in trackNodes {
+            for (clipId, clip) in track.clipNodes {
+                if let clipParent = clip.parent, clip.contains(convert(point, to: clipParent)) {
+                    // TODO: Store delta x such that the node doesn't 'jump' to the cursor
+                    dragState = .clip(ClipDragState(trackId: trackId, id: clipId))
+                    return
+                }
+            }
+        }
+        
         dragState = .cursor
     }
     
@@ -89,6 +105,8 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         switch dragState! {
         case .cursor:
             state.cursor = TimeInterval(toViewX.inverseApply(point.x))
+        case .clip(let clipState):
+            state.timeline[clipState.trackId]?[clipState.id]?.offset = toViewX.inverseApply(point.x)
         default:
             break
         }

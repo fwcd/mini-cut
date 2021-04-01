@@ -32,9 +32,15 @@ public final class MiniCutScene: SKScene {
         }
         
         let toolbar = Stack.horizontal([
-            Button(iconTexture: backIcon),
+            Button(iconTexture: backIcon) { [unowned self] _ in
+                // TODO: Bound checks
+                state.cursor -= 10
+            },
             playButton,
-            Button(iconTexture: forwardIcon)
+            Button(iconTexture: forwardIcon) { [unowned self] _ in
+                // TODO: Bound checks
+                state.cursor += 10
+            }
         ])
 
         let aspectRatio: CGFloat = 16 / 9

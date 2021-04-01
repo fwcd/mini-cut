@@ -7,11 +7,13 @@ final class Label: SKLabelNode {
     convenience init(
         _ text: String,
         fontSize: CGFloat = ViewDefaults.fontSize,
-        fontName: String = ViewDefaults.fontName
+        fontName: String = ViewDefaults.fontName,
+        fontColor: Color = ViewDefaults.primary
     ) {
         self.init(text: text)
         self.fontSize = fontSize
         self.fontName = fontName
+        self.fontColor = fontColor
         verticalAlignmentMode = .center
     }
 }

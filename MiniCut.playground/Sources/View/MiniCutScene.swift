@@ -18,7 +18,7 @@ public final class MiniCutScene: SKScene {
         
         // Initialize the app's core views
         
-        let title = Label("MiniCut", fontSize: 36, fontName: "Helvetica Light")
+        let title = Label("MiniCut", fontSize: ViewDefaults.titleFontSize, fontName: "Helvetica Light")
         let playButton = Button(iconTexture: playIcon) { [unowned self] _ in
             state.isPlaying = !state.isPlaying
         }

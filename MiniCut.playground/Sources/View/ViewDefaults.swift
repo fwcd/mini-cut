@@ -5,7 +5,9 @@ public enum ViewDefaults {
     // MARK: General
     
     public static let fontName: String = "Helvetica"
-    public static let fontSize: CGFloat = 24
+    public static let fontSize: CGFloat = 14
+    public static let titleFontSize: CGFloat = 36
+    public static let headerFontSize: CGFloat = 18
     public static let padding: CGFloat = 10
     public static let symbolSize: CGFloat = fontSize
     

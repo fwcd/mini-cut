@@ -5,6 +5,7 @@ import SpriteKit
 public class Stack: SKSpriteNode {
     private var direction: Direction!
     private var padding: CGFloat!
+    private var anchored: Bool!
     
     public enum Direction {
         case horizontal
@@ -14,24 +15,26 @@ public class Stack: SKSpriteNode {
     public convenience init(
         _ direction: Direction,
         padding: CGFloat = ViewDefaults.padding,
+        anchored: Bool = false,
         childs: [SKNode]
     ) {
         self.init()
         
         self.direction = direction
         self.padding = padding
+        self.anchored = anchored
         
         for child in childs {
             addChild(child)
         }
     }
     
-    public static func horizontal(_ childs: [SKNode] = []) -> Stack {
-        Stack(.horizontal, childs: childs)
+    public static func horizontal(anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
+        Stack(.horizontal, anchored: anchored, childs: childs)
     }
     
-    public static func vertical(_ childs: [SKNode] = []) -> Stack {
-        Stack(.vertical, childs: childs)
+    public static func vertical(anchored: Bool = false, _ childs: [SKNode] = []) -> Stack {
+        Stack(.vertical, anchored: anchored, childs: childs)
     }
     
     public override func addChild(_ node: SKNode) {
@@ -55,12 +58,14 @@ public class Stack: SKSpriteNode {
         
         super.addChild(node)
         
-        for child in children {
-            switch direction! {
-            case .horizontal:
-                child.position = CGPoint(x: child.position.x - shiftDelta, y: child.position.y)
-            case .vertical:
-                child.position = CGPoint(x: child.position.x, y: child.position.y + shiftDelta)
+        if !anchored {
+            for child in children {
+                switch direction! {
+                case .horizontal:
+                    child.position = CGPoint(x: child.position.x - shiftDelta, y: child.position.y)
+                case .vertical:
+                    child.position = CGPoint(x: child.position.x, y: child.position.y + shiftDelta)
+                }
             }
         }
     }

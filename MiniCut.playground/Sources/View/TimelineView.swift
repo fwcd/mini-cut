@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 /// A visual representation of a project's timeline.
-final class TimelineView: SKNode, SKInputHandler {
+final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var state: MiniCutState!
     private var cursorSubscription: Subscription!
     
@@ -26,6 +26,7 @@ final class TimelineView: SKNode, SKInputHandler {
     }
     
     private var size: CGSize!
+    private var background: SKSpriteNode!
     private var marks: SKNode!
     private var cursor: TimelineCursor!
     private var dragState: DragState!
@@ -48,6 +49,9 @@ final class TimelineView: SKNode, SKInputHandler {
         self.zoomLevel = zoomLevel
         self.markStride = markStride
         dragState = .inactive
+        
+        background = SKSpriteNode(color: ViewDefaults.transparent, size: size)
+        addChild(background)
         
         marks = SKNode()
         addChild(marks)
@@ -78,6 +82,18 @@ final class TimelineView: SKNode, SKInputHandler {
     func inputUp(at point: CGPoint) {
         inputDragged(to: point)
         dragState = .inactive
+    }
+    
+    func onHover(value: Any) {
+        background.color = ViewDefaults.activeBgColor
+    }
+    
+    func onUnHover(value: Any) {
+        background.color = ViewDefaults.transparent
+    }
+    
+    func onDrop(value: Any) {
+        // TODO
     }
     
     private func updateMarks() {

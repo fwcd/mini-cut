@@ -30,6 +30,7 @@ struct Timeline {
     struct PlayingClip: Identifiable {
         let trackId: UUID
         let clip: OffsetClip
+        let zIndex: Int
         
         var id: UUID { clip.id }
     }
@@ -37,6 +38,9 @@ struct Timeline {
     /// The clips that are playing at the given offset.
     /// First element is highest on the z-axis (topmost).
     func playingClips(at offset: TimeInterval) -> [PlayingClip] {
-        tracks.flatMap { track in track.clips.filter { $0.isPlaying(at: offset) }.map { PlayingClip(trackId: track.id, clip: $0) } }
+        tracks
+            .flatMap { track in track.clips.filter { $0.isPlaying(at: offset) }.map { (track.id, $0) } }
+            .enumerated()
+            .map { (i, p) in PlayingClip(trackId: p.0, clip: p.1, zIndex: -i) }
     }
 }

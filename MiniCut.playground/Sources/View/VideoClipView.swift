@@ -14,9 +14,11 @@ final class VideoClipView: SKNode {
     
     private var player: AVPlayer!
     
-    convenience init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize) {
+    convenience init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
         self.init()
         self.state = state
+        
+        zPosition = CGFloat(100 + zIndex)
         
         print("[DEBUG] Creating VideoClipView")
         

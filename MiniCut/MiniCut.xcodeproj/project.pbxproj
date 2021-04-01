@@ -14,7 +14,6 @@
 		C7590F232615277F00A02167 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1F2615277F00A02167 /* Track.swift */; };
 		C7590F242615277F00A02167 /* ClipContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F202615277F00A02167 /* ClipContent.swift */; };
 		C7590F282615279200A02167 /* MiniCutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F272615279200A02167 /* MiniCutState.swift */; };
-		C7590F36261527A700A02167 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2B261527A600A02167 /* Timeline.swift */; };
 		C7590F37261527A700A02167 /* ListenerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2C261527A600A02167 /* ListenerList.swift */; };
 		C7590F38261527A700A02167 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2D261527A700A02167 /* Translation.swift */; };
 		C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2E261527A700A02167 /* ComposedBijection.swift */; };
@@ -57,6 +56,8 @@
 		C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FA226163B7000A02167 /* TrackControlsView.swift */; };
 		C7590FA72616426500A02167 /* iconPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA52616426400A02167 /* iconPlus.png */; };
 		C7590FA82616426500A02167 /* iconBackToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA62616426400A02167 /* iconBackToStart.png */; };
+		C7590FAB261648CB00A02167 /* TrackClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAA261648CB00A02167 /* TrackClipView.swift */; };
+		C7590FAE2616493100A02167 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAD2616493000A02167 /* Timeline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +70,6 @@
 		C7590F1F2615277F00A02167 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = ../../MiniCut.playground/Sources/Model/Track.swift; sourceTree = "<group>"; };
 		C7590F202615277F00A02167 /* ClipContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipContent.swift; path = ../../MiniCut.playground/Sources/Model/ClipContent.swift; sourceTree = "<group>"; };
 		C7590F272615279200A02167 /* MiniCutState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MiniCutState.swift; path = ../../MiniCut.playground/Sources/ViewModel/MiniCutState.swift; sourceTree = "<group>"; };
-		C7590F2B261527A600A02167 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = ../../MiniCut.playground/Sources/Utils/Timeline.swift; sourceTree = "<group>"; };
 		C7590F2C261527A600A02167 /* ListenerList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenerList.swift; path = ../../MiniCut.playground/Sources/Utils/ListenerList.swift; sourceTree = "<group>"; };
 		C7590F2D261527A700A02167 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translation.swift; path = ../../MiniCut.playground/Sources/Utils/Translation.swift; sourceTree = "<group>"; };
 		C7590F2E261527A700A02167 /* ComposedBijection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComposedBijection.swift; path = ../../MiniCut.playground/Sources/Utils/ComposedBijection.swift; sourceTree = "<group>"; };
@@ -112,6 +112,8 @@
 		C7590FA226163B7000A02167 /* TrackControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackControlsView.swift; path = ../../MiniCut.playground/Sources/View/TrackControlsView.swift; sourceTree = "<group>"; };
 		C7590FA52616426400A02167 /* iconPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconPlus.png; path = ../../MiniCut.playground/Resources/iconPlus.png; sourceTree = "<group>"; };
 		C7590FA62616426400A02167 /* iconBackToStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconBackToStart.png; path = ../../MiniCut.playground/Resources/iconBackToStart.png; sourceTree = "<group>"; };
+		C7590FAA261648CB00A02167 /* TrackClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackClipView.swift; path = ../../MiniCut.playground/Sources/View/TrackClipView.swift; sourceTree = "<group>"; };
+		C7590FAD2616493000A02167 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = ../../MiniCut.playground/Sources/Model/Timeline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				C7590F202615277F00A02167 /* ClipContent.swift */,
 				C7590F1D2615277F00A02167 /* OffsetClip.swift */,
 				C7590F1F2615277F00A02167 /* Track.swift */,
+				C7590FAD2616493000A02167 /* Timeline.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -199,7 +202,6 @@
 				C7590F33261527A700A02167 /* Scalable.swift */,
 				C7590F31261527A700A02167 /* Scaling.swift */,
 				C7590F34261527A700A02167 /* Subscription.swift */,
-				C7590F2B261527A600A02167 /* Timeline.swift */,
 				C7590F32261527A700A02167 /* Translatable.swift */,
 				C7590F2D261527A700A02167 /* Translation.swift */,
 			);
@@ -219,6 +221,7 @@
 				C7590F48261527CB00A02167 /* TimelineMark.swift */,
 				C7590F49261527CB00A02167 /* TimelineView.swift */,
 				C7590F9F261637DA00A02167 /* TrackView.swift */,
+				C7590FAA261648CB00A02167 /* TrackClipView.swift */,
 				C7590FA226163B7000A02167 /* TrackControlsView.swift */,
 				C7590F46261527CB00A02167 /* VideoView.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
@@ -345,7 +348,6 @@
 				C7590F3F261527A700A02167 /* Subscription.swift in Sources */,
 				C7590F3E261527A700A02167 /* Scalable.swift in Sources */,
 				C7590F8B2616184F00A02167 /* ViewUtils.swift in Sources */,
-				C7590F36261527A700A02167 /* Timeline.swift in Sources */,
 				C7590F3B261527A700A02167 /* IdentityBijection.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
 				C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */,
@@ -355,7 +357,9 @@
 				C7590F3D261527A700A02167 /* Translatable.swift in Sources */,
 				C7590F8426160DA800A02167 /* LibraryClipView.swift in Sources */,
 				C7590F52261527CB00A02167 /* TimelineCursor.swift in Sources */,
+				C7590FAE2616493100A02167 /* Timeline.swift in Sources */,
 				C7590FA0261637DA00A02167 /* TrackView.swift in Sources */,
+				C7590FAB261648CB00A02167 /* TrackClipView.swift in Sources */,
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,

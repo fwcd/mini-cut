@@ -2,5 +2,7 @@
 protocol DropTarget {
     func onHover(value: Any)
     
+    func onUnHover(value: Any)
+    
     func onDrop(value: Any)
 }

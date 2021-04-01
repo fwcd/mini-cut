@@ -5,6 +5,7 @@ import SpriteKit
 struct DragNDropController {
     private var nodes: [SKNode] = []
     private var inFlight: Any? = nil
+    private var hoveringNode: SKNode? = nil
     
     mutating func register<N>(source node: N) where N: SKNode, N: DragSource {
         nodes.append(node)
@@ -21,26 +22,37 @@ struct DragNDropController {
                 return true
             }
         }
+        
         return false
     }
     
-    func handleInputDragged(at point: CGPoint) -> Bool {
+    mutating func handleInputDragged(at point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
+        
         for node in nodes {
-            if let target = node as? DropTarget {
+            if hoveringNode !== node, node.contains(point), let target = node as? DropTarget {
+                (hoveringNode as? DropTarget)?.onUnHover(value: inFlight)
                 target.onHover(value: inFlight)
+                hoveringNode = node
+                return true
             }
         }
+        
         return false
     }
     
     mutating func handleInputUp(at point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
+        (hoveringNode as? DropTarget)?.onUnHover(value: inFlight)
+        hoveringNode = nil
+        
         for node in nodes {
-            if let target = node as? DropTarget {
+            if node.contains(point), let target = node as? DropTarget {
                 target.onDrop(value: inFlight)
+                return true
             }
         }
+        
         return false
     }
 }

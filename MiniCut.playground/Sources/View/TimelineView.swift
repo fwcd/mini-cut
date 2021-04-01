@@ -72,6 +72,7 @@ final class TimelineView: SKNode, SKInputHandler {
     }
     
     func inputUp(at point: CGPoint) {
+        inputDragged(to: point)
         dragState = .inactive
     }
     

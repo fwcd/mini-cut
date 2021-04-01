@@ -43,7 +43,8 @@ final class VideoView: SKSpriteNode {
                 
                 run(.repeatForever(.sequence([
                     .run {
-                        state.cursorWillChange.silencing([cursorSubscription, updateStartSubscription]) {
+                        let videoCursorSubscriptions = videoClipNodes.values.compactMap(\.cursorSubscription)
+                        state.cursorWillChange.silencing([updateStartSubscription] + videoCursorSubscriptions) {
                             state.cursor = startCursor! - startDate!.timeIntervalSinceNow
                         }
                     },

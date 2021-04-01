@@ -9,12 +9,14 @@ private let cursorStride: TimeInterval = 0.1
 final class VideoClipView: SKNode {
     private var state: MiniCutState!
     private var clipSubscription: Subscription!
-    private var cursorSubscription: Subscription!
     private var isPlayingSubscription: Subscription!
+    private(set) var cursorSubscription: Subscription!
     
     convenience init(state: MiniCutState, trackId: UUID, id: UUID) {
         self.init()
         self.state = state
+        
+        print("[DEBUG] Creating VideoClipView")
         
         clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
             guard let clip = $0[trackId]?[id] else { return }
@@ -42,5 +44,9 @@ final class VideoClipView: SKNode {
                 break
             }
         }
+    }
+    
+    deinit {
+        print("[DEBUG] Dropping VideoClipView")
     }
 }

@@ -30,7 +30,7 @@ final class LibraryClipView: SKNode, DragSource {
     
     var draggableValue: Any { clip! }
     
-    convenience init(clip: Clip, size: CGSize = CGSize(width: 90, height: 50.625)) {
+    convenience init(clip: Clip, size: CGSize = ViewDefaults.thumbnailSize) {
         self.init()
         self.clip = clip
         self.size = size

@@ -10,6 +10,9 @@ public enum ViewDefaults {
     public static let headerFontSize: CGFloat = 18
     public static let padding: CGFloat = 10
     public static let symbolSize: CGFloat = fontSize
+    public static let thumbnailSize: CGSize = CGSize(width: 90, height: 50.625)
+    public static let trackHeight: CGFloat = 36
+    public static let trackControlsWidth: CGFloat = 100
     
     // MARK: Color scheme
     

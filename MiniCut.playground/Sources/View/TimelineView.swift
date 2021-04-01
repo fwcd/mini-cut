@@ -69,7 +69,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         let tracks = Stack(.vertical, padding: 0, childs: [])
         for (i, track) in [Track(name: "First"), Track(name: "Second"), Track(name: "Third")].enumerated() {
-            let trackSize = CGSize(width: size.width, height: 36)
+            let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)
             tracks.addChild(TrackView(track: track, size: trackSize, marked: i % 2 == 0))
         }
         addChild(tracks)

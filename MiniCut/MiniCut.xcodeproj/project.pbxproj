@@ -54,6 +54,7 @@
 		C7590F992616279600A02167 /* DragNDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F982616279600A02167 /* DragNDropController.swift */; };
 		C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */; };
 		C7590FA0261637DA00A02167 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F9F261637DA00A02167 /* TrackView.swift */; };
+		C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FA226163B7000A02167 /* TrackControlsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		C7590F982616279600A02167 /* DragNDropController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragNDropController.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragNDropController.swift; sourceTree = "<group>"; };
 		C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7590F9F261637DA00A02167 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackView.swift; path = ../../MiniCut.playground/Sources/View/TrackView.swift; sourceTree = "<group>"; };
+		C7590FA226163B7000A02167 /* TrackControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackControlsView.swift; path = ../../MiniCut.playground/Sources/View/TrackControlsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				C7590F48261527CB00A02167 /* TimelineMark.swift */,
 				C7590F49261527CB00A02167 /* TimelineView.swift */,
 				C7590F9F261637DA00A02167 /* TrackView.swift */,
+				C7590FA226163B7000A02167 /* TrackControlsView.swift */,
 				C7590F46261527CB00A02167 /* VideoView.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
@@ -337,6 +340,7 @@
 				C7590F36261527A700A02167 /* Timeline.swift in Sources */,
 				C7590F3B261527A700A02167 /* IdentityBijection.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
+				C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */,
 				C7590F4D261527CB00A02167 /* ViewDefaults.swift in Sources */,
 				C7590F212615277F00A02167 /* OffsetClip.swift in Sources */,
 				C7590F59261527E300A02167 /* Button.swift in Sources */,

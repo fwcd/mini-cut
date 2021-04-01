@@ -47,10 +47,10 @@ public class Stack: SKSpriteNode {
             switch direction! {
             case .horizontal:
                 shiftDelta = (nodeFrame.width / 2) + padding
-                node.position = CGPoint(x: lastFrame.maxX + shiftDelta, y: last.position.y)
+                node.centerPosition = CGPoint(x: lastFrame.maxX + shiftDelta, y: last.centerPosition.y)
             case .vertical:
                 shiftDelta = (nodeFrame.height / 2) + padding
-                node.position = CGPoint(x: last.position.x, y: lastFrame.minY - shiftDelta)
+                node.centerPosition = CGPoint(x: last.centerPosition.x, y: lastFrame.minY - shiftDelta)
             }
         } else {
             shiftDelta = 0

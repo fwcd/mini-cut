@@ -59,6 +59,7 @@
 		C7590FAB261648CB00A02167 /* TrackClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAA261648CB00A02167 /* TrackClipView.swift */; };
 		C7590FAE2616493100A02167 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAD2616493000A02167 /* Timeline.swift */; };
 		C7590FB226165B3A00A02167 /* ClipViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB126165B3A00A02167 /* ClipViewUtils.swift */; };
+		C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB42616698C00A02167 /* VideoClipView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		C7590FAA261648CB00A02167 /* TrackClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackClipView.swift; path = ../../MiniCut.playground/Sources/View/TrackClipView.swift; sourceTree = "<group>"; };
 		C7590FAD2616493000A02167 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = ../../MiniCut.playground/Sources/Model/Timeline.swift; sourceTree = "<group>"; };
 		C7590FB126165B3A00A02167 /* ClipViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipViewUtils.swift; path = ../../MiniCut.playground/Sources/View/ClipViewUtils.swift; sourceTree = "<group>"; };
+		C7590FB42616698C00A02167 /* VideoClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoClipView.swift; path = ../../MiniCut.playground/Sources/View/VideoClipView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				C7590FAA261648CB00A02167 /* TrackClipView.swift */,
 				C7590FA226163B7000A02167 /* TrackControlsView.swift */,
 				C7590F46261527CB00A02167 /* VideoView.swift */,
+				C7590FB42616698C00A02167 /* VideoClipView.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
 				C7590FB126165B3A00A02167 /* ClipViewUtils.swift */,
@@ -352,6 +355,7 @@
 				C7590F3E261527A700A02167 /* Scalable.swift in Sources */,
 				C7590F8B2616184F00A02167 /* ViewUtils.swift in Sources */,
 				C7590F3B261527A700A02167 /* IdentityBijection.swift in Sources */,
+				C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
 				C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */,
 				C7590F4D261527CB00A02167 /* ViewDefaults.swift in Sources */,

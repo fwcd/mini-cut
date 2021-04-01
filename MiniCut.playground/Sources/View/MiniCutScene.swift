@@ -9,14 +9,14 @@ private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
 /// The application's primary view.
 public final class MiniCutScene: SKScene {
     private var state = MiniCutState()
-    private var isPlayingSubscription: Subscription?
+    private var isPlayingSubscription: Subscription!
     
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
         
         backgroundColor = ViewDefaults.background
         
-        // The core views of the app are initialized here
+        // Initialize the app's core views
         
         let title = Label("MiniCut", fontSize: 36, fontName: "Helvetica Light")
         let playButton = Button(iconTexture: playIcon) { [unowned self] _ in

@@ -29,6 +29,16 @@ class ListenerList<Event> {
         silenced.remove(subscription.id)
     }
     
+    func silencing(_ subscriptions: [Subscription], _ action: () -> Void) {
+        for sub in subscriptions {
+            silenced.insert(sub.id)
+        }
+        action()
+        for sub in subscriptions {
+            silenced.remove(sub.id)
+        }
+    }
+    
     func fire(_ event: Event) {
         for (id, listener) in listeners where !silenced.contains(id) {
             listener(event)

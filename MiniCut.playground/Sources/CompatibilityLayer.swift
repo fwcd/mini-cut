@@ -22,15 +22,15 @@ public typealias Color = NSColor
 // allows us to override methods from extensions.
 
 extension SKNode {
-    public override func mouseDown(with event: NSEvent) {
+    public dynamic override func mouseDown(with event: NSEvent) {
         (self as? SKInputHandler)?.inputDown(at: event.location(in: self))
     }
     
-    public override func mouseDragged(with event: NSEvent) {
+    public dynamic override func mouseDragged(with event: NSEvent) {
         (self as? SKInputHandler)?.inputDragged(to: event.location(in: self))
     }
     
-    public override func mouseUp(with event: NSEvent) {
+    public dynamic override func mouseUp(with event: NSEvent) {
         (self as? SKInputHandler)?.inputUp(at: event.location(in: self))
     }
 }
@@ -43,17 +43,17 @@ public typealias Image = UIImage
 public typealias Color = UIColor
 
 extension SKNode {
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public dynamic override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         (self as? SKInputHandler)?.inputDown(at: touch.location(in: self))
     }
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public dynamic override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         (self as? SKInputHandler)?.inputDragged(to: touch.location(in: self))
     }
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public dynamic override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         (self as? SKInputHandler)?.inputUp(at: touch.location(in: self))
     }

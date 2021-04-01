@@ -111,8 +111,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         let pos = convert(position, to: tracks)
         if let id = trackNodes.first(where: { $0.value.contains(pos) })?.key {
-            // TODO: Figure out offset x position
-            state.timeline[id]?.insert(clip: OffsetClip(clip: clip, offset: 0))
+            state.timeline[id]?.insert(clip: OffsetClip(clip: clip, offset: toViewX.inverseApply(position.x)))
         } else {
             // TODO: Warn when no tracks exist
         }

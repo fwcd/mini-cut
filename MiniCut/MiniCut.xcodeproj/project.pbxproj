@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C758D410261674AA0049301B /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D40F261674AA0049301B /* LRUCache.swift */; };
 		C7590EF4261524F900A02167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7590EF3261524F900A02167 /* Assets.xcassets */; };
 		C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F182615276100A02167 /* CompatibilityLayer.swift */; };
 		C7590F212615277F00A02167 /* OffsetClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1D2615277F00A02167 /* OffsetClip.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C758D40F261674AA0049301B /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LRUCache.swift; path = ../../MiniCut.playground/Sources/Utils/LRUCache.swift; sourceTree = "<group>"; };
 		C7590EE3261524F400A02167 /* MiniCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7590EF3261524F900A02167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7590EF5261524F900A02167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				C7590F34261527A700A02167 /* Subscription.swift */,
 				C7590F32261527A700A02167 /* Translatable.swift */,
 				C7590F2D261527A700A02167 /* Translation.swift */,
+				C758D40F261674AA0049301B /* LRUCache.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */,
 				C7590F4F261527CB00A02167 /* InspectorView.swift in Sources */,
 				C7590F8E2616236800A02167 /* Library.swift in Sources */,
+				C758D410261674AA0049301B /* LRUCache.swift in Sources */,
 				C7590F962616274A00A02167 /* DragSource.swift in Sources */,
 				C7590F222615277F00A02167 /* Clip.swift in Sources */,
 				C7590F992616279600A02167 /* DragNDropController.swift in Sources */,

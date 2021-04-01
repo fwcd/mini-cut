@@ -11,17 +11,21 @@ final class TrackView: SKSpriteNode {
         self.init(color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
         
         let track = state.timeline[id] ?? Track(id: id, name: "<undefined>")
-        let controls = TrackControlsView(track: track, size: CGSize(width: ViewDefaults.trackControlsWidth, height: size.height))
+        let trackControlsWidth = ViewDefaults.trackControlsWidth
+        let controls = TrackControlsView(track: track, size: CGSize(width: trackControlsWidth, height: size.height))
         controls.topLeftPosition = CGPoint(x: -(size.width / 2), y: size.height / 2)
         addChild(controls)
         
         let clips = SKNode()
+        clips.position = CGPoint(x: trackControlsWidth, y: 0)
         addChild(clips)
         
         clipsSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
             guard let track = $0[id] else { return }
             clips.diffUpdate(nodes: &clipNodes, with: track.clips) {
-                TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale)
+                let clip = TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale)
+                // TODO: Positioning
+                return clip
             }
         }
     }

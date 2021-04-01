@@ -37,7 +37,6 @@ class DragNDropController {
     func handleInputDown(at point: CGPoint) -> Bool {
         for node in nodes {
             if self.node(node, contains: point), let source = node as? DragSource {
-                print("Starting drag")
                 inFlight = source.draggableValue
                 let hover = source.makeHoverNode()
                 hover.zPosition = 100

@@ -39,7 +39,9 @@ final class LibraryClipView: SKNode, DragSource {
     }
     
     func makeHoverNode() -> SKNode {
-        generateThumbnail(from: clip, size: size)
+        let node = generateThumbnail(from: clip, size: size)
+        node.alpha = 0.5
+        return node
     }
 }
 

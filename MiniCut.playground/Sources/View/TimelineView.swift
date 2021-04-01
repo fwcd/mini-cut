@@ -33,7 +33,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var cursor: TimelineCursor!
     private var tracks: SKNode!
     private var trackNodes: [UUID: TrackView] = [:]
-    private var dragState: DragState!
+    
+    private var dragState: DragState? = nil
+    private var selection: Selection? = nil
     
     private enum DragState {
         case cursor
@@ -43,8 +45,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     
     private struct ClipDragState {
         var trackId: UUID
-        var id: UUID
+        var clipId: UUID
         let dxInClip: CGFloat
+    }
+    
+    private struct Selection {
+        var trackId: UUID
+        var clipId: UUID
     }
     
     public override var isUserInteractionEnabled: Bool {
@@ -94,12 +101,14 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
                 if let pointInClipParent = clip.parent.map({ convert(point, to: $0) }), clip.contains(pointInClipParent) {
                     let corner = clip.topLeftPosition
                     let dx = pointInClipParent.x - corner.x
-                    dragState = .clip(ClipDragState(trackId: trackId, id: clipId, dxInClip: dx))
+                    dragState = .clip(ClipDragState(trackId: trackId, clipId: clipId, dxInClip: dx))
+                    selection = Selection(trackId: trackId, clipId: clipId)
                     return
                 }
             }
         }
         
+        selection = nil
         dragState = .cursor
     }
     
@@ -112,11 +121,11 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
                 if let pointInTrackParent = track.parent.map({ convert(point, to: $0) }), track.contains(pointInTrackParent) {
                     var newState = clipState
                     newState.trackId = trackId
-                    if var clip = state.timeline[clipState.trackId]?.remove(clipId: clipState.id) {
+                    if var clip = state.timeline[clipState.trackId]?.remove(clipId: clipState.clipId) {
                         // We create a new clip id when switching tracks to
                         // ensure that a new VideoClipView is spawned.
                         clip.id = UUID()
-                        newState.id = clip.id
+                        newState.clipId = clip.id
                         state.timeline[trackId]?.insert(clip: clip)
                     }
                     dragState = .clip(newState)
@@ -124,7 +133,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
                 }
             }
             
-            state.timeline[clipState.trackId]?[clipState.id]?.offset = toViewX.inverseApply(point.x - clipState.dxInClip)
+            state.timeline[clipState.trackId]?[clipState.clipId]?.offset = toViewX.inverseApply(point.x - clipState.dxInClip)
         default:
             break
         }

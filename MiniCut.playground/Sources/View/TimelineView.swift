@@ -42,7 +42,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     private struct ClipDragState {
-        let trackId: UUID
+        var trackId: UUID
         let id: UUID
         let dxInClip: CGFloat
     }
@@ -108,6 +108,18 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         case .cursor:
             state.cursor = TimeInterval(toViewX.inverseApply(point.x))
         case .clip(let clipState):
+            for (trackId, track) in trackNodes where trackId != clipState.trackId {
+                if let pointInTrackParent = track.parent.map({ convert(point, to: $0) }), track.contains(pointInTrackParent) {
+                    var newState = clipState
+                    newState.trackId = trackId
+                    dragState = .clip(newState)
+                    if let clip = state.timeline[clipState.trackId]?.remove(clipId: clipState.id) {
+                        state.timeline[trackId]?.insert(clip: clip)
+                    }
+                    break
+                }
+            }
+            
             state.timeline[clipState.trackId]?[clipState.id]?.offset = toViewX.inverseApply(point.x - clipState.dxInClip)
         default:
             break

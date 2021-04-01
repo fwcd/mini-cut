@@ -15,4 +15,11 @@ struct Track: Identifiable {
     mutating func insert(clip: OffsetClip) {
         self[clip.id] = clip
     }
+    
+    @discardableResult
+    mutating func remove(clipId: UUID) -> OffsetClip? {
+        let clip = self[clipId]
+        self[clipId] = nil
+        return clip
+    }
 }

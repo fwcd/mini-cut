@@ -49,6 +49,9 @@
 		C7590F88261615C000A02167 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F87261615C000A02167 /* Flow.swift */; };
 		C7590F8B2616184F00A02167 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8A2616184F00A02167 /* ViewUtils.swift */; };
 		C7590F8E2616236800A02167 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8D2616236800A02167 /* Library.swift */; };
+		C7590F92261626A900A02167 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F91261626A900A02167 /* DropTarget.swift */; };
+		C7590F962616274A00A02167 /* DragSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F952616274A00A02167 /* DragSource.swift */; };
+		C7590F992616279600A02167 /* DragNDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F982616279600A02167 /* DragNDropController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		C7590F87261615C000A02167 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Flow.swift; path = ../../MiniCut.playground/Sources/View/Controls/Flow.swift; sourceTree = "<group>"; };
 		C7590F8A2616184F00A02167 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewUtils.swift; path = ../../MiniCut.playground/Sources/View/ViewUtils.swift; sourceTree = "<group>"; };
 		C7590F8D2616236800A02167 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Library.swift; path = ../../MiniCut.playground/Sources/Model/Library.swift; sourceTree = "<group>"; };
+		C7590F91261626A900A02167 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropTarget.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DropTarget.swift; sourceTree = "<group>"; };
+		C7590F952616274A00A02167 /* DragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragSource.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragSource.swift; sourceTree = "<group>"; };
+		C7590F982616279600A02167 /* DragNDropController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragNDropController.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragNDropController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +198,7 @@
 		C7590F42261527B500A02167 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7590F902616267600A02167 /* DragNDrop */,
 				C7590F54261527CF00A02167 /* Controls */,
 				C7590F47261527CB00A02167 /* InspectorView.swift */,
 				C7590F43261527CB00A02167 /* LibraryView.swift */,
@@ -229,6 +236,16 @@
 				C7590F5F261528AA00A02167 /* iconPlay.png */,
 			);
 			name = PlaygroundResources;
+			sourceTree = "<group>";
+		};
+		C7590F902616267600A02167 /* DragNDrop */ = {
+			isa = PBXGroup;
+			children = (
+				C7590F91261626A900A02167 /* DropTarget.swift */,
+				C7590F952616274A00A02167 /* DragSource.swift */,
+				C7590F982616279600A02167 /* DragNDropController.swift */,
+			);
+			name = DragNDrop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +342,9 @@
 				C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */,
 				C7590F4F261527CB00A02167 /* InspectorView.swift in Sources */,
 				C7590F8E2616236800A02167 /* Library.swift in Sources */,
+				C7590F962616274A00A02167 /* DragSource.swift in Sources */,
 				C7590F222615277F00A02167 /* Clip.swift in Sources */,
+				C7590F992616279600A02167 /* DragNDropController.swift in Sources */,
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,
 				C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */,
@@ -341,6 +360,7 @@
 				C7590F88261615C000A02167 /* Flow.swift in Sources */,
 				C7590F38261527A700A02167 /* Translation.swift in Sources */,
 				C7590F50261527CB00A02167 /* TimelineMark.swift in Sources */,
+				C7590F92261626A900A02167 /* DropTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,21 +20,22 @@ final class VideoClipView: SKNode {
         
         print("[DEBUG] Creating VideoClipView")
         
-        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
+        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
             guard let clip = $0[trackId]?[id] else { return }
             
             switch clip.clip.content {
             case .video(let content):
-                player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+                let player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
                 let video = SKVideoNode(avPlayer: player)
-                addChild(video)
+                self?.player = player
+                self?.addChild(video)
                 
-                cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) {
+                self?.cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) {
                     let relative = $0 - clip.offset
-                    player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
+                    self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
                 }
                 
-                isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
+                self?.isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
                     if $0 {
                         video.play()
                     } else {

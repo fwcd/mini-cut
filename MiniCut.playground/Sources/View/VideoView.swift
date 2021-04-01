@@ -36,7 +36,7 @@ final class VideoView: SKNode {
             }
         }
         cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) {
-            player.seek(to: CMTime(seconds: $0, preferredTimescale: 1_000_000))
+            player.seek(to: CMTime(seconds: $0, preferredTimescale: 1_000))
         }
         player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.01, preferredTimescale: 1_000), queue: .main) { [unowned self] cmt in
             state.cursorWillChange.silencing(cursorSubscription) {

@@ -41,4 +41,17 @@ enum ClipContent {
             return nil
         }
     }
+    var color: Color {
+        // TODO: Improve colors
+        switch self {
+        case .text(_):
+            return .purple
+        case .audio(_):
+            return .green
+        case .color(let color):
+            return color.color
+        default:
+            return .blue
+        }
+    }
 }

@@ -45,6 +45,7 @@
 		C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F6B26152B0A00A02167 /* Main.storyboard */; };
 		C7590F7226152B2B00A02167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F7126152B2B00A02167 /* AppDelegate.swift */; };
 		C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F6E26152B2300A02167 /* MiniCutViewController.swift */; };
+		C7590F8426160DA800A02167 /* LibraryClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8326160DA800A02167 /* LibraryClipView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		C7590F6B26152B0A00A02167 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C7590F6E26152B2300A02167 /* MiniCutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCutViewController.swift; sourceTree = "<group>"; };
 		C7590F7126152B2B00A02167 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C7590F8326160DA800A02167 /* LibraryClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryClipView.swift; path = ../../MiniCut.playground/Sources/View/LibraryClipView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				C7590F54261527CF00A02167 /* Controls */,
 				C7590F47261527CB00A02167 /* InspectorView.swift */,
 				C7590F43261527CB00A02167 /* LibraryView.swift */,
+				C7590F8326160DA800A02167 /* LibraryClipView.swift */,
 				C7590F44261527CB00A02167 /* MiniCutScene.swift */,
 				C7590F4A261527CB00A02167 /* TimelineCursor.swift */,
 				C7590F48261527CB00A02167 /* TimelineMark.swift */,
@@ -304,6 +307,7 @@
 				C7590F212615277F00A02167 /* OffsetClip.swift in Sources */,
 				C7590F59261527E300A02167 /* Button.swift in Sources */,
 				C7590F3D261527A700A02167 /* Translatable.swift in Sources */,
+				C7590F8426160DA800A02167 /* LibraryClipView.swift in Sources */,
 				C7590F52261527CB00A02167 /* TimelineCursor.swift in Sources */,
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,

@@ -26,17 +26,17 @@ final class VideoView: SKSpriteNode {
         crop.maskNode = SKSpriteNode(color: .white, size: size)
         addChild(crop)
         
-        updateStartSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
+        updateStartSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] in
             startDate = Date()
             startCursor = $0
         }
-        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
+        cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] in
             let playing = Array(state.timeline.playingClips(at: $0).reversed())
             crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
                 VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size)
             }
         }
-        isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) { [unowned self] in
+        isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [unowned self] in
             if $0 {
                 startDate = Date()
                 startCursor = state.cursor
@@ -44,7 +44,7 @@ final class VideoView: SKSpriteNode {
                 run(.repeatForever(.sequence([
                     .run {
                         let videoCursorSubscriptions = videoClipNodes.values.compactMap(\.cursorSubscription)
-                        state.cursorWillChange.silencing([updateStartSubscription] + videoCursorSubscriptions) {
+                        state.cursorDidChange.silencing([updateStartSubscription] + videoCursorSubscriptions) {
                             state.cursor = startCursor! - startDate!.timeIntervalSinceNow
                         }
                     },

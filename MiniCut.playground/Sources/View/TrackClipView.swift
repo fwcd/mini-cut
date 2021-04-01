@@ -9,6 +9,6 @@ final class TrackClipView: SKSpriteNode {
             fatalError("Could not find track with id \(trackId)")
         }
         
-        self.init(color: ViewDefaults.quaternary, size: CGSize(width: toViewScale.apply(clip.clip.length), height: height))
+        self.init(color: clip.clip.content.color, size: CGSize(width: toViewScale.apply(clip.clip.length), height: height))
     }
 }

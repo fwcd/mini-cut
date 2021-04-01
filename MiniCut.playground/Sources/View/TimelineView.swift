@@ -31,6 +31,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var background: SKSpriteNode!
     private var marks: SKNode!
     private var cursor: TimelineCursor!
+    private var tracks: SKNode!
     private var trackNodes: [UUID: TrackView] = [:]
     private var dragState: DragState!
     
@@ -67,7 +68,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
         }
         
-        let tracks = Stack(.vertical, padding: 0, childs: [])
+        tracks = Stack(.vertical, padding: 0, childs: [])
         addChild(tracks)
         
         let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)
@@ -106,7 +107,15 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     func onDrop(value: Any, at position: CGPoint) {
-        // TODO
+        guard let clip = value as? Clip else { return }
+        
+        let pos = convert(position, to: tracks)
+        if let id = trackNodes.first(where: { $0.value.contains(pos) })?.key {
+            // TODO: Figure out offset x position
+            state.timeline[id]?.insert(clip: OffsetClip(clip: clip, offset: 0))
+        } else {
+            // TODO: Warn when no tracks exist
+        }
     }
     
     private func updateMarks() {

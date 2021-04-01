@@ -4,9 +4,15 @@ import Foundation
 struct Track: Identifiable {
     var id: UUID = UUID()
     var name: String = "New Track"
-    var clips: [OffsetClip] = []
+    var clipsById: [UUID: OffsetClip] = [:]
+    var clips: [OffsetClip] { Array(clipsById.values) }
     
     subscript(id: UUID) -> OffsetClip? {
-        clips.first { $0.id == id }
+        get { clipsById[id] }
+        set { clipsById[id] = newValue }
+    }
+    
+    mutating func insert(clip: OffsetClip) {
+        self[clip.id] = clip
     }
 }

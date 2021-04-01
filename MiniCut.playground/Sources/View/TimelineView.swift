@@ -14,6 +14,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     var markStride: Int! {
         didSet { updateMarks() }
     }
+    
     private var toViewScale: AnyBijection<TimeInterval, CGFloat> {
         Scaling(factor: zoomLevel)
             .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
@@ -21,7 +22,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     private var toViewX: AnyBijection<TimeInterval, CGFloat> {
         toViewScale
-            .then(InverseTranslation(offset: size.width / 2))
+            .then(InverseTranslation(offset: (size.width / 2) - ViewDefaults.trackControlsWidth))
             .erase()
     }
     
@@ -106,7 +107,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     private func updateMarks() {
-        for i in stride(from: 0, to: Int(toViewScale.inverseApply(size.width)), by: markStride) {
+        for i in stride(from: 0, to: Int(toViewScale.inverseApply(size.width - ViewDefaults.trackControlsWidth)), by: markStride) {
             let mark = TimelineMark(height: size.height)
             mark.position = CGPoint(x: toViewX.apply(TimeInterval(i)), y: 0)
             marks.addChild(mark)

@@ -31,12 +31,12 @@ final class VideoClipView: SKNode {
                 self?.player = player
                 self?.addChild(video)
                 
-                self?.cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) {
+                self?.cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) {
                     let relative = $0 - clip.offset
                     self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
                 }
                 
-                self?.isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
+                self?.isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
                     if $0 {
                         video.play()
                     } else {

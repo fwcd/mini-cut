@@ -12,6 +12,8 @@ final class VideoClipView: SKNode {
     private var isPlayingSubscription: Subscription!
     private(set) var cursorSubscription: Subscription!
     
+    private var player: AVPlayer!
+    
     convenience init(state: MiniCutState, trackId: UUID, id: UUID) {
         self.init()
         self.state = state
@@ -23,7 +25,7 @@ final class VideoClipView: SKNode {
             
             switch clip.clip.content {
             case .video(let content):
-                let player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+                player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
                 let video = SKVideoNode(avPlayer: player)
                 addChild(video)
                 
@@ -48,5 +50,6 @@ final class VideoClipView: SKNode {
     
     deinit {
         print("[DEBUG] Dropping VideoClipView")
+        player?.replaceCurrentItem(with: nil)
     }
 }

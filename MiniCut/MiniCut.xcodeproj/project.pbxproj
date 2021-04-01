@@ -58,6 +58,7 @@
 		C7590FA82616426500A02167 /* iconBackToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA62616426400A02167 /* iconBackToStart.png */; };
 		C7590FAB261648CB00A02167 /* TrackClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAA261648CB00A02167 /* TrackClipView.swift */; };
 		C7590FAE2616493100A02167 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAD2616493000A02167 /* Timeline.swift */; };
+		C7590FB226165B3A00A02167 /* ClipViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB126165B3A00A02167 /* ClipViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		C7590FA62616426400A02167 /* iconBackToStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconBackToStart.png; path = ../../MiniCut.playground/Resources/iconBackToStart.png; sourceTree = "<group>"; };
 		C7590FAA261648CB00A02167 /* TrackClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackClipView.swift; path = ../../MiniCut.playground/Sources/View/TrackClipView.swift; sourceTree = "<group>"; };
 		C7590FAD2616493000A02167 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = ../../MiniCut.playground/Sources/Model/Timeline.swift; sourceTree = "<group>"; };
+		C7590FB126165B3A00A02167 /* ClipViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipViewUtils.swift; path = ../../MiniCut.playground/Sources/View/ClipViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				C7590F46261527CB00A02167 /* VideoView.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
+				C7590FB126165B3A00A02167 /* ClipViewUtils.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,
+				C7590FB226165B3A00A02167 /* ClipViewUtils.swift in Sources */,
 				C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */,
 				C7590F4F261527CB00A02167 /* InspectorView.swift in Sources */,
 				C7590F8E2616236800A02167 /* Library.swift in Sources */,

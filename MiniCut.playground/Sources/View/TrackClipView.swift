@@ -10,5 +10,8 @@ final class TrackClipView: SKSpriteNode {
         }
         
         self.init(color: clip.clip.content.color, size: CGSize(width: toViewScale.apply(clip.clip.length), height: height))
+        
+        let thumb = generateThumbnail(from: clip.clip, size: ViewDefaults.thumbnailSize)
+        addChild(thumb)
     }
 }

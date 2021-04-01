@@ -13,6 +13,7 @@ final class VideoView: SKSpriteNode {
     private var updateStartSubscription: Subscription!
     
     private var crop: SKCropNode!
+    private var videoClipNodes: [UUID: VideoClipView] = [:]
     
     private var startDate: Date?
     private var startCursor: TimeInterval?
@@ -29,6 +30,12 @@ final class VideoView: SKSpriteNode {
             startDate = Date()
             startCursor = $0
         }
+        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
+            let playing = Array(state.timeline.playingClips(at: $0).reversed())
+            crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
+                VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id)
+            }
+        }
         isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) { [unowned self] in
             if $0 {
                 startDate = Date()
@@ -36,7 +43,7 @@ final class VideoView: SKSpriteNode {
                 
                 run(.repeatForever(.sequence([
                     .run {
-                        state.cursorWillChange.silencing(updateStartSubscription) {
+                        state.cursorWillChange.silencing([cursorSubscription, updateStartSubscription]) {
                             state.cursor = startCursor! - startDate!.timeIntervalSinceNow
                         }
                     },

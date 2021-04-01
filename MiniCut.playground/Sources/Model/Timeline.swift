@@ -2,7 +2,8 @@ import Foundation
 
 /// A video project containing (overlayed) tracks.
 struct Timeline {
-    // Intentionally not a dictionary to preserve order
+    /// Intentionally not a dictionary to preserve order.
+    /// First element is highest on the z-axis (topmost).
     var tracks: [Track] = []
     
     subscript(id: UUID) -> Track? {
@@ -24,5 +25,18 @@ struct Timeline {
     
     mutating func insert(track: Track) {
         self[track.id] = track
+    }
+    
+    struct PlayingClip: Identifiable {
+        let trackId: UUID
+        let clip: OffsetClip
+        
+        var id: UUID { clip.id }
+    }
+    
+    /// The clips that are playing at the given offset.
+    /// First element is highest on the z-axis (topmost).
+    func playingClips(at offset: TimeInterval) -> [PlayingClip] {
+        tracks.flatMap { track in track.clips.filter { $0.isPlaying(at: offset) }.map { PlayingClip(trackId: track.id, clip: $0) } }
     }
 }

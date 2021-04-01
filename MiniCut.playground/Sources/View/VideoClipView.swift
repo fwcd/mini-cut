@@ -14,7 +14,7 @@ final class VideoClipView: SKNode {
     
     private var player: AVPlayer!
     
-    convenience init(state: MiniCutState, trackId: UUID, id: UUID) {
+    convenience init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize) {
         self.init()
         self.state = state
         
@@ -27,6 +27,7 @@ final class VideoClipView: SKNode {
             case .video(let content):
                 let player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
                 let video = SKVideoNode(avPlayer: player)
+                video.size = size
                 self?.player = player
                 self?.addChild(video)
                 

@@ -33,7 +33,7 @@ final class VideoView: SKSpriteNode {
         cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
             let playing = Array(state.timeline.playingClips(at: $0).reversed())
             crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
-                VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id)
+                VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size)
             }
         }
         isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) { [unowned self] in

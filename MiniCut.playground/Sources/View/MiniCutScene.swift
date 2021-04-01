@@ -52,7 +52,7 @@ public final class MiniCutScene: SKScene {
         let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([
-                LibraryView(size: CGSize(width: panelWidth, height: videoHeight)),
+                LibraryView(state: state, size: CGSize(width: panelWidth, height: videoHeight)),
                 VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
                 InspectorView(size: CGSize(width: panelWidth, height: videoHeight))
             ]),

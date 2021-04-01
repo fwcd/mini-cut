@@ -6,7 +6,7 @@ final class Flow: SKNode {
     private var padding: CGFloat!
     private var size: CGSize!
     
-    convenience init(padding: CGFloat = ViewDefaults.padding, size: CGSize, childs: [SKNode]) {
+    convenience init(padding: CGFloat = ViewDefaults.padding, size: CGSize, childs: [SKNode] = []) {
         self.init()
         self.padding = padding
         self.size = size

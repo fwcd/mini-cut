@@ -48,6 +48,7 @@
 		C7590F8426160DA800A02167 /* LibraryClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8326160DA800A02167 /* LibraryClipView.swift */; };
 		C7590F88261615C000A02167 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F87261615C000A02167 /* Flow.swift */; };
 		C7590F8B2616184F00A02167 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8A2616184F00A02167 /* ViewUtils.swift */; };
+		C7590F8E2616236800A02167 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8D2616236800A02167 /* Library.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		C7590F8326160DA800A02167 /* LibraryClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryClipView.swift; path = ../../MiniCut.playground/Sources/View/LibraryClipView.swift; sourceTree = "<group>"; };
 		C7590F87261615C000A02167 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Flow.swift; path = ../../MiniCut.playground/Sources/View/Controls/Flow.swift; sourceTree = "<group>"; };
 		C7590F8A2616184F00A02167 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewUtils.swift; path = ../../MiniCut.playground/Sources/View/ViewUtils.swift; sourceTree = "<group>"; };
+		C7590F8D2616236800A02167 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Library.swift; path = ../../MiniCut.playground/Sources/Model/Library.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		C7590F1C2615276F00A02167 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7590F8D2616236800A02167 /* Library.swift */,
 				C7590F1E2615277F00A02167 /* Clip.swift */,
 				C7590F202615277F00A02167 /* ClipContent.swift */,
 				C7590F1D2615277F00A02167 /* OffsetClip.swift */,
@@ -321,6 +324,7 @@
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,
 				C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */,
 				C7590F4F261527CB00A02167 /* InspectorView.swift in Sources */,
+				C7590F8E2616236800A02167 /* Library.swift in Sources */,
 				C7590F222615277F00A02167 /* Clip.swift in Sources */,
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,

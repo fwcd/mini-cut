@@ -24,7 +24,7 @@ private func generateThumbnail(from clip: Clip, size: CGSize) -> SKSpriteNode {
 
 /// A clip with thumbnail in the user's library.
 final class LibraryClipView: SKSpriteNode {
-    convenience init(clip: Clip, size: CGSize = CGSize(width: 160, height: 90)) {
+    convenience init(clip: Clip, size: CGSize = CGSize(width: 90, height: 50.625)) {
         self.init()
         
         addChild(generateThumbnail(from: clip, size: size))

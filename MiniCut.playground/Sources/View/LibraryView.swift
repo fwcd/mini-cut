@@ -3,19 +3,26 @@ import SpriteKit
 
 /// A view of the user's clip library.
 final class LibraryView: SKSpriteNode {
-    convenience init(size: CGSize) {
+    private var librarySubscription: Subscription!
+    
+    convenience init(state: MiniCutState, size: CGSize) {
         self.init(color: ViewDefaults.quaternary, size: size)
         
-        let stack = Stack.vertical(anchored: true, [Label("Library", fontSize: ViewDefaults.headerFontSize, fontColor: ViewDefaults.secondary)])
-        stack.position = CGPoint(x: 0, y: (size.height / 2) - ViewDefaults.padding - (stack.calculateAccumulatedFrame().height / 2))
-        addChild(stack)
-        
-        stack.addChild(Flow(size: size, childs: [
-            Label("This"),
-            Label("is"),
-            Label("a flow node"),
-            Label("123"),
-            Label("456")
-        ]))
+        librarySubscription = state.libraryWillChange.subscribeFiring(state.library) { [unowned self] in
+            let header = Label("Library", fontSize: ViewDefaults.headerFontSize, fontColor: ViewDefaults.secondary)
+            let clips = Flow(size: CGSize(width: size.width, height: size.height - header.calculateAccumulatedFrame().height - ViewDefaults.padding))
+            clips.removeAllChildren()
+            
+            for clip in $0.clips {
+                clips.addChild(LibraryClipView(clip: clip))
+            }
+            
+            let stack = Stack.vertical(anchored: true, [header])
+            stack.position = CGPoint(x: 0, y: (size.height / 2) - ViewDefaults.padding - (stack.calculateAccumulatedFrame().height / 2))
+            stack.addChild(clips)
+            
+            removeAllChildren()
+            addChild(stack)
+        }
     }
 }

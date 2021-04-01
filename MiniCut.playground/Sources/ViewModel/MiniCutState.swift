@@ -2,6 +2,9 @@ import Foundation
 
 /// The application's state.
 final class MiniCutState {
+    var library = Library(clips: [Clip(bundleName: "bigBuckBunny", extension: "mp4")].compactMap { $0 }) {
+        willSet { libraryWillChange.fire(newValue) }
+    }
     var timeline = Timeline() {
         willSet { timelineWillChange.fire(newValue) }
     }
@@ -12,6 +15,7 @@ final class MiniCutState {
         willSet { isPlayingWillChange.fire(newValue) }
     }
     
+    var libraryWillChange = ListenerList<Library>()
     var timelineWillChange = ListenerList<Timeline>()
     var cursorWillChange = ListenerList<TimeInterval>()
     var isPlayingWillChange = ListenerList<Bool>()

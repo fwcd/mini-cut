@@ -64,6 +64,15 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         }
         
         updateMarks()
+        
+        // TODO: Real tracks
+        
+        let tracks = Stack(.vertical, padding: 0, childs: [])
+        for (i, track) in [Track(name: "First"), Track(name: "Second"), Track(name: "Third")].enumerated() {
+            let trackSize = CGSize(width: size.width, height: 36)
+            tracks.addChild(TrackView(track: track, size: trackSize, marked: i % 2 == 0))
+        }
+        addChild(tracks)
     }
     
     func inputDown(at point: CGPoint) {

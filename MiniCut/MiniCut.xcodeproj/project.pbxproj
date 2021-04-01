@@ -53,6 +53,7 @@
 		C7590F962616274A00A02167 /* DragSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F952616274A00A02167 /* DragSource.swift */; };
 		C7590F992616279600A02167 /* DragNDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F982616279600A02167 /* DragNDropController.swift */; };
 		C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */; };
+		C7590FA0261637DA00A02167 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F9F261637DA00A02167 /* TrackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		C7590F952616274A00A02167 /* DragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragSource.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragSource.swift; sourceTree = "<group>"; };
 		C7590F982616279600A02167 /* DragNDropController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DragNDropController.swift; path = ../../MiniCut.playground/Sources/View/DragNDrop/DragNDropController.swift; sourceTree = "<group>"; };
 		C7590F9B26162AEE00A02167 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7590F9F261637DA00A02167 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrackView.swift; path = ../../MiniCut.playground/Sources/View/TrackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				C7590F4A261527CB00A02167 /* TimelineCursor.swift */,
 				C7590F48261527CB00A02167 /* TimelineMark.swift */,
 				C7590F49261527CB00A02167 /* TimelineView.swift */,
+				C7590F9F261637DA00A02167 /* TrackView.swift */,
 				C7590F46261527CB00A02167 /* VideoView.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
@@ -340,6 +343,7 @@
 				C7590F3D261527A700A02167 /* Translatable.swift in Sources */,
 				C7590F8426160DA800A02167 /* LibraryClipView.swift in Sources */,
 				C7590F52261527CB00A02167 /* TimelineCursor.swift in Sources */,
+				C7590FA0261637DA00A02167 /* TrackView.swift in Sources */,
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,

@@ -2,18 +2,21 @@ import Foundation
 import AVFoundation
 
 /// A trimmed clip of audiovisual content.
-struct Clip {
+struct Clip: Identifiable {
     static var defaultLength: TimeInterval = 5
     
+    var id: UUID
     var content: ClipContent
     var start: TimeInterval
     var length: TimeInterval
     
     init(
+        id: UUID = UUID(),
         content: ClipContent,
         start: TimeInterval = 0,
         length: TimeInterval? = nil
     ) {
+        self.id = id
         self.content = content
         self.start = start
         self.length = length ?? content.duration ?? Self.defaultLength

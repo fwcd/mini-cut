@@ -7,8 +7,18 @@ struct Clip: Identifiable {
     
     var id: UUID
     var content: ClipContent
-    var start: TimeInterval
-    var length: TimeInterval
+    
+    private var _start: TimeInterval
+    private var _length: TimeInterval
+    
+    var start: TimeInterval {
+        get { _start }
+        set { _start = max(0, newValue) }
+    }
+    var length: TimeInterval {
+        get { _length }
+        set { _length = max(0, newValue) }
+    }
     
     init(
         id: UUID = UUID(),
@@ -18,8 +28,8 @@ struct Clip: Identifiable {
     ) {
         self.id = id
         self.content = content
-        self.start = start
-        self.length = length ?? content.duration ?? Self.defaultLength
+        _start = max(0, start)
+        _length = max(0, length ?? content.duration ?? Self.defaultLength)
     }
     
     init(url: URL) {

@@ -11,7 +11,10 @@ final class TrackClipView: SKSpriteNode {
         
         self.init(color: clip.clip.content.color, size: CGSize(width: toViewScale.apply(clip.clip.length), height: height))
         
-        let thumb = generateThumbnail(from: clip.clip, size: ViewDefaults.thumbnailSize)
+        let aspectRatio: CGFloat = 16 / 9
+        let thumbSize = CGSize(width: aspectRatio * height, height: height)
+        let thumb = generateThumbnail(from: clip.clip, size: thumbSize)
+        thumb.centerLeftPosition = CGPoint(x: frame.minX, y: 0)
         addChild(thumb)
     }
 }

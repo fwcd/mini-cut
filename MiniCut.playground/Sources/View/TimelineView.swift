@@ -73,6 +73,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         }
         
         cursor = TimelineCursor(height: size.height)
+        cursor.zPosition = 100
         addChild(cursor)
         
         cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in

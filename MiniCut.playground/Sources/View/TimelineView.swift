@@ -95,7 +95,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     func inputDown(at point: CGPoint) {
         for (trackId, track) in trackNodes {
             for (clipId, clip) in track.clipNodes {
-                clip.inputDown(at: convert(point, to: clip))
+                if let clipParent = clip.parent {
+                    clip.tryBeginTrimming(at: convert(point, to: clipParent))
+                }
                 if clip.isTrimming {
                     dragState = .trimming(clip)
                     return
@@ -138,16 +140,19 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             
             state.timeline[clipState.trackId]?[clipState.clipId]?.offset = toViewX.inverseApply(point.x - clipState.dxInClip)
         case .trimming(let clip):
-            clip.inputDragged(to: convert(point, to: clip))
+            if let clipParent = clip.parent {
+                clip.moveTrimmer(to: convert(point, to: clipParent))
+            }
         default:
             break
         }
     }
     
     func inputUp(at point: CGPoint) {
-        inputDragged(to: point)
         if case .trimming(let clip) = dragState {
-            clip.inputDragged(to: convert(point, to: clip))
+            clip.finishTrimming()
+        } else {
+            inputDragged(to: point)
         }
         dragState = .inactive
     }

@@ -4,7 +4,7 @@ import SpriteKit
 private let trimHandleZPosition: CGFloat = 50
 
 /// A visual representation of a track's controls.
-final class TrackClipView: SKSpriteNode, SKInputHandler {
+final class TrackClipView: SKSpriteNode {
     private var trackId: UUID!
     private var id: UUID!
     
@@ -17,18 +17,23 @@ final class TrackClipView: SKSpriteNode, SKInputHandler {
     private var rightHandle: TrimHandle!
     
     private var toViewScale: AnyBijection<TimeInterval, CGFloat>!
-    private var lastDragPoint: CGPoint? = nil
-    private var draggedHandle: DraggedHandle? = nil
-    var isTrimming: Bool { draggedHandle != nil }
+    private var dragState: DragState? = nil
+    var isTrimming: Bool { dragState != nil }
     
     private var clip: OffsetClip? {
         get { state.timeline[trackId]?[id] }
         set { state.timeline[trackId]?[id] = newValue }
     }
     
-    private enum DraggedHandle {
+    private enum HandleSide {
         case left
         case right
+    }
+    
+    private struct DragState {
+        let side: HandleSide
+        let startPoint: CGPoint
+        let startClip: OffsetClip
     }
     
     convenience init(
@@ -86,46 +91,41 @@ final class TrackClipView: SKSpriteNode, SKInputHandler {
                 if rightHandle.parent != nil {
                     rightHandle.removeFromParent()
                 }
-                lastDragPoint = nil
-                draggedHandle = nil
+                dragState = nil
             }
         }
     }
     
-    func inputDown(at point: CGPoint) {
+    func tryBeginTrimming(at parentPoint: CGPoint) {
+        guard let clip = clip, let parent = parent else { return }
+        let point = parent.convert(parentPoint, to: self)
+        
         if leftHandle.calculateAccumulatedFrame().contains(point) {
-            draggedHandle = .left
-            lastDragPoint = point
+            dragState = DragState(side: .left, startPoint: parentPoint, startClip: clip)
         } else if rightHandle.calculateAccumulatedFrame().contains(point) {
-            draggedHandle = .right
-            lastDragPoint = point
+            dragState = DragState(side: .right, startPoint: parentPoint, startClip: clip)
         }
     }
     
-    func inputDragged(to point: CGPoint) {
-        guard let last = lastDragPoint else { return }
-        let dx = point.x - last.x
+    func moveTrimmer(to parentPoint: CGPoint) {
+        guard let dragState = dragState, var newClip = clip else { return }
+        
+        let dx = parentPoint.x - dragState.startPoint.x
         let delta = toViewScale.inverseApply(dx)
         
-        switch draggedHandle! {
+        switch dragState.side {
         case .left:
-            if delta > 0 {
-                print("Delta: \(delta)")
-                clip?.offset += delta
-                clip?.clip.start += delta
-                clip?.clip.length -= delta
-                lastDragPoint = point
-            }
+            newClip.offset = dragState.startClip.offset + delta
+            newClip.clip.start = dragState.startClip.clip.start + delta
+            newClip.clip.length = dragState.startClip.clip.length - delta
         case .right:
-            if delta < 0 {
-                clip?.clip.length += delta
-                lastDragPoint = point
-            }
+            newClip.clip.length = dragState.startClip.clip.length + delta
         }
+        
+        clip = newClip
     }
     
-    func inputUp(at point: CGPoint) {
-        lastDragPoint = nil
-        draggedHandle = nil
+    func finishTrimming() {
+        dragState = nil
     }
 }

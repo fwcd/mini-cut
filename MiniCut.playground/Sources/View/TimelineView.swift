@@ -105,7 +105,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         for (trackId, track) in trackNodes {
             for (clipId, clip) in track.clipNodes {
-                if let clipParent = clip.parent {
+                if let selection = state.selection,
+                   selection.trackId == trackId && selection.clipId == clipId,
+                   let clipParent = clip.parent {
                     clip.tryBeginTrimming(at: convert(point, to: clipParent))
                 }
                 if clip.isTrimming {

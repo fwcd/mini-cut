@@ -66,6 +66,7 @@
 		C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB42616698C00A02167 /* VideoClipView.swift */; };
 		C75E19142617623A00B7D646 /* LibraryClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19132617623A00B7D646 /* LibraryClipsView.swift */; };
 		C75E1917261768E000B7D646 /* LibraryStaticClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1916261768E000B7D646 /* LibraryStaticClipsView.swift */; };
+		C75E191B2617734400B7D646 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E191A2617734400B7D646 /* StringUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		C7590FB42616698C00A02167 /* VideoClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoClipView.swift; path = ../../MiniCut.playground/Sources/View/VideoClipView.swift; sourceTree = "<group>"; };
 		C75E19132617623A00B7D646 /* LibraryClipsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryClipsView.swift; path = ../../MiniCut.playground/Sources/View/LibraryClipsView.swift; sourceTree = "<group>"; };
 		C75E1916261768E000B7D646 /* LibraryStaticClipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryStaticClipsView.swift; path = ../../MiniCut.playground/Sources/View/LibraryStaticClipsView.swift; sourceTree = "<group>"; };
+		C75E191A2617734400B7D646 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = ../../MiniCut.playground/Sources/Utils/StringUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				C7590F2D261527A700A02167 /* Translation.swift */,
 				C758D40F261674AA0049301B /* LRUCache.swift */,
 				C758D4182616A2AD0049301B /* Logger.swift */,
+				C75E191A2617734400B7D646 /* StringUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,
+				C75E191B2617734400B7D646 /* StringUtils.swift in Sources */,
 				C7590FB226165B3A00A02167 /* ClipViewUtils.swift in Sources */,
 				C7590F39261527A700A02167 /* ComposedBijection.swift in Sources */,
 				C7590F4F261527CB00A02167 /* InspectorView.swift in Sources */,

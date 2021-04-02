@@ -48,7 +48,7 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
     case .text(let text):
         let node = SKNode()
         node.addChild(baseNode)
-        node.addChild(Label(text.text, fontSize: ViewDefaults.thumbnailFontSize))
+        node.addChild(Label(text.text.truncated(to: 7), fontSize: ViewDefaults.thumbnailFontSize))
         return node
     default:
         return baseNode

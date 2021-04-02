@@ -12,6 +12,7 @@ final class TrackClipView: SKSpriteNode {
     private var clipSubscription: Subscription!
     private var selectionSubscription: Subscription!
     
+    private var thumbSize: CGSize!
     private var thumb: SKNode!
     private var leftHandle: TrimHandle!
     private var rightHandle: TrimHandle!
@@ -64,11 +65,22 @@ final class TrackClipView: SKSpriteNode {
             
             if thumb == nil {
                 let aspectRatio: CGFloat = 16 / 9
-                let thumbSize = CGSize(width: aspectRatio * height, height: height)
+                thumbSize = CGSize(width: aspectRatio * height, height: height)
                 thumb = generateThumbnail(from: clip.clip, size: thumbSize)
-                addChild(thumb)
             }
+            
             thumb.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
+            
+            let thumbShown = thumb.parent != nil
+            let thumbShouldBeShown = size.width >= thumbSize.width
+            
+            if thumbShown != thumbShouldBeShown {
+                if thumbShouldBeShown {
+                    addChild(thumb)
+                } else {
+                    thumb.removeFromParent()
+                }
+            }
         }
         
         selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) { [unowned self] in

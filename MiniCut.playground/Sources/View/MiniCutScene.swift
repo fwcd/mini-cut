@@ -13,6 +13,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     private var state = MiniCutState()
     private var dragNDrop: DragNDropController!
     private var isPlayingSubscription: Subscription!
+    private var timelineDnDSubscription: Subscription!
     
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
@@ -71,7 +72,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         content.position = CGPoint(x: initialFrame.width / 2, y: (initialFrame.height / 2) - 2 * ViewDefaults.padding)
         addChild(content)
         
-        dragNDrop.register(target: timeline)
+        timelineDnDSubscription = dragNDrop.register(target: timeline)
     }
     
     // SKNode conforms to NSSecureCoding, so any subclass going

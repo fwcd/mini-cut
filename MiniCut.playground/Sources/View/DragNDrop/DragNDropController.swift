@@ -4,7 +4,7 @@ import SpriteKit
 /// Implement drag-n-drop over SpriteKit nodes.
 class DragNDropController {
     private weak var parent: SKNode!
-    private var nodes: [SKNode] = []
+    private var nodes: [UUID: SKNode] = [:]
     private var inFlight: Any? = nil
     private var hoveringNode: SKNode? = nil
     private var hoverNode: SKNode? = nil
@@ -13,20 +13,24 @@ class DragNDropController {
         self.parent = parent
     }
     
-    func clearSources() {
-        nodes.removeAll { $0 is DragSource }
+    /// Registers a node as a drag source. The drag source will
+    /// be removed once the returned Subscription is dropped.
+    func register<N>(source node: N) -> Subscription where N: SKNode, N: DragSource {
+        register(node: node)
     }
     
-    func clearTargets() {
-        nodes.removeAll { $0 is DropTarget }
+    /// Registers a node as a drop target. The drop target will
+    /// be removed once the returned Subscription is dropped.
+    func register<N>(target node: N) -> Subscription where N: SKNode, N: DropTarget {
+        register(node: node)
     }
     
-    func register<N>(source node: N) where N: SKNode, N: DragSource {
-        nodes.append(node)
-    }
-    
-    func register<N>(target node: N) where N: SKNode, N: DropTarget {
-        nodes.append(node)
+    private func register(node: SKNode) -> Subscription {
+        let id = UUID()
+        nodes[id] = node
+        return Subscription(id: id) { [weak self] in
+            self?.nodes[id] = nil
+        }
     }
     
     private func point(_ point: CGPoint, in node: SKNode) -> CGPoint {
@@ -39,7 +43,7 @@ class DragNDropController {
     }
     
     func handleInputDown(at point: CGPoint) -> Bool {
-        for node in nodes {
+        for node in nodes.values {
             if self.node(node, contains: point), let source = node as? DragSource {
                 inFlight = source.draggableValue
                 let hover = source.makeHoverNode()
@@ -65,7 +69,7 @@ class DragNDropController {
             hoveringNode = nil
         }
         
-        for node in nodes {
+        for node in nodes.values {
             if hoveringNode !== node, self.node(node, contains: point), let target = node as? DropTarget {
                 target.onHover(value: inFlight, at: self.point(point, in: node))
                 hoveringNode = node
@@ -89,7 +93,7 @@ class DragNDropController {
         
         self.inFlight = nil
         
-        for node in nodes {
+        for node in nodes.values {
             if self.node(node, contains: point), let target = node as? DropTarget {
                 target.onDrop(value: inFlight, at: self.point(point, in: node))
                 return true

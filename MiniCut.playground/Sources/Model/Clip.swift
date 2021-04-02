@@ -21,7 +21,7 @@ struct Clip: Identifiable {
         set { _length = min(max(0, newValue), content.duration.map { $0 - start } ?? .infinity) }
     }
     
-    var visualOffsetDx: Double = 0 // Normalized, from -0.5 to 0.5
+    var visualOffsetDx: Double = 0 // Normalized
     var visualOffsetDy: Double = 0
     var visualScale: Double = 1
     

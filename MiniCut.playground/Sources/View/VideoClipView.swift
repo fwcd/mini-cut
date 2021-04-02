@@ -11,6 +11,7 @@ private let log = Logger(name: "View.VideoClipView")
 final class VideoClipView: SKNode {
     private var state: MiniCutState!
     private var clipSubscription: Subscription?
+    private var transformSubscription: Subscription?
     private var isPlayingSubscription: Subscription?
     private(set) var cursorSubscription: Subscription?
     
@@ -81,6 +82,15 @@ final class VideoClipView: SKNode {
         default:
             // TODO: Deal with other clip types
             break
+        }
+        
+        transformSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
+            guard let currentClip = $0[trackId]?[id]?.clip else { return }
+            self?.position = CGPoint(
+                x: CGFloat(currentClip.visualOffsetDx) * size.width,
+                y: CGFloat(currentClip.visualOffsetDy) * size.height
+            )
+            self?.setScale(CGFloat(currentClip.visualScale))
         }
     }
     

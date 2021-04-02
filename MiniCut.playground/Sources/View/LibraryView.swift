@@ -20,6 +20,7 @@ final class LibraryView: SKSpriteNode {
     private enum Tab: String, CaseIterable {
         case clips = "Clips"
         case titles = "Titles"
+        case colors = "Colors"
         case sounds = "Sounds"
     }
     
@@ -59,6 +60,15 @@ final class LibraryView: SKSpriteNode {
         case .titles:
             node = LibraryStaticClipsView(clips: [
                 // TODO
+            ], dragNDrop: dragNDrop, size: contentSize)
+        case .colors:
+            node = LibraryStaticClipsView(clips: [
+                Clip(content: .color(.init(color: .black))),
+                Clip(content: .color(.init(color: .blue))),
+                Clip(content: .color(.init(color: .green))),
+                Clip(content: .color(.init(color: .magenta))),
+                Clip(content: .color(.init(color: .yellow))),
+                Clip(content: .color(.init(color: .white))),
             ], dragNDrop: dragNDrop, size: contentSize)
         case .sounds:
             node = LibraryStaticClipsView(clips: [

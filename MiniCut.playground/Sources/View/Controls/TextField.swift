@@ -1,6 +1,8 @@
 import Foundation
 import SpriteKit
 
+private let log = Logger(name: "View.Controls.TextField")
+
 /// A UI element that lets the user enter text.
 final class TextField: SKSpriteNode {
     private var label: SKLabelNode!
@@ -38,6 +40,7 @@ final class TextField: SKSpriteNode {
     
     func enter(keys: [KeyboardKey]) {
         let newText = edit(label.text ?? "", with: keys)
+        log.debug("Contents: '\(newText)'")
         onChange?(newText)
         label.text = newText
     }

@@ -59,7 +59,10 @@ final class TextFieldSelectionController {
     }
     
     func handleInputKeyDown(with keys: [KeyboardKey]) -> Bool {
-        // TODO
+        if let node = selection.flatMap({ nodes[$0] }) {
+            node.enter(keys: keys)
+            return true
+        }
         return false
     }
 }

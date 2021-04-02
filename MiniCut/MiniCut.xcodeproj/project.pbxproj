@@ -74,7 +74,7 @@
 		C758D412261684F90049301B /* TrimHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrimHandle.swift; path = ../../MiniCut.playground/Sources/View/TrimHandle.swift; sourceTree = "<group>"; };
 		C758D415261688250049301B /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../../MiniCut.playground/Sources/ViewModel/Selection.swift; sourceTree = "<group>"; };
 		C758D4182616A2AD0049301B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = ../../MiniCut.playground/Sources/Utils/Logger.swift; sourceTree = "<group>"; };
-		C7590EE3261524F400A02167 /* MiniCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7590EE3261524F400A02167 /* MiniCutToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCutToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7590EF3261524F900A02167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7590EF5261524F900A02167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7590F182615276100A02167 /* CompatibilityLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompatibilityLayer.swift; path = ../../MiniCut.playground/Sources/CompatibilityLayer.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		C7590EDA261524F400A02167 = {
 			isa = PBXGroup;
 			children = (
-				C7590EE5261524F500A02167 /* MiniCut */,
+				C7590EE5261524F500A02167 /* MiniCutToGo */,
 				C7590EE4261524F400A02167 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,12 +156,12 @@
 		C7590EE4261524F400A02167 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7590EE3261524F400A02167 /* MiniCut.app */,
+				C7590EE3261524F400A02167 /* MiniCutToGo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C7590EE5261524F500A02167 /* MiniCut */ = {
+		C7590EE5261524F500A02167 /* MiniCutToGo */ = {
 			isa = PBXGroup;
 			children = (
 				C7590F172615274400A02167 /* PlaygroundSources */,
@@ -173,7 +173,7 @@
 				C7590EF3261524F900A02167 /* Assets.xcassets */,
 				C7590EF5261524F900A02167 /* Info.plist */,
 			);
-			path = MiniCut;
+			path = MiniCutToGo;
 			sourceTree = "<group>";
 		};
 		C7590F172615274400A02167 /* PlaygroundSources */ = {
@@ -296,9 +296,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7590EE2261524F400A02167 /* MiniCut */ = {
+		C7590EE2261524F400A02167 /* MiniCutToGo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7590EF8261524F900A02167 /* Build configuration list for PBXNativeTarget "MiniCut" */;
+			buildConfigurationList = C7590EF8261524F900A02167 /* Build configuration list for PBXNativeTarget "MiniCutToGo" */;
 			buildPhases = (
 				C7590EDF261524F400A02167 /* Sources */,
 				C7590EE0261524F400A02167 /* Frameworks */,
@@ -308,9 +308,9 @@
 			);
 			dependencies = (
 			);
-			name = MiniCut;
+			name = MiniCutToGo;
 			productName = MiniCut;
-			productReference = C7590EE3261524F400A02167 /* MiniCut.app */;
+			productReference = C7590EE3261524F400A02167 /* MiniCutToGo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -341,7 +341,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C7590EE2261524F400A02167 /* MiniCut */,
+				C7590EE2261524F400A02167 /* MiniCutToGo */,
 			);
 		};
 /* End PBXProject section */
@@ -551,7 +551,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SS8V8UGLY8;
-				INFOPLIST_FILE = MiniCut/Info.plist;
+				INFOPLIST_FILE = MiniCutToGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -572,7 +572,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SS8V8UGLY8;
-				INFOPLIST_FILE = MiniCut/Info.plist;
+				INFOPLIST_FILE = MiniCutToGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7590EF8261524F900A02167 /* Build configuration list for PBXNativeTarget "MiniCut" */ = {
+		C7590EF8261524F900A02167 /* Build configuration list for PBXNativeTarget "MiniCutToGo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7590EF9261524F900A02167 /* Debug */,

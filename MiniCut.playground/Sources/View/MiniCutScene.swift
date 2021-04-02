@@ -94,4 +94,14 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     func inputUp(at point: CGPoint) {
         if dragNDrop.handleInputUp(at: point) { return }
     }
+    
+    func inputKeyUp(with keys: [KeyboardKey]) {
+        let keySet = Set(keys)
+        if keySet.contains(.char(" ")) {
+            state.isPlaying = !state.isPlaying
+        } else if keySet.contains(.backspace) || keySet.contains(.delete), let selection = state.selection {
+            state.timeline[selection.trackId]?.remove(clipId: selection.clipId)
+            state.selection = nil
+        }
+    }
 }

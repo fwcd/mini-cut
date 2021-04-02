@@ -6,7 +6,7 @@ import SpriteKit
 /// and UIKit share many similarities, making it easy to abstract over the (few)
 /// differences.
 
-enum KeyboardKey {
+enum KeyboardKey: Hashable {
     case char(Character)
     case backspace
     case delete

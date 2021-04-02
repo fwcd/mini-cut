@@ -10,7 +10,7 @@ private var cache = LRUCache<CacheKey, SKTexture>()
 
 /// Creates a thumbnail for the given clip within the given frame.
 func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CGSize) -> SKSpriteNode {
-    let offset = offset ?? (clip.start + min(15, clip.length / 2))
+    let offset = offset ?? clip.content.duration ?? 0
     let key = CacheKey(clipId: clip.id, offset: offset)
     var texture: SKTexture?
     

@@ -70,6 +70,11 @@ final class InspectorClipView: SKNode {
                 Slider<Double>(value: clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
                     clip?.clip.visualScale = $0
                 }
+            }),
+            ("Alpha", { [unowned self] in
+                Slider<Double>(value: clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) {
+                    clip?.clip.visualAlpha = $0
+                }
             })
         ]
         

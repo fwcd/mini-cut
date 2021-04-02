@@ -91,6 +91,7 @@ final class VideoClipView: SKNode {
                 y: CGFloat(currentClip.visualOffsetDy) * size.height
             )
             self?.setScale(CGFloat(currentClip.visualScale))
+            self?.alpha = CGFloat(currentClip.visualAlpha)
         }
     }
     

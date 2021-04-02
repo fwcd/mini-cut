@@ -24,6 +24,7 @@ struct Clip: Identifiable {
     var visualOffsetDx: Double = 0 // Normalized
     var visualOffsetDy: Double = 0
     var visualScale: Double = 1
+    var visualAlpha: Double = 1
     
     init(
         id: UUID = UUID(),

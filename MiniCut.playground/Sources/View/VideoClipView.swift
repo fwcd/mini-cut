@@ -16,8 +16,8 @@ final class VideoClipView: SKNode {
     
     private var player: AVPlayer!
     
-    convenience init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
-        self.init()
+    init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
+        super.init()
         self.state = state
         
         zPosition = CGFloat(100 + zIndex)
@@ -82,6 +82,10 @@ final class VideoClipView: SKNode {
             // TODO: Deal with other clip types
             break
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     deinit {

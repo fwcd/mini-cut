@@ -5,8 +5,8 @@ import SpriteKit
 final class InspectorView: SKSpriteNode {
     private var selectionSubscription: Subscription!
     
-    convenience init(state: MiniCutState, textFieldSelection: TextFieldSelectionController, size: CGSize) {
-        self.init(color: ViewDefaults.quaternary, size: size)
+    init(state: MiniCutState, textFieldSelection: TextFieldSelectionController, size: CGSize) {
+        super.init(texture: nil, color: ViewDefaults.quaternary, size: size)
         
         let header = Label("Inspector", fontSize: ViewDefaults.headerFontSize, fontColor: ViewDefaults.secondary)
         let headerFrame = header.calculateAccumulatedFrame()
@@ -36,5 +36,9 @@ final class InspectorView: SKSpriteNode {
                 ))
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

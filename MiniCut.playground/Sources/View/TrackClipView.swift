@@ -32,7 +32,7 @@ final class TrackClipView: SKSpriteNode {
         let startClip: OffsetClip
     }
     
-    convenience init(
+    init(
         state: MiniCutState,
         trackId: UUID,
         id: UUID,
@@ -40,7 +40,7 @@ final class TrackClipView: SKSpriteNode {
         toViewScale: AnyBijection<TimeInterval, CGFloat>,
         toClipX: AnyBijection<TimeInterval, CGFloat>
     ) {
-        self.init()
+        super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
         self.trackId = trackId
         self.id = id
         self.state = state
@@ -101,6 +101,10 @@ final class TrackClipView: SKSpriteNode {
                 dragState = nil
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     func tryBeginTrimming(at parentPoint: CGPoint) {

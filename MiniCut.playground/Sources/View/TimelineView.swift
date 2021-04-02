@@ -57,14 +57,14 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         set { /* ignore */ }
     }
     
-    convenience init(
+    init(
         state: MiniCutState,
         textFieldSelection: TextFieldSelectionController,
         size: CGSize,
         zoomLevel: Double = 10.0,
         markStride: Int = 10
     ) {
-        self.init()
+        super.init()
         
         self.state = state
         self.textFieldSelection = textFieldSelection
@@ -98,6 +98,10 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
             cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     func inputDown(at point: CGPoint) {

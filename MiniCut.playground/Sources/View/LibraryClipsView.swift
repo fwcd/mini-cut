@@ -6,13 +6,13 @@ final class LibraryClipsView: SKNode {
     private var librarySubscription: Subscription!
     private var dndSubscriptions: [Subscription] = []
     
-    convenience init(
+    init(
         state: MiniCutState,
         dragNDrop: DragNDropController,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding
     ) {
-        self.init()
+        super.init()
         
         librarySubscription = state.libraryWillChange.subscribeFiring(state.library) { [unowned self] in
             let clips = Flow(size: CGSize(width: size.width - (padding * 2), height: size.height - (padding * 2)))
@@ -28,5 +28,9 @@ final class LibraryClipsView: SKNode {
             removeAllChildren()
             addChild(clips)
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

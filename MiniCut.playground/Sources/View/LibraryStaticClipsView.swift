@@ -5,13 +5,13 @@ import SpriteKit
 final class LibraryStaticClipsView: SKNode {
     private var dndSubscriptions: [Subscription] = []
     
-    convenience init(
+    init(
         clips: [Clip],
         dragNDrop: DragNDropController,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding
     ) {
-        self.init()
+        super.init()
         
         let clipsNode = Flow(size: CGSize(width: size.width - (padding * 2), height: size.height - (padding * 2)))
         clipsNode.position = CGPoint(x: -(size.width / 2) + padding, y: (size.height / 2) - padding)
@@ -23,5 +23,9 @@ final class LibraryStaticClipsView: SKNode {
         }
         
         addChild(clipsNode)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

@@ -15,7 +15,7 @@ final class TextField: SKSpriteNode {
         didSet { updateBackground() }
     }
     
-    convenience init(
+    init(
         size: CGSize,
         text: String = "",
         fontSize: CGFloat = ViewDefaults.textFieldFontSize,
@@ -23,7 +23,7 @@ final class TextField: SKSpriteNode {
         fontColor: Color = ViewDefaults.primary,
         onChange: ((String) -> Void)? = nil
     ) {
-        self.init(color: ViewDefaults.fieldInactiveBgColor, size: size)
+        super.init(texture: nil, color: ViewDefaults.fieldInactiveBgColor, size: size)
         self.onChange = onChange
         
         label = SKLabelNode(text: text)
@@ -32,6 +32,10 @@ final class TextField: SKSpriteNode {
         label.fontColor = fontColor
         label.verticalAlignmentMode = .center
         addChild(label)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     private func updateBackground() {

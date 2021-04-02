@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 /// A simple UI control that displays a label and performs an action when clicked.
-public class Button: SKSpriteNode, SKInputHandler {
+final class Button: SKSpriteNode, SKInputHandler {
     var label: SKNode!
     
     private var inactiveBgColor: Color!
@@ -17,12 +17,12 @@ public class Button: SKSpriteNode, SKInputHandler {
         }
     }
     
-    public override var isUserInteractionEnabled: Bool {
+    override var isUserInteractionEnabled: Bool {
         get { true }
         set { /* ignore */ }
     }
     
-    public convenience init(
+    init(
         label: SKNode,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding,
@@ -30,7 +30,7 @@ public class Button: SKSpriteNode, SKInputHandler {
         activeBgColor: Color = ViewDefaults.activeBgColor,
         action: ((Button) -> Void)? = nil
     ) {
-        self.init(color: inactiveBgColor, size: CGSize(width: size.width + padding, height: size.height + padding))
+        super.init(texture: nil, color: inactiveBgColor, size: CGSize(width: size.width + padding, height: size.height + padding))
         self.label = label
         self.inactiveBgColor = inactiveBgColor
         self.activeBgColor = activeBgColor
@@ -40,7 +40,7 @@ public class Button: SKSpriteNode, SKInputHandler {
     }
     
     /// Creates a textual button.
-    public convenience init(
+    convenience init(
         _ text: String,
         width: CGFloat? = nil,
         height: CGFloat? = nil,
@@ -55,7 +55,7 @@ public class Button: SKSpriteNode, SKInputHandler {
     }
     
     /// Creates a textural button.
-    public convenience init(
+    convenience init(
         iconTexture: SKTexture,
         size: CGFloat = ViewDefaults.fontSize,
         action: ((Button) -> Void)? = nil
@@ -65,23 +65,27 @@ public class Button: SKSpriteNode, SKInputHandler {
         self.init(label: label, size: size, action: action)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        nil
+    }
+    
     private func active(at point: CGPoint) -> Bool {
         parent.map { contains(convert(point, to: $0)) } ?? false
     }
     
-    public func inputDown(at point: CGPoint) {
+    func inputDown(at point: CGPoint) {
         if isToggled == nil {
             color = activeBgColor
         }
     }
     
-    public func inputDragged(to point: CGPoint) {
+    func inputDragged(to point: CGPoint) {
         if isToggled == nil {
             color = active(at: point) ? activeBgColor : inactiveBgColor
         }
     }
     
-    public func inputUp(at point: CGPoint) {
+    func inputUp(at point: CGPoint) {
         color = inactiveBgColor
         if active(at: point) {
             action?(self)

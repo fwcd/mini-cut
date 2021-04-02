@@ -3,8 +3,8 @@ import SpriteKit
 
 /// A layout container that presents 'keyed' child nodes.
 final class Form: SKNode {
-    convenience init(size: CGSize, childs: [(String, (CGFloat) -> SKNode)]) {
-        self.init()
+    init(size: CGSize, childs: [(String, (CGFloat) -> SKNode)]) {
+        super.init()
         
         let labelWidth = 0.3 * size.width
         let valueWidth = size.width - labelWidth
@@ -15,5 +15,9 @@ final class Form: SKNode {
                 factory(valueWidth)
             ])
         }))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

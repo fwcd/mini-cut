@@ -10,12 +10,16 @@ final class LibraryClipView: SKNode, DragSource {
     
     var draggableValue: Any { clip! }
     
-    convenience init(clip: Clip, size: CGSize = ViewDefaults.thumbnailSize) {
-        self.init()
+    init(clip: Clip, size: CGSize = ViewDefaults.thumbnailSize) {
+        super.init()
         self.clip = clip
         self.size = size
         
         addChild(generateThumbnail(from: clip, size: size))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     func makeHoverNode() -> SKNode {

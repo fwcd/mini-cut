@@ -19,8 +19,8 @@ final class VideoView: SKSpriteNode {
     private var startDate: Date?
     private var startCursor: TimeInterval?
     
-    convenience init(state: MiniCutState, size: CGSize) {
-        self.init(color: .black, size: size)
+    init(state: MiniCutState, size: CGSize) {
+        super.init(texture: nil, color: .black, size: size)
         self.state = state
         
         crop = SKCropNode()
@@ -61,5 +61,9 @@ final class VideoView: SKSpriteNode {
                 removeAction(forKey: cursorActionKey)
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

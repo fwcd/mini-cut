@@ -17,22 +17,28 @@ final class TrimHandle: SKShapeNode {
         }
     }
     
-    convenience init(
+    init(
         side: Side,
         in size: CGSize,
         thickness: CGFloat = ViewDefaults.trimHandleThickness,
         color: Color = ViewDefaults.trimHandleColor
     ) {
+        super.init()
+        
         let path = CGMutablePath()
         let sign = side.sign
         path.move(to: CGPoint(x: sign * (size.width / 2), y: size.height / 2))
         path.addLine(to: CGPoint(x: -sign * (size.width / 2), y: size.height / 2))
         path.addLine(to: CGPoint(x: -sign * (size.width / 2), y: -(size.height / 2)))
         path.addLine(to: CGPoint(x: sign * (size.width / 2), y: -(size.height / 2)))
-        self.init(path: path)
+        self.path = path
         
         lineWidth = thickness
         lineJoin = .bevel
         strokeColor = color
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

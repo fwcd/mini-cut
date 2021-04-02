@@ -7,14 +7,14 @@ final class TrackView: SKSpriteNode {
     
     private(set) var clipNodes: [UUID: TrackClipView] = [:]
     
-    convenience init(
+    init(
         state: MiniCutState,
         id: UUID,
         size: CGSize,
         marked: Bool,
         toViewScale: AnyBijection<TimeInterval, CGFloat>
     ) {
-        self.init(color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
+        super.init(texture: nil, color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
         
         let track = state.timeline[id] ?? Track(id: id, name: "<undefined>")
         let trackControlsWidth = ViewDefaults.trackControlsWidth
@@ -33,5 +33,9 @@ final class TrackView: SKSpriteNode {
                 TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale, toClipX: toClipX)
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

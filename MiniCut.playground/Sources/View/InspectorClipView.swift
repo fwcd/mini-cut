@@ -17,14 +17,14 @@ final class InspectorClipView: SKNode {
         set { clip?.clip.content = newValue! }
     }
     
-    convenience init(
+    init(
         state: MiniCutState,
         textFieldSelection: TextFieldSelectionController,
         trackId: UUID,
         clipId: UUID,
         size: CGSize
     ) {
-        self.init()
+        super.init()
         self.state = state
         self.trackId = trackId
         self.clipId = clipId
@@ -45,5 +45,9 @@ final class InspectorClipView: SKNode {
         default:
             break
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
 }

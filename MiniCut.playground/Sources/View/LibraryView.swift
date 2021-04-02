@@ -24,8 +24,8 @@ final class LibraryView: SKSpriteNode {
         case sounds = "Sounds"
     }
     
-    convenience init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
-        self.init(color: ViewDefaults.quaternary, size: size)
+    init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
+        super.init(texture: nil, color: ViewDefaults.quaternary, size: size)
         self.state = state
         self.dragNDrop = dragNDrop
         
@@ -47,6 +47,10 @@ final class LibraryView: SKSpriteNode {
         
         updateContent()
         updateTabs()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     private func updateContent() {

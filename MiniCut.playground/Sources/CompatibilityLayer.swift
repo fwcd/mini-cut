@@ -6,12 +6,22 @@ import SpriteKit
 /// and UIKit share many similarities, making it easy to abstract over the (few)
 /// differences.
 
+enum KeyboardKey {
+    case char(Character)
+    case backspace
+    case delete
+}
+
 protocol SKInputHandler {
     func inputDown(at point: CGPoint)
     
     func inputDragged(to point: CGPoint)
     
     func inputUp(at point: CGPoint)
+    
+    func inputKeyDown(with keys: [KeyboardKey])
+    
+    func inputKeyUp(with keys: [KeyboardKey])
 }
 
 extension SKInputHandler {
@@ -20,6 +30,10 @@ extension SKInputHandler {
     func inputDragged(to point: CGPoint) {}
     
     func inputUp(at point: CGPoint) {}
+    
+    func inputKeyDown(with keys: [KeyboardKey]) {}
+    
+    func inputKeyUp(with keys: [KeyboardKey]) {}
 }
 
 #if canImport(AppKit)
@@ -33,6 +47,21 @@ extension NSImage {
     public convenience init(fromCG cgImage: CGImage) {
         self.init(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
     }
+}
+
+private func keyboardKey(from char: Character) -> KeyboardKey {
+    switch char {
+    case Character(UnicodeScalar(NSBackspaceCharacter)!):
+        return .backspace
+    case Character(UnicodeScalar(NSDeleteCharacter)!):
+        return .delete
+    default:
+        return .char(char)
+    }
+}
+
+private func keyboardKeys(from event: NSEvent) -> [KeyboardKey] {
+    event.charactersIgnoringModifiers?.map(keyboardKey(from:)) ?? []
 }
 
 // Slightly hacky, relies on the fact that the Objective-C runtime
@@ -49,6 +78,14 @@ extension SKNode {
     
     public dynamic override func mouseUp(with event: NSEvent) {
         (self as? SKInputHandler)?.inputUp(at: event.location(in: self))
+    }
+    
+    public dynamic override func keyDown(with event: NSEvent) {
+        (self as? SKInputHandler)?.inputKeyDown(with: keyboardKeys(from: event))
+    }
+    
+    public dynamic override func keyUp(with event: NSEvent) {
+        (self as? SKInputHandler)?.inputKeyUp(with: keyboardKeys(from: event))
     }
 }
 

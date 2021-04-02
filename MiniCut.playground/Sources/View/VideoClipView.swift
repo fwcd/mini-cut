@@ -69,6 +69,15 @@ final class VideoClipView: SKNode {
             }
             
             addChild(label)
+        case .color(let color):
+            let backdrop = SKSpriteNode(color: color.color, size: size)
+            
+            clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) {
+                guard case .color(let currentColor) = $0[trackId]?[id]?.clip.content else { return }
+                backdrop.color = currentColor.color
+            }
+            
+            addChild(backdrop)
         default:
             // TODO: Deal with other clip types
             break

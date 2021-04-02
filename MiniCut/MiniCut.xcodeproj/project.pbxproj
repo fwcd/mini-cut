@@ -64,6 +64,7 @@
 		C7590FAE2616493100A02167 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAD2616493000A02167 /* Timeline.swift */; };
 		C7590FB226165B3A00A02167 /* ClipViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB126165B3A00A02167 /* ClipViewUtils.swift */; };
 		C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB42616698C00A02167 /* VideoClipView.swift */; };
+		C75E19142617623A00B7D646 /* LibraryClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19132617623A00B7D646 /* LibraryClipsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		C7590FAD2616493000A02167 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = ../../MiniCut.playground/Sources/Model/Timeline.swift; sourceTree = "<group>"; };
 		C7590FB126165B3A00A02167 /* ClipViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipViewUtils.swift; path = ../../MiniCut.playground/Sources/View/ClipViewUtils.swift; sourceTree = "<group>"; };
 		C7590FB42616698C00A02167 /* VideoClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoClipView.swift; path = ../../MiniCut.playground/Sources/View/VideoClipView.swift; sourceTree = "<group>"; };
+		C75E19132617623A00B7D646 /* LibraryClipsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryClipsView.swift; path = ../../MiniCut.playground/Sources/View/LibraryClipsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				C7590F47261527CB00A02167 /* InspectorView.swift */,
 				C7590F43261527CB00A02167 /* LibraryView.swift */,
 				C7590F8326160DA800A02167 /* LibraryClipView.swift */,
+				C75E19132617623A00B7D646 /* LibraryClipsView.swift */,
 				C7590F44261527CB00A02167 /* MiniCutScene.swift */,
 				C7590F4A261527CB00A02167 /* TimelineCursor.swift */,
 				C7590F48261527CB00A02167 /* TimelineMark.swift */,
@@ -408,6 +411,7 @@
 				C7590F88261615C000A02167 /* Flow.swift in Sources */,
 				C7590F38261527A700A02167 /* Translation.swift in Sources */,
 				C7590F50261527CB00A02167 /* TimelineMark.swift in Sources */,
+				C75E19142617623A00B7D646 /* LibraryClipsView.swift in Sources */,
 				C7590F92261626A900A02167 /* DropTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

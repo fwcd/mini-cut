@@ -35,12 +35,16 @@ public class Button: SKSpriteNode, SKInputHandler {
     /// Creates a textual button.
     public convenience init(
         _ text: String,
+        width: CGFloat? = nil,
+        height: CGFloat? = nil,
         fontSize: CGFloat = ViewDefaults.fontSize,
         fontName: String = ViewDefaults.fontName,
         action: ((Button) -> Void)? = nil
     ) {
         let label = Label(text, fontSize: fontSize, fontName: fontName)
-        self.init(label: label, size: label.frame.size, action: action)
+        let frameSize = label.frame.size
+        let size = CGSize(width: width ?? frameSize.width, height: height ?? frameSize.height)
+        self.init(label: label, size: size, action: action)
     }
     
     /// Creates a textural button.
@@ -72,6 +76,4 @@ public class Button: SKSpriteNode, SKInputHandler {
             action?(self)
         }
     }
-    
-    // TODO: Image-labelled buttons
 }

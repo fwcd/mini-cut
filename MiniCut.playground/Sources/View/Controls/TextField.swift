@@ -5,6 +5,8 @@ import SpriteKit
 final class TextField: SKSpriteNode {
     private var label: SKLabelNode!
     
+    private var onChange: ((String) -> Void)?
+    
     /// Whether the text field is selected. Should only be set
     /// from TextFieldSelectionController, not manually.
     var isSelected: Bool = false {
@@ -12,22 +14,21 @@ final class TextField: SKSpriteNode {
     }
     
     convenience init(
+        size: CGSize,
         text: String = "",
-        fontSize: CGFloat = ViewDefaults.fontSize,
+        fontSize: CGFloat = ViewDefaults.textFieldFontSize,
         fontName: String = ViewDefaults.fontName,
         fontColor: Color = ViewDefaults.primary,
-        onChange: @escaping (String) -> Void
+        onChange: ((String) -> Void)? = nil
     ) {
-        let label = SKLabelNode(text: text)
+        self.init(color: ViewDefaults.fieldInactiveBgColor, size: size)
+        self.onChange = onChange
+        
+        label = SKLabelNode(text: text)
         label.fontSize = fontSize
         label.fontName = fontName
         label.fontColor = fontColor
         label.verticalAlignmentMode = .center
-        
-        // TODO: Store and fire onChange as needed
-        
-        self.init(color: ViewDefaults.fieldInactiveBgColor, size: label.frame.size)
-        self.label = label
         addChild(label)
     }
     
@@ -36,6 +37,25 @@ final class TextField: SKSpriteNode {
     }
     
     func enter(keys: [KeyboardKey]) {
-        // TODO
+        let newText = edit(label.text ?? "", with: keys)
+        onChange?(newText)
+        label.text = newText
+    }
+    
+    private func edit(_ s: String, with keys: [KeyboardKey]) -> String {
+        var s = s
+        for key in keys {
+            switch key {
+            case .char(let c):
+                s.append(c)
+            case .backspace:
+                if !s.isEmpty {
+                    s.removeLast()
+                }
+            default:
+                break
+            }
+        }
+        return s
     }
 }

@@ -13,7 +13,7 @@ final class InspectorView: SKSpriteNode {
         addChild(stack)
         
         // TODO
-        let textField = TextField(text: "Test") {
+        let textField = TextField(size: CGSize(width: size.width, height: ViewDefaults.textFieldHeight), text: "Test") {
             print("Entered '\($0)'")
         }
         stack.addChild(textField)

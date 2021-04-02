@@ -12,6 +12,8 @@ public enum ViewDefaults {
     public static let symbolSize: CGFloat = fontSize
     public static let thumbnailSize: CGSize = CGSize(width: 70, height: 39.375)
     public static let thumbnailFontSize: CGFloat = 18
+    public static let textFieldHeight: CGFloat = 24
+    public static let textFieldFontSize: CGFloat = 18
     public static let trackHeight: CGFloat = 36
     public static let trackControlsWidth: CGFloat = 100
     public static let trimHandleWidth: CGFloat = 10

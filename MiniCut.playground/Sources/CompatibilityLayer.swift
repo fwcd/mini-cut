@@ -49,19 +49,15 @@ extension NSImage {
     }
 }
 
-private func keyboardKey(from char: Character) -> KeyboardKey {
-    switch char {
-    case Character(UnicodeScalar(NSBackspaceCharacter)!):
-        return .backspace
-    case Character(UnicodeScalar(NSDeleteCharacter)!):
-        return .delete
-    default:
-        return .char(char)
-    }
-}
-
 private func keyboardKeys(from event: NSEvent) -> [KeyboardKey] {
-    event.charactersIgnoringModifiers?.map(keyboardKey(from:)) ?? []
+    switch event.keyCode {
+    case 0x33:
+        return [.backspace]
+    case 0x75:
+        return [.delete]
+    default:
+        return event.charactersIgnoringModifiers?.map { .char($0) } ?? []
+    }
 }
 
 // Slightly hacky, relies on the fact that the Objective-C runtime

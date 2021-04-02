@@ -5,6 +5,8 @@ import SpriteKit
 private let cursorActionKey = "cursorAction"
 private let cursorStride: TimeInterval = 0.1
 
+private let log = Logger(name: "View.VideoClipView")
+
 /// A view of a single clip's video.
 final class VideoClipView: SKNode {
     private var state: MiniCutState!
@@ -20,7 +22,7 @@ final class VideoClipView: SKNode {
         
         zPosition = CGFloat(100 + zIndex)
         
-        print("[DEBUG] Creating VideoClipView")
+        log.info("Creating VideoClipView")
         
         // We don't attach the entire thing as a timeline listener since we don't want to create a
         // new video node every time the timeline changes. Unfortunately this also means
@@ -63,7 +65,7 @@ final class VideoClipView: SKNode {
     }
     
     deinit {
-        print("[DEBUG] Dropping VideoClipView")
+        log.info("Dropping VideoClipView")
         player?.replaceCurrentItem(with: nil)
     }
 }

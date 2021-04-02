@@ -2,23 +2,28 @@ import Foundation
 import SpriteKit
 
 /// A simple UI control that lets the user select a numeric value from a range.
-public class Slider: SKNode, SKInputHandler {
+final class Slider<Value>: SKNode, SKInputHandler
+    where Value: Translatable & Scalable & Comparable & Isomorphic,
+          Value == Value.Offset,
+          Value == Value.Factor,
+          Value == Value.Isomorphism.Input,
+          Value.Isomorphism.Output == CGFloat {
     private var size: CGSize!
     private var knob: SKShapeNode!
     
     private var knobInactiveBgColor: Color!
     private var knobActiveBgColor: Color!
-    private var action: ((Double) -> Void)?
+    private var action: ((Value) -> Void)?
     
-    private var toViewX: AnyBijection<Double, CGFloat>!
+    private var toViewX: AnyBijection<Value, CGFloat>!
     
-    public override var isUserInteractionEnabled: Bool {
+    override var isUserInteractionEnabled: Bool {
         get { true }
         set { /* ignore */ }
     }
     
-    public convenience init(
-        range: Range<Double>,
+    init(
+        range: Range<Value>,
         size: CGSize,
         trackThickness: CGFloat = ViewDefaults.sliderTrackThickness,
         trackBgColor: Color = ViewDefaults.inactiveBgColor,
@@ -26,9 +31,9 @@ public class Slider: SKNode, SKInputHandler {
         knobInactiveBgColor: Color = ViewDefaults.knobInactiveBgColor,
         knobActiveBgColor: Color = ViewDefaults.knobActiveBgColor,
         sliderKnobRadius
-        action: ((Double) -> Void)? = nil
+        action: ((Value) -> Void)? = nil
     ) {
-        self.init()
+        super.init()
         self.size = size
         self.knobInactiveBgColor = knobInactiveBgColor
         self.knobActiveBgColor = knobActiveBgColor
@@ -36,7 +41,7 @@ public class Slider: SKNode, SKInputHandler {
         
         toViewX = InverseTranslation(offset: range.lowerBound)
             .then(InverseScaling(divisor: range.upperBound - range.lowerBound))
-            .then(AnyBijection(CGFloat.init(_:), Double.init(_:)))
+            .then(Value.isomorphism)
             .then(Scaling(factor: size.width))
             .then(InverseTranslation(offset: size.width / 2))
             .erase()
@@ -48,6 +53,10 @@ public class Slider: SKNode, SKInputHandler {
         knob.lineWidth = 0
         knob.fillColor = knobInactiveBgColor
         addChild(knob)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     public func inputDown(at point: CGPoint) {

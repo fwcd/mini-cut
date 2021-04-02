@@ -136,6 +136,10 @@
 		C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0A26179A7A00B7D646 /* Form.swift */; };
 		C75E1A1026179F2600B7D646 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0F26179F2600B7D646 /* Slider.swift */; };
 		C75E1A1126179F2600B7D646 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0F26179F2600B7D646 /* Slider.swift */; };
+		C75E1A152617CA6000B7D646 /* Isomorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A142617CA6000B7D646 /* Isomorphic.swift */; };
+		C75E1A162617CA6000B7D646 /* Isomorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A142617CA6000B7D646 /* Isomorphic.swift */; };
+		C75E1A1A2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
+		C75E1A1B2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -213,6 +217,8 @@
 		C75E1A05261794FF00B7D646 /* InspectorClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InspectorClipView.swift; path = ../../MiniCut.playground/Sources/View/InspectorClipView.swift; sourceTree = "<group>"; };
 		C75E1A0A26179A7A00B7D646 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Form.swift; path = ../../MiniCut.playground/Sources/View/Controls/Form.swift; sourceTree = "<group>"; };
 		C75E1A0F26179F2600B7D646 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = ../../MiniCut.playground/Sources/View/Controls/Slider.swift; sourceTree = "<group>"; };
+		C75E1A142617CA6000B7D646 /* Isomorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Isomorphic.swift; path = ../../MiniCut.playground/Sources/Utils/Isomorphic.swift; sourceTree = "<group>"; };
+		C75E1A192617CB9900B7D646 /* InvertedBijection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InvertedBijection.swift; path = ../../MiniCut.playground/Sources/Utils/InvertedBijection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +311,8 @@
 			children = (
 				C7590F35261527A700A02167 /* AnyBijection.swift */,
 				C7590F2F261527A700A02167 /* Bijection.swift */,
+				C75E1A142617CA6000B7D646 /* Isomorphic.swift */,
+				C75E1A192617CB9900B7D646 /* InvertedBijection.swift */,
 				C7590F2E261527A700A02167 /* ComposedBijection.swift */,
 				C7590F30261527A700A02167 /* IdentityBijection.swift */,
 				C7590F2C261527A600A02167 /* ListenerList.swift */,
@@ -560,10 +568,12 @@
 				C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */,
 				C7590F51261527CB00A02167 /* TimelineView.swift in Sources */,
 				C7590F7226152B2B00A02167 /* AppDelegate.swift in Sources */,
+				C75E1A1A2617CB9900B7D646 /* InvertedBijection.swift in Sources */,
 				C75E1A06261794FF00B7D646 /* InspectorClipView.swift in Sources */,
 				C7590F3A261527A700A02167 /* Bijection.swift in Sources */,
 				C7590F5A261527E300A02167 /* Stack.swift in Sources */,
 				C7590F4B261527CB00A02167 /* LibraryView.swift in Sources */,
+				C75E1A152617CA6000B7D646 /* Isomorphic.swift in Sources */,
 				C7590F58261527E300A02167 /* Label.swift in Sources */,
 				C75E19FC2617846700B7D646 /* TextField.swift in Sources */,
 				C7590F4E261527CB00A02167 /* VideoView.swift in Sources */,
@@ -621,10 +631,12 @@
 				C75E19DD26177DFC00B7D646 /* OffsetClip.swift in Sources */,
 				C75E19ED26177E0200B7D646 /* StringUtils.swift in Sources */,
 				C75E19C626177DDA00B7D646 /* VideoClipView.swift in Sources */,
+				C75E1A1B2617CB9900B7D646 /* InvertedBijection.swift in Sources */,
 				C75E1A07261794FF00B7D646 /* InspectorClipView.swift in Sources */,
 				C75E19EB26177E0200B7D646 /* Scalable.swift in Sources */,
 				C75E19BB26177DDA00B7D646 /* TrackClipView.swift in Sources */,
 				C75E19D226177DEB00B7D646 /* DropTarget.swift in Sources */,
+				C75E1A162617CA6000B7D646 /* Isomorphic.swift in Sources */,
 				C75E19E926177E0200B7D646 /* Translatable.swift in Sources */,
 				C75E19FD2617846700B7D646 /* TextField.swift in Sources */,
 				C75E19C726177DDA00B7D646 /* ClipViewUtils.swift in Sources */,

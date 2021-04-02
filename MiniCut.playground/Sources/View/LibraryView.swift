@@ -50,14 +50,23 @@ final class LibraryView: SKSpriteNode {
     
     private func updateContent() {
         content.removeAllChildren()
+        
+        let node: SKNode
+        
         switch activeTab {
         case .clips:
-            content.addChild(LibraryClipsView(state: state, dragNDrop: dragNDrop, size: contentSize))
+            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, size: contentSize)
         case .titles:
-            break // TODO
+            node = LibraryStaticClipsView(clips: [
+                // TODO
+            ], dragNDrop: dragNDrop, size: contentSize)
         case .sounds:
-            break // TODO
+            node = LibraryStaticClipsView(clips: [
+                // TODO
+            ], dragNDrop: dragNDrop, size: contentSize)
         }
+        
+        content.addChild(node)
     }
     
     private func updateTabs() {

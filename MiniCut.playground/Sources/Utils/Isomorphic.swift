@@ -1,6 +1,6 @@
 import CoreGraphics
 
-/// An structure-preserving bijection from Self to some other type exists.
+/// A structure-preserving bijection from Self to some other type exists.
 protocol Isomorphic {
     associatedtype Isomorphism: Bijection
     

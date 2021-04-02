@@ -74,7 +74,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             Stack.horizontal([
                 LibraryView(state: state, dragNDrop: dragNDrop, size: CGSize(width: panelWidth, height: videoHeight)),
                 VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
-                InspectorView(textFieldSelection: textFieldSelection, size: CGSize(width: panelWidth, height: videoHeight))
+                InspectorView(state: state, textFieldSelection: textFieldSelection, size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
             timeline

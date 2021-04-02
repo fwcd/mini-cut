@@ -130,6 +130,8 @@
 		C75E19FD2617846700B7D646 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19FB2617846700B7D646 /* TextField.swift */; };
 		C75E1A012617880E00B7D646 /* TextFieldSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */; };
 		C75E1A022617880E00B7D646 /* TextFieldSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */; };
+		C75E1A06261794FF00B7D646 /* InspectorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A05261794FF00B7D646 /* InspectorClipView.swift */; };
+		C75E1A07261794FF00B7D646 /* InspectorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A05261794FF00B7D646 /* InspectorClipView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +206,7 @@
 		C75E193826177CDB00B7D646 /* MiniCutDesktop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniCutDesktop.entitlements; sourceTree = "<group>"; };
 		C75E19FB2617846700B7D646 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextField.swift; sourceTree = "<group>"; };
 		C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldSelectionController.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextFieldSelectionController.swift; sourceTree = "<group>"; };
+		C75E1A05261794FF00B7D646 /* InspectorClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InspectorClipView.swift; path = ../../MiniCut.playground/Sources/View/InspectorClipView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +320,7 @@
 				C7590F902616267600A02167 /* DragNDrop */,
 				C7590F54261527CF00A02167 /* Controls */,
 				C7590F47261527CB00A02167 /* InspectorView.swift */,
+				C75E1A05261794FF00B7D646 /* InspectorClipView.swift */,
 				C7590F43261527CB00A02167 /* LibraryView.swift */,
 				C7590F8326160DA800A02167 /* LibraryClipView.swift */,
 				C75E19132617623A00B7D646 /* LibraryClipsView.swift */,
@@ -546,6 +550,7 @@
 				C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */,
 				C7590F51261527CB00A02167 /* TimelineView.swift in Sources */,
 				C7590F7226152B2B00A02167 /* AppDelegate.swift in Sources */,
+				C75E1A06261794FF00B7D646 /* InspectorClipView.swift in Sources */,
 				C7590F3A261527A700A02167 /* Bijection.swift in Sources */,
 				C7590F5A261527E300A02167 /* Stack.swift in Sources */,
 				C7590F4B261527CB00A02167 /* LibraryView.swift in Sources */,
@@ -604,6 +609,7 @@
 				C75E19DD26177DFC00B7D646 /* OffsetClip.swift in Sources */,
 				C75E19ED26177E0200B7D646 /* StringUtils.swift in Sources */,
 				C75E19C626177DDA00B7D646 /* VideoClipView.swift in Sources */,
+				C75E1A07261794FF00B7D646 /* InspectorClipView.swift in Sources */,
 				C75E19EB26177E0200B7D646 /* Scalable.swift in Sources */,
 				C75E19BB26177DDA00B7D646 /* TrackClipView.swift in Sources */,
 				C75E19D226177DEB00B7D646 /* DropTarget.swift in Sources */,

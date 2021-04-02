@@ -57,17 +57,17 @@ final class InspectorClipView: SKNode {
         
         props += [
             ("X", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualOffsetDx ?? 0, range: -0.5..<0.5, width: $0) {
+                Slider<Double>(value: clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) {
                     clip?.clip.visualOffsetDx = $0
                 }
             }),
             ("Y", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualOffsetDy ?? 0, range: -0.5..<0.5, width: $0) {
+                Slider<Double>(value: clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) {
                     clip?.clip.visualOffsetDy = $0
                 }
             }),
             ("Scale", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualScale ?? 1, range: 0.1..<8, width: $0) {
+                Slider<Double>(value: clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
                     clip?.clip.visualScale = $0
                 }
             })

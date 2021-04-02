@@ -11,7 +11,11 @@ private let plusIcon = SKTexture(imageNamed: "iconPlus.png")
 /// The application's primary view.
 public final class MiniCutScene: SKScene, SKInputHandler {
     private var state = MiniCutState()
+    
     private var dragNDrop: DragNDropController!
+    private var textFieldSelection: TextFieldSelectionController!
+    private var handledKeyEvent: Bool = false
+    
     private var isPlayingSubscription: Subscription!
     private var timelineDnDSubscription: Subscription!
     
@@ -19,6 +23,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         let initialFrame = view.frame.size
         
         dragNDrop = DragNDropController(parent: self)
+        textFieldSelection = TextFieldSelectionController(parent: self)
+        
         backgroundColor = ViewDefaults.background
         
         // Initialize the app's core views
@@ -64,7 +70,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             Stack.horizontal([
                 LibraryView(state: state, dragNDrop: dragNDrop, size: CGSize(width: panelWidth, height: videoHeight)),
                 VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
-                InspectorView(size: CGSize(width: panelWidth, height: videoHeight))
+                InspectorView(textFieldSelection: textFieldSelection, size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
             timeline
@@ -85,6 +91,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     func inputDown(at point: CGPoint) {
         if dragNDrop.handleInputDown(at: point) { return }
+        if textFieldSelection.handleInputDown(at: point) { return }
     }
     
     func inputDragged(to point: CGPoint) {
@@ -95,13 +102,22 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         if dragNDrop.handleInputUp(at: point) { return }
     }
     
-    func inputKeyUp(with keys: [KeyboardKey]) {
-        let keySet = Set(keys)
-        if keySet.contains(.char(" ")) {
-            state.isPlaying = !state.isPlaying
-        } else if keySet.contains(.backspace) || keySet.contains(.delete), let selection = state.selection {
-            state.timeline[selection.trackId]?.remove(clipId: selection.clipId)
-            state.selection = nil
+    func inputKeyDown(with keys: [KeyboardKey]) {
+        if textFieldSelection.handleInputKeyDown(with: keys) {
+            handledKeyEvent = true
         }
+    }
+    
+    func inputKeyUp(with keys: [KeyboardKey]) {
+        if !handledKeyEvent {
+            let keySet = Set(keys)
+            if keySet.contains(.char(" ")) {
+                state.isPlaying = !state.isPlaying
+            } else if keySet.contains(.backspace) || keySet.contains(.delete), let selection = state.selection {
+                state.timeline[selection.trackId]?.remove(clipId: selection.clipId)
+                state.selection = nil
+            }
+        }
+        handledKeyEvent = false
     }
 }

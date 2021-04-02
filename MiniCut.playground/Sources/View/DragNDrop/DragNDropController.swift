@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 /// Implement drag-n-drop over SpriteKit nodes.
-class DragNDropController {
+final class DragNDropController {
     private weak var parent: SKNode!
     private var nodes: [UUID: SKNode] = [:]
     private var inFlight: Any? = nil

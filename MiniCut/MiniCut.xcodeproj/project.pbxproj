@@ -126,6 +126,10 @@
 		C75E19F626177E6300B7D646 /* iconPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F5F261528AA00A02167 /* iconPlay.png */; };
 		C75E19F726177E6300B7D646 /* bigBuckBunnyLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = C7590F60261528AA00A02167 /* bigBuckBunnyLicense.txt */; };
 		C75E19F826177E6300B7D646 /* iconBackToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA62616426400A02167 /* iconBackToStart.png */; };
+		C75E19FC2617846700B7D646 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19FB2617846700B7D646 /* TextField.swift */; };
+		C75E19FD2617846700B7D646 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19FB2617846700B7D646 /* TextField.swift */; };
+		C75E1A012617880E00B7D646 /* TextFieldSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */; };
+		C75E1A022617880E00B7D646 /* TextFieldSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +202,8 @@
 		C75E193526177CDB00B7D646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C75E193726177CDB00B7D646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C75E193826177CDB00B7D646 /* MiniCutDesktop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniCutDesktop.entitlements; sourceTree = "<group>"; };
+		C75E19FB2617846700B7D646 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextField.swift; sourceTree = "<group>"; };
+		C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldSelectionController.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextFieldSelectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				C7590F56261527E300A02167 /* Button.swift */,
+				C75E19FB2617846700B7D646 /* TextField.swift */,
+				C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */,
 				C7590F55261527E300A02167 /* Label.swift */,
 				C7590F87261615C000A02167 /* Flow.swift */,
 				C7590F57261527E300A02167 /* Stack.swift */,
@@ -505,6 +513,7 @@
 				C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
 				C758D416261688250049301B /* Selection.swift in Sources */,
+				C75E1A012617880E00B7D646 /* TextFieldSelectionController.swift in Sources */,
 				C75E1917261768E000B7D646 /* LibraryStaticClipsView.swift in Sources */,
 				C7590FA326163B7000A02167 /* TrackControlsView.swift in Sources */,
 				C7590F4D261527CB00A02167 /* ViewDefaults.swift in Sources */,
@@ -541,6 +550,7 @@
 				C7590F5A261527E300A02167 /* Stack.swift in Sources */,
 				C7590F4B261527CB00A02167 /* LibraryView.swift in Sources */,
 				C7590F58261527E300A02167 /* Label.swift in Sources */,
+				C75E19FC2617846700B7D646 /* TextField.swift in Sources */,
 				C7590F4E261527CB00A02167 /* VideoView.swift in Sources */,
 				C7590F88261615C000A02167 /* Flow.swift in Sources */,
 				C7590F38261527A700A02167 /* Translation.swift in Sources */,
@@ -561,6 +571,7 @@
 				C75E19C126177DDA00B7D646 /* TimelineView.swift in Sources */,
 				C75E19DA26177DFC00B7D646 /* Clip.swift in Sources */,
 				C75E19DE26177DFC00B7D646 /* Track.swift in Sources */,
+				C75E1A022617880E00B7D646 /* TextFieldSelectionController.swift in Sources */,
 				C75E19EE26177E0200B7D646 /* IdentityBijection.swift in Sources */,
 				C75E19B726177DDA00B7D646 /* VideoView.swift in Sources */,
 				C75E19E426177E0200B7D646 /* Scaling.swift in Sources */,
@@ -597,6 +608,7 @@
 				C75E19BB26177DDA00B7D646 /* TrackClipView.swift in Sources */,
 				C75E19D226177DEB00B7D646 /* DropTarget.swift in Sources */,
 				C75E19E926177E0200B7D646 /* Translatable.swift in Sources */,
+				C75E19FD2617846700B7D646 /* TextField.swift in Sources */,
 				C75E19C726177DDA00B7D646 /* ClipViewUtils.swift in Sources */,
 				C75E19E826177E0200B7D646 /* ComposedBijection.swift in Sources */,
 				C75E19B426177DC900B7D646 /* CompatibilityLayer.swift in Sources */,

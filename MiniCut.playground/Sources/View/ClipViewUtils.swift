@@ -15,7 +15,6 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
     var texture: SKTexture?
     
     do {
-        
         if let cached = cache[key] {
             texture = cached
         } else {

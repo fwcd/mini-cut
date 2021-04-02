@@ -25,13 +25,8 @@ final class TrackClipView: SKSpriteNode {
         set { state.timeline[trackId]?[id] = newValue }
     }
     
-    private enum HandleSide {
-        case left
-        case right
-    }
-    
     private struct DragState {
-        let side: HandleSide
+        let side: TrimHandle.Side
         let startPoint: CGPoint
         let startClip: OffsetClip
     }
@@ -51,8 +46,8 @@ final class TrackClipView: SKSpriteNode {
         self.toViewScale = toViewScale
         
         let handleSize = CGSize(width: ViewDefaults.trimHandleWidth, height: height)
-        leftHandle = TrimHandle(in: handleSize)
-        rightHandle = TrimHandle(in: handleSize)
+        leftHandle = TrimHandle(side: .left, in: handleSize)
+        rightHandle = TrimHandle(side: .right, in: handleSize)
         
         leftHandle.zPosition = trimHandleZPosition
         rightHandle.zPosition = trimHandleZPosition

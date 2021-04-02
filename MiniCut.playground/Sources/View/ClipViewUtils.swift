@@ -9,7 +9,7 @@ private struct CacheKey: Hashable {
 private var cache = LRUCache<CacheKey, SKTexture>()
 
 /// Creates a thumbnail for the given clip within the given frame.
-func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CGSize) -> SKSpriteNode {
+func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CGSize) -> SKNode {
     let offset = offset ?? clip.content.duration ?? 0
     let key = CacheKey(clipId: clip.id, offset: offset)
     var texture: SKTexture?
@@ -40,7 +40,17 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
     
     if let texture = texture {
         return SKSpriteNode(texture: texture, size: size)
-    } else {
-        return SKSpriteNode(color: clip.content.color, size: size)
+    }
+    
+    let baseNode = SKSpriteNode(color: clip.content.color, size: size)
+    
+    switch clip.content {
+    case .text(let text):
+        let node = SKNode()
+        node.addChild(baseNode)
+        node.addChild(Label(text.text, fontSize: ViewDefaults.thumbnailFontSize))
+        return node
+    default:
+        return baseNode
     }
 }

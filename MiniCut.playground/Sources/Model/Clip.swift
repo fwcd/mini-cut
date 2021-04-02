@@ -3,7 +3,7 @@ import AVFoundation
 
 /// A trimmed clip of audiovisual content.
 struct Clip: Identifiable {
-    static var defaultLength: TimeInterval = 5
+    static var defaultLength: TimeInterval = 10
     
     var id: UUID
     var content: ClipContent

@@ -58,6 +58,17 @@ final class VideoClipView: SKNode {
                     video.pause()
                 }
             }
+        case .text(let text):
+            let label = Label(text.text, fontSize: text.size, fontColor: text.color)
+            
+            clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) {
+                guard case .text(let currentText) = $0[trackId]?[id]?.clip.content else { return }
+                label.text = currentText.text
+                label.fontSize = currentText.size
+                label.fontColor = currentText.color
+            }
+            
+            addChild(label)
         default:
             // TODO: Deal with other clip types
             break

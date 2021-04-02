@@ -6,6 +6,7 @@ private let cursorZPosition: CGFloat = 100
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var state: MiniCutState!
+    private var textFieldSelection: TextFieldSelectionController!
     private var cursorSubscription: Subscription!
     private var tracksSubscription: Subscription!
     
@@ -56,10 +57,17 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         set { /* ignore */ }
     }
     
-    convenience init(state: MiniCutState, size: CGSize, zoomLevel: Double = 10.0, markStride: Int = 10) {
+    convenience init(
+        state: MiniCutState,
+        textFieldSelection: TextFieldSelectionController,
+        size: CGSize,
+        zoomLevel: Double = 10.0,
+        markStride: Int = 10
+    ) {
         self.init()
         
         self.state = state
+        self.textFieldSelection = textFieldSelection
         self.size = size
         self.zoomLevel = zoomLevel
         self.markStride = markStride
@@ -93,6 +101,8 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     func inputDown(at point: CGPoint) {
+        textFieldSelection.selection = nil
+        
         for (trackId, track) in trackNodes {
             for (clipId, clip) in track.clipNodes {
                 if let clipParent = clip.parent {

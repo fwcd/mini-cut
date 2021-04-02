@@ -64,7 +64,11 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
         let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
 
-        let timeline = TimelineView(state: state, size: CGSize(width: initialFrame.width, height: timelineHeight))
+        let timeline = TimelineView(
+            state: state,
+            textFieldSelection: textFieldSelection,
+            size: CGSize(width: initialFrame.width, height: timelineHeight)
+        )
         let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([

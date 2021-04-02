@@ -67,6 +67,65 @@
 		C75E19142617623A00B7D646 /* LibraryClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19132617623A00B7D646 /* LibraryClipsView.swift */; };
 		C75E1917261768E000B7D646 /* LibraryStaticClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1916261768E000B7D646 /* LibraryStaticClipsView.swift */; };
 		C75E191B2617734400B7D646 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E191A2617734400B7D646 /* StringUtils.swift */; };
+		C75E192926177CD800B7D646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E192826177CD800B7D646 /* AppDelegate.swift */; };
+		C75E193126177CD800B7D646 /* MiniCutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E193026177CD800B7D646 /* MiniCutViewController.swift */; };
+		C75E193326177CDB00B7D646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75E193226177CDB00B7D646 /* Assets.xcassets */; };
+		C75E193626177CDB00B7D646 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75E193426177CDB00B7D646 /* Main.storyboard */; };
+		C75E19B426177DC900B7D646 /* CompatibilityLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F182615276100A02167 /* CompatibilityLayer.swift */; };
+		C75E19B726177DDA00B7D646 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F46261527CB00A02167 /* VideoView.swift */; };
+		C75E19B826177DDA00B7D646 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8A2616184F00A02167 /* ViewUtils.swift */; };
+		C75E19B926177DDA00B7D646 /* TimelineCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F4A261527CB00A02167 /* TimelineCursor.swift */; };
+		C75E19BA26177DDA00B7D646 /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F47261527CB00A02167 /* InspectorView.swift */; };
+		C75E19BB26177DDA00B7D646 /* TrackClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAA261648CB00A02167 /* TrackClipView.swift */; };
+		C75E19BC26177DDA00B7D646 /* LibraryClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8326160DA800A02167 /* LibraryClipView.swift */; };
+		C75E19BD26177DDA00B7D646 /* LibraryClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E19132617623A00B7D646 /* LibraryClipsView.swift */; };
+		C75E19BE26177DDA00B7D646 /* ViewDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F45261527CB00A02167 /* ViewDefaults.swift */; };
+		C75E19BF26177DDA00B7D646 /* MiniCutScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F44261527CB00A02167 /* MiniCutScene.swift */; };
+		C75E19C026177DDA00B7D646 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F43261527CB00A02167 /* LibraryView.swift */; };
+		C75E19C126177DDA00B7D646 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F49261527CB00A02167 /* TimelineView.swift */; };
+		C75E19C226177DDA00B7D646 /* TrimHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D412261684F90049301B /* TrimHandle.swift */; };
+		C75E19C326177DDA00B7D646 /* LibraryStaticClipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1916261768E000B7D646 /* LibraryStaticClipsView.swift */; };
+		C75E19C426177DDA00B7D646 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F9F261637DA00A02167 /* TrackView.swift */; };
+		C75E19C526177DDA00B7D646 /* TrackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FA226163B7000A02167 /* TrackControlsView.swift */; };
+		C75E19C626177DDA00B7D646 /* VideoClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB42616698C00A02167 /* VideoClipView.swift */; };
+		C75E19C726177DDA00B7D646 /* ClipViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FB126165B3A00A02167 /* ClipViewUtils.swift */; };
+		C75E19C826177DDA00B7D646 /* TimelineMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F48261527CB00A02167 /* TimelineMark.swift */; };
+		C75E19CB26177DE600B7D646 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F56261527E300A02167 /* Button.swift */; };
+		C75E19CC26177DE600B7D646 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F87261615C000A02167 /* Flow.swift */; };
+		C75E19CD26177DE600B7D646 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F55261527E300A02167 /* Label.swift */; };
+		C75E19CE26177DE600B7D646 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F57261527E300A02167 /* Stack.swift */; };
+		C75E19D126177DEB00B7D646 /* DragNDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F982616279600A02167 /* DragNDropController.swift */; };
+		C75E19D226177DEB00B7D646 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F91261626A900A02167 /* DropTarget.swift */; };
+		C75E19D326177DEB00B7D646 /* DragSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F952616274A00A02167 /* DragSource.swift */; };
+		C75E19D626177DF700B7D646 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D415261688250049301B /* Selection.swift */; };
+		C75E19D726177DF700B7D646 /* MiniCutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F272615279200A02167 /* MiniCutState.swift */; };
+		C75E19DA26177DFC00B7D646 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1E2615277F00A02167 /* Clip.swift */; };
+		C75E19DB26177DFC00B7D646 /* ClipContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F202615277F00A02167 /* ClipContent.swift */; };
+		C75E19DC26177DFC00B7D646 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590FAD2616493000A02167 /* Timeline.swift */; };
+		C75E19DD26177DFC00B7D646 /* OffsetClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1D2615277F00A02167 /* OffsetClip.swift */; };
+		C75E19DE26177DFC00B7D646 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F1F2615277F00A02167 /* Track.swift */; };
+		C75E19DF26177DFC00B7D646 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F8D2616236800A02167 /* Library.swift */; };
+		C75E19E226177E0200B7D646 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D40F261674AA0049301B /* LRUCache.swift */; };
+		C75E19E326177E0200B7D646 /* Bijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2F261527A700A02167 /* Bijection.swift */; };
+		C75E19E426177E0200B7D646 /* Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F31261527A700A02167 /* Scaling.swift */; };
+		C75E19E526177E0200B7D646 /* AnyBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F35261527A700A02167 /* AnyBijection.swift */; };
+		C75E19E626177E0200B7D646 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C758D4182616A2AD0049301B /* Logger.swift */; };
+		C75E19E726177E0200B7D646 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F34261527A700A02167 /* Subscription.swift */; };
+		C75E19E826177E0200B7D646 /* ComposedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2E261527A700A02167 /* ComposedBijection.swift */; };
+		C75E19E926177E0200B7D646 /* Translatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F32261527A700A02167 /* Translatable.swift */; };
+		C75E19EA26177E0200B7D646 /* ListenerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2C261527A600A02167 /* ListenerList.swift */; };
+		C75E19EB26177E0200B7D646 /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F33261527A700A02167 /* Scalable.swift */; };
+		C75E19EC26177E0200B7D646 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F2D261527A700A02167 /* Translation.swift */; };
+		C75E19ED26177E0200B7D646 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E191A2617734400B7D646 /* StringUtils.swift */; };
+		C75E19EE26177E0200B7D646 /* IdentityBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7590F30261527A700A02167 /* IdentityBijection.swift */; };
+		C75E19F126177E6300B7D646 /* iconPause.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F5E261528AA00A02167 /* iconPause.png */; };
+		C75E19F226177E6300B7D646 /* iconBack.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F62261528AA00A02167 /* iconBack.png */; };
+		C75E19F326177E6300B7D646 /* iconPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA52616426400A02167 /* iconPlus.png */; };
+		C75E19F426177E6300B7D646 /* iconForward.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F5D261528AA00A02167 /* iconForward.png */; };
+		C75E19F526177E6300B7D646 /* bigBuckBunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C7590F61261528AA00A02167 /* bigBuckBunny.mp4 */; };
+		C75E19F626177E6300B7D646 /* iconPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590F5F261528AA00A02167 /* iconPlay.png */; };
+		C75E19F726177E6300B7D646 /* bigBuckBunnyLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = C7590F60261528AA00A02167 /* bigBuckBunnyLicense.txt */; };
+		C75E19F826177E6300B7D646 /* iconBackToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = C7590FA62616426400A02167 /* iconBackToStart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,10 +191,24 @@
 		C75E19132617623A00B7D646 /* LibraryClipsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryClipsView.swift; path = ../../MiniCut.playground/Sources/View/LibraryClipsView.swift; sourceTree = "<group>"; };
 		C75E1916261768E000B7D646 /* LibraryStaticClipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryStaticClipsView.swift; path = ../../MiniCut.playground/Sources/View/LibraryStaticClipsView.swift; sourceTree = "<group>"; };
 		C75E191A2617734400B7D646 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = ../../MiniCut.playground/Sources/Utils/StringUtils.swift; sourceTree = "<group>"; };
+		C75E192626177CD800B7D646 /* MiniCutDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniCutDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75E192826177CD800B7D646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C75E193026177CD800B7D646 /* MiniCutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCutViewController.swift; sourceTree = "<group>"; };
+		C75E193226177CDB00B7D646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C75E193526177CDB00B7D646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C75E193726177CDB00B7D646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C75E193826177CDB00B7D646 /* MiniCutDesktop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniCutDesktop.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C7590EE0261524F400A02167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C75E192326177CD800B7D646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				C7590EE5261524F500A02167 /* MiniCutToGo */,
+				C75E192726177CD800B7D646 /* MiniCutDesktop */,
 				C7590EE4261524F400A02167 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				C7590EE3261524F400A02167 /* MiniCutToGo.app */,
+				C75E192626177CD800B7D646 /* MiniCutDesktop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,6 +368,19 @@
 			name = DragNDrop;
 			sourceTree = "<group>";
 		};
+		C75E192726177CD800B7D646 /* MiniCutDesktop */ = {
+			isa = PBXGroup;
+			children = (
+				C75E192826177CD800B7D646 /* AppDelegate.swift */,
+				C75E193026177CD800B7D646 /* MiniCutViewController.swift */,
+				C75E193226177CDB00B7D646 /* Assets.xcassets */,
+				C75E193426177CDB00B7D646 /* Main.storyboard */,
+				C75E193726177CDB00B7D646 /* Info.plist */,
+				C75E193826177CDB00B7D646 /* MiniCutDesktop.entitlements */,
+			);
+			path = MiniCutDesktop;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -313,6 +401,23 @@
 			productReference = C7590EE3261524F400A02167 /* MiniCutToGo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C75E192526177CD800B7D646 /* MiniCutDesktop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C75E193926177CDB00B7D646 /* Build configuration list for PBXNativeTarget "MiniCutDesktop" */;
+			buildPhases = (
+				C75E192226177CD800B7D646 /* Sources */,
+				C75E192326177CD800B7D646 /* Frameworks */,
+				C75E192426177CD800B7D646 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MiniCutDesktop;
+			productName = MiniCutDesktop;
+			productReference = C75E192626177CD800B7D646 /* MiniCutDesktop.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -325,6 +430,9 @@
 					C7590EE2261524F400A02167 = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
+					};
+					C75E192526177CD800B7D646 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -342,6 +450,7 @@
 			projectRoot = "";
 			targets = (
 				C7590EE2261524F400A02167 /* MiniCutToGo */,
+				C75E192526177CD800B7D646 /* MiniCutDesktop */,
 			);
 		};
 /* End PBXProject section */
@@ -362,6 +471,23 @@
 				C7590F63261528AB00A02167 /* iconForward.png in Resources */,
 				C7590F65261528AB00A02167 /* iconPlay.png in Resources */,
 				C7590EF4261524F900A02167 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C75E192426177CD800B7D646 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C75E19F326177E6300B7D646 /* iconPlus.png in Resources */,
+				C75E19F126177E6300B7D646 /* iconPause.png in Resources */,
+				C75E19F226177E6300B7D646 /* iconBack.png in Resources */,
+				C75E19F526177E6300B7D646 /* bigBuckBunny.mp4 in Resources */,
+				C75E19F726177E6300B7D646 /* bigBuckBunnyLicense.txt in Resources */,
+				C75E193326177CDB00B7D646 /* Assets.xcassets in Resources */,
+				C75E19F426177E6300B7D646 /* iconForward.png in Resources */,
+				C75E19F626177E6300B7D646 /* iconPlay.png in Resources */,
+				C75E193626177CDB00B7D646 /* Main.storyboard in Resources */,
+				C75E19F826177E6300B7D646 /* iconBackToStart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +550,74 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C75E192226177CD800B7D646 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C75E19C526177DDA00B7D646 /* TrackControlsView.swift in Sources */,
+				C75E19D726177DF700B7D646 /* MiniCutState.swift in Sources */,
+				C75E19BC26177DDA00B7D646 /* LibraryClipView.swift in Sources */,
+				C75E19C826177DDA00B7D646 /* TimelineMark.swift in Sources */,
+				C75E19C126177DDA00B7D646 /* TimelineView.swift in Sources */,
+				C75E19DA26177DFC00B7D646 /* Clip.swift in Sources */,
+				C75E19DE26177DFC00B7D646 /* Track.swift in Sources */,
+				C75E19EE26177E0200B7D646 /* IdentityBijection.swift in Sources */,
+				C75E19B726177DDA00B7D646 /* VideoView.swift in Sources */,
+				C75E19E426177E0200B7D646 /* Scaling.swift in Sources */,
+				C75E19B826177DDA00B7D646 /* ViewUtils.swift in Sources */,
+				C75E19D326177DEB00B7D646 /* DragSource.swift in Sources */,
+				C75E19D626177DF700B7D646 /* Selection.swift in Sources */,
+				C75E193126177CD800B7D646 /* MiniCutViewController.swift in Sources */,
+				C75E19BD26177DDA00B7D646 /* LibraryClipsView.swift in Sources */,
+				C75E19C026177DDA00B7D646 /* LibraryView.swift in Sources */,
+				C75E19E226177E0200B7D646 /* LRUCache.swift in Sources */,
+				C75E19C426177DDA00B7D646 /* TrackView.swift in Sources */,
+				C75E19EC26177E0200B7D646 /* Translation.swift in Sources */,
+				C75E192926177CD800B7D646 /* AppDelegate.swift in Sources */,
+				C75E19E726177E0200B7D646 /* Subscription.swift in Sources */,
+				C75E19DB26177DFC00B7D646 /* ClipContent.swift in Sources */,
+				C75E19DF26177DFC00B7D646 /* Library.swift in Sources */,
+				C75E19E626177E0200B7D646 /* Logger.swift in Sources */,
+				C75E19E526177E0200B7D646 /* AnyBijection.swift in Sources */,
+				C75E19D126177DEB00B7D646 /* DragNDropController.swift in Sources */,
+				C75E19C226177DDA00B7D646 /* TrimHandle.swift in Sources */,
+				C75E19BE26177DDA00B7D646 /* ViewDefaults.swift in Sources */,
+				C75E19C326177DDA00B7D646 /* LibraryStaticClipsView.swift in Sources */,
+				C75E19CD26177DE600B7D646 /* Label.swift in Sources */,
+				C75E19DC26177DFC00B7D646 /* Timeline.swift in Sources */,
+				C75E19BA26177DDA00B7D646 /* InspectorView.swift in Sources */,
+				C75E19CE26177DE600B7D646 /* Stack.swift in Sources */,
+				C75E19BF26177DDA00B7D646 /* MiniCutScene.swift in Sources */,
+				C75E19B926177DDA00B7D646 /* TimelineCursor.swift in Sources */,
+				C75E19E326177E0200B7D646 /* Bijection.swift in Sources */,
+				C75E19DD26177DFC00B7D646 /* OffsetClip.swift in Sources */,
+				C75E19ED26177E0200B7D646 /* StringUtils.swift in Sources */,
+				C75E19C626177DDA00B7D646 /* VideoClipView.swift in Sources */,
+				C75E19EB26177E0200B7D646 /* Scalable.swift in Sources */,
+				C75E19BB26177DDA00B7D646 /* TrackClipView.swift in Sources */,
+				C75E19D226177DEB00B7D646 /* DropTarget.swift in Sources */,
+				C75E19E926177E0200B7D646 /* Translatable.swift in Sources */,
+				C75E19C726177DDA00B7D646 /* ClipViewUtils.swift in Sources */,
+				C75E19E826177E0200B7D646 /* ComposedBijection.swift in Sources */,
+				C75E19B426177DC900B7D646 /* CompatibilityLayer.swift in Sources */,
+				C75E19EA26177E0200B7D646 /* ListenerList.swift in Sources */,
+				C75E19CB26177DE600B7D646 /* Button.swift in Sources */,
+				C75E19CC26177DE600B7D646 /* Flow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C75E193426177CDB00B7D646 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C75E193526177CDB00B7D646 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C7590EF6261524F900A02167 /* Debug */ = {
@@ -556,7 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCut;
+				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCutToGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -577,10 +770,56 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCut;
+				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCutToGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C75E193A26177CDB00B7D646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiniCutDesktop/MiniCutDesktop.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = SS8V8UGLY8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MiniCutDesktop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCutDesktop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C75E193B26177CDB00B7D646 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiniCutDesktop/MiniCutDesktop.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = SS8V8UGLY8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MiniCutDesktop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = fwcd.MiniCutDesktop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -601,6 +840,15 @@
 			buildConfigurations = (
 				C7590EF9261524F900A02167 /* Debug */,
 				C7590EFA261524F900A02167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C75E193926177CDB00B7D646 /* Build configuration list for PBXNativeTarget "MiniCutDesktop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C75E193A26177CDB00B7D646 /* Debug */,
+				C75E193B26177CDB00B7D646 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

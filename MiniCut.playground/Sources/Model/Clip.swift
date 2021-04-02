@@ -17,7 +17,7 @@ struct Clip: Identifiable {
     }
     var length: TimeInterval {
         get { _length }
-        set { _length = max(0, newValue) }
+        set { _length = min(max(0, newValue), content.duration.map { $0 - start } ?? .infinity) }
     }
     
     init(

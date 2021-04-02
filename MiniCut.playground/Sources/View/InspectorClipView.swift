@@ -29,9 +29,11 @@ final class InspectorClipView: SKNode {
         self.trackId = trackId
         self.clipId = clipId
         
+        var props = [(String, (CGFloat) -> SKNode)]()
+        
         switch content {
         case .text(let text):
-            addChild(Form(size: size, childs: [
+            props += [
                 ("Text", { [unowned self] in
                     let textField = TextField(size: CGSize(width: $0, height: ViewDefaults.textFieldHeight), text: text.text) {
                         guard case .text(var newText) = content else { return }
@@ -42,16 +44,38 @@ final class InspectorClipView: SKNode {
                     return textField
                 }),
                 ("Size", { [unowned self] in
-                    Slider(value: text.size, range: 1..<300, width: $0) {
+                    Slider<CGFloat>(value: text.size, range: 1..<300, width: $0) {
                         guard case .text(var newText) = content else { return }
                         newText.size = $0
                         content = .text(newText)
                     }
                 })
-            ]))
+            ]
         default:
             break
         }
+        
+        props += [
+            ("X", { [unowned self] in
+                Slider<Double>(value: clip?.clip.visualOffsetDx ?? 0, range: -0.5..<0.5, width: $0) {
+                    clip?.clip.visualOffsetDx = $0
+                }
+            }),
+            ("Y", { [unowned self] in
+                Slider<Double>(value: clip?.clip.visualOffsetDy ?? 0, range: -0.5..<0.5, width: $0) {
+                    clip?.clip.visualOffsetDy = $0
+                }
+            }),
+            ("Scale", { [unowned self] in
+                Slider<Double>(value: clip?.clip.visualScale ?? 1, range: 0.1..<8, width: $0) {
+                    clip?.clip.visualScale = $0
+                }
+            })
+        ]
+        
+        let form = Form(size: size, childs: props)
+        form.position = CGPoint(x: -(size.width / 2), y: size.height / 2)
+        addChild(form)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import CoreGraphics
 
 /// A trimmed clip of audiovisual content.
 struct Clip: Identifiable {
@@ -19,6 +20,10 @@ struct Clip: Identifiable {
         get { _length }
         set { _length = min(max(0, newValue), content.duration.map { $0 - start } ?? .infinity) }
     }
+    
+    var visualOffsetDx: Double = 0 // Normalized, from -0.5 to 0.5
+    var visualOffsetDy: Double = 0
+    var visualScale: Double = 1
     
     init(
         id: UUID = UUID(),

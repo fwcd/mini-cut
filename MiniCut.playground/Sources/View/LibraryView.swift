@@ -59,7 +59,7 @@ final class LibraryView: SKSpriteNode {
             node = LibraryClipsView(state: state, dragNDrop: dragNDrop, size: contentSize)
         case .titles:
             node = LibraryStaticClipsView(clips: [
-                // TODO
+                Clip(content: .text(.init(text: "Text"))),
             ], dragNDrop: dragNDrop, size: contentSize)
         case .colors:
             node = LibraryStaticClipsView(clips: [

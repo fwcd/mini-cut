@@ -10,9 +10,9 @@ enum ClipContent {
     case color(ClipColor)
     
     struct ClipText {
-        var text: String
-        var size: CGFloat
-        var color: Color
+        var text: String = ""
+        var size: CGFloat = 24
+        var color: Color = .white
     }
     
     struct ClipVideo {

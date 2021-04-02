@@ -122,17 +122,18 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         case .clip(var clipState):
             for (trackId, track) in trackNodes where trackId != clipState.trackId {
                 if let pointInTrackParent = track.parent.map({ convert(point, to: $0) }), track.contains(pointInTrackParent) {
-                    clipState.trackId = trackId
                     if var clip = state.timeline[clipState.trackId]?.remove(clipId: clipState.clipId) {
                         // We create a new clip id when switching tracks to
                         // ensure that a new VideoClipView is spawned.
                         clip.id = UUID()
                         clipState.clipId = clip.id
                         state.timeline[trackId]?.insert(clip: clip)
+                        
                         // ...and we have to update the selection with the new ids too
                         state.selection?.clipId = clip.id
                         state.selection?.trackId = trackId
                     }
+                    clipState.trackId = trackId
                     dragState = .clip(clipState)
                     break
                 }

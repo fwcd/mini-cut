@@ -34,7 +34,7 @@ struct Logger {
     
     func log(at level: Level, message: @autoclosure () -> String) {
         if level >= self.level {
-            print("[\(level)] \(formatter.string(from: Date())) \(message())")
+            print("[\(level)] \(formatter.string(from: Date())) \(name): \(message())")
         }
     }
     

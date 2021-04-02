@@ -22,7 +22,7 @@ final class VideoClipView: SKNode {
         
         zPosition = CGFloat(100 + zIndex)
         
-        log.info("Creating VideoClipView")
+        log.info("Creating")
         
         // We don't attach the entire thing as a timeline listener since we don't want to create a
         // new video node every time the timeline changes. Unfortunately this also means
@@ -65,7 +65,7 @@ final class VideoClipView: SKNode {
     }
     
     deinit {
-        log.info("Dropping VideoClipView")
+        log.info("Dropping")
         player?.replaceCurrentItem(with: nil)
     }
 }

@@ -40,6 +40,13 @@ final class InspectorClipView: SKNode {
                     }
                     selectionSubscriptions.append(textFieldSelection.register(textField: textField))
                     return textField
+                }),
+                ("Size", { [unowned self] in
+                    Slider(value: text.size, range: 1..<300, width: $0) {
+                        guard case .text(var newText) = content else { return }
+                        newText.size = $0
+                        content = .text(newText)
+                    }
                 })
             ]))
         default:

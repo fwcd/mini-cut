@@ -8,7 +8,7 @@ final class Slider<Value>: SKNode, SKInputHandler
           Value == Value.Factor,
           Value == Value.Isomorphism.Input,
           Value.Isomorphism.Output == CGFloat {
-    private var size: CGSize!
+    private var width: CGFloat!
     private var knob: SKShapeNode!
     
     private var knobInactiveBgColor: Color!
@@ -23,8 +23,9 @@ final class Slider<Value>: SKNode, SKInputHandler
     }
     
     init(
+        value: Value,
         range: Range<Value>,
-        size: CGSize,
+        width: CGFloat,
         trackThickness: CGFloat = ViewDefaults.sliderTrackThickness,
         trackBgColor: Color = ViewDefaults.inactiveBgColor,
         knobRadius: CGFloat = ViewDefaults.sliderKnobRadius,
@@ -34,7 +35,7 @@ final class Slider<Value>: SKNode, SKInputHandler
         action: ((Value) -> Void)? = nil
     ) {
         super.init()
-        self.size = size
+        self.width = width
         self.knobInactiveBgColor = knobInactiveBgColor
         self.knobActiveBgColor = knobActiveBgColor
         self.action = action
@@ -42,14 +43,15 @@ final class Slider<Value>: SKNode, SKInputHandler
         toViewX = InverseTranslation(offset: range.lowerBound)
             .then(InverseScaling(divisor: range.upperBound - range.lowerBound))
             .then(Value.isomorphism)
-            .then(Scaling(factor: size.width))
-            .then(InverseTranslation(offset: size.width / 2))
+            .then(Scaling(factor: width))
+            .then(InverseTranslation(offset: width / 2))
             .erase()
         
-        let track = SKSpriteNode(color: trackBgColor, size: CGSize(width: size.width, height: trackThickness))
+        let track = SKSpriteNode(color: trackBgColor, size: CGSize(width: width, height: trackThickness))
         addChild(track)
         
         knob = SKShapeNode(circleOfRadius: knobRadius)
+        knob.position = CGPoint(x: toViewX.apply(value), y: 0)
         knob.lineWidth = 0
         knob.fillColor = knobInactiveBgColor
         addChild(knob)
@@ -64,7 +66,7 @@ final class Slider<Value>: SKNode, SKInputHandler
     }
     
     public func inputDragged(to point: CGPoint) {
-        let newX = max(min(point.x, size.width / 2), -(size.width / 2))
+        let newX = max(min(point.x, width / 2), -(width / 2))
         knob.position = CGPoint(x: newX, y: 0)
         action?(toViewX.inverseApply(newX))
     }

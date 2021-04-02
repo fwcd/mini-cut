@@ -14,7 +14,7 @@ extension Double: Isomorphic {
 }
 
 extension CGFloat: Isomorphic {
-    static var isomorphism: AnyBijection<CGFloat, Double> {
-        AnyBijection(Double.init(_:), CGFloat.init(_:))
+    static var isomorphism: IdentityBijection<CGFloat> {
+        IdentityBijection()
     }
 }

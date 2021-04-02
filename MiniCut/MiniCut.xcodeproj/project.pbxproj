@@ -132,6 +132,8 @@
 		C75E1A022617880E00B7D646 /* TextFieldSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */; };
 		C75E1A06261794FF00B7D646 /* InspectorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A05261794FF00B7D646 /* InspectorClipView.swift */; };
 		C75E1A07261794FF00B7D646 /* InspectorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A05261794FF00B7D646 /* InspectorClipView.swift */; };
+		C75E1A0B26179A7A00B7D646 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0A26179A7A00B7D646 /* Form.swift */; };
+		C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0A26179A7A00B7D646 /* Form.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +209,7 @@
 		C75E19FB2617846700B7D646 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextField.swift; sourceTree = "<group>"; };
 		C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldSelectionController.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextFieldSelectionController.swift; sourceTree = "<group>"; };
 		C75E1A05261794FF00B7D646 /* InspectorClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InspectorClipView.swift; path = ../../MiniCut.playground/Sources/View/InspectorClipView.swift; sourceTree = "<group>"; };
+		C75E1A0A26179A7A00B7D646 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Form.swift; path = ../../MiniCut.playground/Sources/View/Controls/Form.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +354,7 @@
 				C7590F55261527E300A02167 /* Label.swift */,
 				C7590F87261615C000A02167 /* Flow.swift */,
 				C7590F57261527E300A02167 /* Stack.swift */,
+				C75E1A0A26179A7A00B7D646 /* Form.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -544,6 +548,7 @@
 				C7590F222615277F00A02167 /* Clip.swift in Sources */,
 				C7590F992616279600A02167 /* DragNDropController.swift in Sources */,
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
+				C75E1A0B26179A7A00B7D646 /* Form.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,
 				C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */,
 				C7590F37261527A700A02167 /* ListenerList.swift in Sources */,
@@ -603,6 +608,7 @@
 				C75E19DC26177DFC00B7D646 /* Timeline.swift in Sources */,
 				C75E19BA26177DDA00B7D646 /* InspectorView.swift in Sources */,
 				C75E19CE26177DE600B7D646 /* Stack.swift in Sources */,
+				C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */,
 				C75E19BF26177DDA00B7D646 /* MiniCutScene.swift in Sources */,
 				C75E19B926177DDA00B7D646 /* TimelineCursor.swift in Sources */,
 				C75E19E326177E0200B7D646 /* Bijection.swift in Sources */,

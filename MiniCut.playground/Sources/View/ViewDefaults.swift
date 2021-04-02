@@ -31,6 +31,7 @@ public enum ViewDefaults {
     public static let activeBgColor: Color = quaternary
     public static let fieldInactiveBgColor: Color = quaternary
     public static let fieldActiveBgColor: Color = tertiary
+    public static let formLabelFontColor: Color = secondary
     public static let cursorColor: Color = Color(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
     public static let trimHandleColor: Color = .yellow
 }

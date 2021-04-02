@@ -31,17 +31,16 @@ final class InspectorClipView: SKNode {
         
         switch content {
         case .text(let text):
-            let textField = TextField(size: CGSize(width: size.width * 0.8, height: ViewDefaults.textFieldHeight), text: text.text) { [unowned self] in
-                guard case .text(var newText) = content else { return }
-                newText.text = $0
-                content = .text(newText)
-            }
-            selectionSubscriptions.append(textFieldSelection.register(textField: textField))
-            addChild(Stack.vertical([
-                Stack.horizontal([
-                    Label("Text:"),
-                    textField
-                ])
+            addChild(Form(size: size, childs: [
+                ("Text", { [unowned self] in
+                    let textField = TextField(size: CGSize(width: $0, height: ViewDefaults.textFieldHeight), text: text.text) {
+                        guard case .text(var newText) = content else { return }
+                        newText.text = $0
+                        content = .text(newText)
+                    }
+                    selectionSubscriptions.append(textFieldSelection.register(textField: textField))
+                    return textField
+                })
             ]))
         default:
             break

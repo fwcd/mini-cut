@@ -11,11 +11,11 @@ final class TextFieldSelectionController {
         willSet {
             if selection != newValue {
                 if let previousId = selection {
-                    log.info("Deselected \(previousId)")
+                    log.debug("Deselected \(previousId)")
                     nodes[previousId]?.isSelected = false
                 }
                 if let id = newValue {
-                    log.info("Selected \(id)")
+                    log.debug("Selected \(id)")
                     nodes[id]?.isSelected = true
                 }
             }

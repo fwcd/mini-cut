@@ -16,6 +16,7 @@ final class InspectorView: SKSpriteNode {
         let content = SKNode()
         let contentSize = CGSize(width: size.width, height: size.height - (2 * ViewDefaults.padding) - headerFrame.height)
         addChild(content)
+        addChild(Slider(size: size) { _ in /* todo */ })
         
         selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) {
             content.removeAllChildren()

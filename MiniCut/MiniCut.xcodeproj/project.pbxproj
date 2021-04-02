@@ -134,6 +134,8 @@
 		C75E1A07261794FF00B7D646 /* InspectorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A05261794FF00B7D646 /* InspectorClipView.swift */; };
 		C75E1A0B26179A7A00B7D646 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0A26179A7A00B7D646 /* Form.swift */; };
 		C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0A26179A7A00B7D646 /* Form.swift */; };
+		C75E1A1026179F2600B7D646 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0F26179F2600B7D646 /* Slider.swift */; };
+		C75E1A1126179F2600B7D646 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A0F26179F2600B7D646 /* Slider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +212,7 @@
 		C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldSelectionController.swift; path = ../../MiniCut.playground/Sources/View/Controls/TextFieldSelectionController.swift; sourceTree = "<group>"; };
 		C75E1A05261794FF00B7D646 /* InspectorClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InspectorClipView.swift; path = ../../MiniCut.playground/Sources/View/InspectorClipView.swift; sourceTree = "<group>"; };
 		C75E1A0A26179A7A00B7D646 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Form.swift; path = ../../MiniCut.playground/Sources/View/Controls/Form.swift; sourceTree = "<group>"; };
+		C75E1A0F26179F2600B7D646 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = ../../MiniCut.playground/Sources/View/Controls/Slider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				C7590F56261527E300A02167 /* Button.swift */,
+				C75E1A0F26179F2600B7D646 /* Slider.swift */,
 				C75E19FB2617846700B7D646 /* TextField.swift */,
 				C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */,
 				C7590F55261527E300A02167 /* Label.swift */,
@@ -518,6 +522,7 @@
 				C7590F3E261527A700A02167 /* Scalable.swift in Sources */,
 				C7590F8B2616184F00A02167 /* ViewUtils.swift in Sources */,
 				C7590F3B261527A700A02167 /* IdentityBijection.swift in Sources */,
+				C75E1A1026179F2600B7D646 /* Slider.swift in Sources */,
 				C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
 				C758D416261688250049301B /* Selection.swift in Sources */,
@@ -578,6 +583,7 @@
 				C75E19D726177DF700B7D646 /* MiniCutState.swift in Sources */,
 				C75E19BC26177DDA00B7D646 /* LibraryClipView.swift in Sources */,
 				C75E19C826177DDA00B7D646 /* TimelineMark.swift in Sources */,
+				C75E1A1126179F2600B7D646 /* Slider.swift in Sources */,
 				C75E19C126177DDA00B7D646 /* TimelineView.swift in Sources */,
 				C75E19DA26177DFC00B7D646 /* Clip.swift in Sources */,
 				C75E19DE26177DFC00B7D646 /* Track.swift in Sources */,

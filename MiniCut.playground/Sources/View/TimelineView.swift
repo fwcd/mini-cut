@@ -213,10 +213,14 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     
     private func updateMarks() {
         marks.removeAllChildren()
-        for i in stride(from: 0, to: Int(toViewScale.inverseApply(size.width - ViewDefaults.trackControlsWidth)), by: markStride) {
+        for i in stride(from: roundToMarkStride(toViewX.inverseApply(-(size.width / 2))), to: roundToMarkStride(toViewX.inverseApply(size.width / 2)), by: markStride) {
             let mark = TimelineMark(height: size.height)
             mark.position = CGPoint(x: toViewX.apply(TimeInterval(i)), y: 0)
             marks.addChild(mark)
         }
+    }
+    
+    private func roundToMarkStride(_ i: TimeInterval) -> Int {
+        (Int(i) / markStride) * markStride
     }
 }

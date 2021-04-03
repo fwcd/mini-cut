@@ -29,8 +29,8 @@ final class LibraryClipsView: SKNode {
             addChild(clips)
         }
         
-        let importButton = Button("Import Clips...", height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { _ in
-            let _ = runFilePicker() // TODO
+        let importButton = Button("Import Clips...", height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
+            runFilePicker { _ in } // TODO
         }
         importButton.bottomCenterPosition = CGPoint(x: 0, y: -(size.height / 2) + padding)
         addChild(importButton)

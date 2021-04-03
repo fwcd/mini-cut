@@ -49,13 +49,6 @@ import AppKit
 public typealias Image = NSImage
 public typealias Color = NSColor
 
-func runFilePicker() -> [URL] {
-    let panel = NSOpenPanel()
-    let result = panel.runModal()
-    guard result == .OK else { return [] }
-    return panel.urls
-}
-
 extension NSImage {
     public convenience init(fromCG cgImage: CGImage) {
         self.init(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
@@ -101,6 +94,26 @@ extension SKNode {
         log.debug("Key up on \(self)")
         (self as? SKInputHandler)?.inputKeyUp(with: keyboardKeys(from: event))
     }
+    
+    public func runFilePicker(_ completion: @escaping ([URL]) -> Void) {
+        let panel = NSOpenPanel()
+        if let window = scene?.view?.window {
+            panel.beginSheetModal(for: window) {
+                if $0 == .OK {
+                    completion(panel.urls)
+                } else {
+                    completion([])
+                }
+            }
+        } else {
+            let result = panel.runModal()
+            if result == .OK {
+                completion(panel.urls)
+            } else {
+                completion([])
+            }
+        }
+    }
 }
 
 extension SKView {
@@ -116,12 +129,6 @@ import UIKit
 
 public typealias Image = UIImage
 public typealias Color = UIColor
-
-func runFilePicker() -> [URL] {
-    // TODO: Implement file picker for iOS
-    log.warn("File picker is not yet implemented for iOS!")
-    return []
-}
 
 extension UIImage {
     public convenience init(fromCG cgImage: CGImage) {
@@ -146,6 +153,12 @@ extension SKNode {
         log.debug("Touch ended on \(self)")
         guard let touch = touches.first else { return }
         (self as? SKInputHandler)?.inputUp(at: touch.location(in: self))
+    }
+    
+    public func runFilePicker(_ completion: @escaping ([URL]) -> Void) {
+        // TODO: Implement file picker for iOS
+        log.warn("File picker is not yet implemented for iOS!")
+        completion([])
     }
 }
 

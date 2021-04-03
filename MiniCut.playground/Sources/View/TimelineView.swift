@@ -76,7 +76,8 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         addChild(marks)
         updateMarks()
         
-        tracks = Stack(.vertical, padding: 2, childs: [])
+        tracks = Stack(.vertical, padding: 2, useFixedPositions: true, anchored: true, childs: [])
+        tracks.position = CGPoint(x: 0, y: (size.height - ViewDefaults.trackHeight) / 2)
         addChild(tracks)
         
         let trackSize = CGSize(width: size.width, height: ViewDefaults.trackHeight)

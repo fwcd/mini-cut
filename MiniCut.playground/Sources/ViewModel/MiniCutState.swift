@@ -20,8 +20,8 @@ final class MiniCutState {
     var selection: Selection? = nil {
         didSet { selectionDidChange.fire(selection) }
     }
-    var zoomLevel: Double = 10 {
-        didSet { zoomLevelDidChange.fire(zoomLevel) }
+    var timelineZoom: Double = 10 {
+        didSet { timelineZoomDidChange.fire(timelineZoom) }
     }
     var isPlaying: Bool = false {
         willSet { isPlayingWillChange.fire(newValue) }
@@ -36,7 +36,7 @@ final class MiniCutState {
     var timelineDidChange = ListenerList<Timeline>()
     var cursorDidChange = ListenerList<TimeInterval>()
     var selectionDidChange = ListenerList<Selection?>()
-    var zoomLevelDidChange = ListenerList<Double>()
+    var timelineZoomDidChange = ListenerList<Double>()
     var isPlayingDidChange = ListenerList<Bool>()
     
     init() {}

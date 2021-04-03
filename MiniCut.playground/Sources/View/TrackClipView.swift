@@ -20,7 +20,7 @@ final class TrackClipView: SKSpriteNode {
     private var rightHandle: TrimHandle!
     
     private var toViewScale: AnyBijection<TimeInterval, CGFloat> {
-        Scaling(factor: state.zoomLevel)
+        Scaling(factor: state.timelineZoom)
             .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
             .erase()
     }
@@ -96,7 +96,7 @@ final class TrackClipView: SKSpriteNode {
             updateClip()
         }
         
-        zoomLevelSubscription = state.zoomLevelDidChange.subscribeFiring(state.zoomLevel) { _ in
+        zoomLevelSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { _ in
             updateClip()
         }
         

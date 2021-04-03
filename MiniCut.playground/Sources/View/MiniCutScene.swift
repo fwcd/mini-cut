@@ -63,8 +63,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
                 }
             ],
             trailing: [
-                Slider<Double>(value: state.zoomLevel, range: 1..<40, width: 100) { [unowned self] in
-                    state.zoomLevel = $0
+                Slider<Double>(value: state.timelineZoom, range: 1..<40, width: 100) { [unowned self] in
+                    state.timelineZoom = $0
                 }
             ]
         )

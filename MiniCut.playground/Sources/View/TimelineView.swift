@@ -17,7 +17,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     private var toViewScale: AnyBijection<TimeInterval, CGFloat> {
-        Scaling(factor: state.zoomLevel)
+        Scaling(factor: state.timelineZoom)
             .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
             .erase()
     }
@@ -84,7 +84,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             }
         }
         
-        zoomLevelSubscription = state.zoomLevelDidChange.subscribeFiring(state.zoomLevel) { [unowned self] _ in
+        zoomLevelSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { [unowned self] _ in
             updateMarks()
         }
         

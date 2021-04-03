@@ -40,17 +40,14 @@ final class VideoClipView: SKNode {
             video.size = size
             addChild(video)
             
-            clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
-                guard let currentClip = $0[trackId]?[id] else { return }
+            let updatePlayer = { [weak self] in
+                guard let currentClip = state.timeline[trackId]?[id] else { return }
                 let relative = (state.cursor - currentClip.offset) + currentClip.clip.start
                 self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
             }
             
-            cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [weak self] in
-                guard let currentClip = state.timeline[trackId]?[id] else { return }
-                let relative = ($0 - currentClip.offset) + currentClip.clip.start
-                self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
-            }
+            clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }
+            cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updatePlayer() }
             
             isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
                 if $0 {

@@ -6,14 +6,18 @@ final class Flow: SKNode {
     private var padding: CGFloat!
     private var size: CGSize!
     
-    convenience init(padding: CGFloat = ViewDefaults.padding, size: CGSize, childs: [SKNode] = []) {
-        self.init()
+    init(padding: CGFloat = ViewDefaults.padding, size: CGSize, childs: [SKNode] = []) {
+        super.init()
         self.padding = padding
         self.size = size
         
         for child in childs {
             addChild(child)
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        nil
     }
     
     override func addChild(_ node: SKNode) {

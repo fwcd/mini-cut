@@ -140,6 +140,7 @@
 		C75E1A162617CA6000B7D646 /* Isomorphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A142617CA6000B7D646 /* Isomorphic.swift */; };
 		C75E1A1A2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
 		C75E1A1B2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
+		C760F04D2618C0A2006992A1 /* Bordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760F04C2618C0A2006992A1 /* Bordered.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +220,7 @@
 		C75E1A0F26179F2600B7D646 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = ../../MiniCut.playground/Sources/View/Controls/Slider.swift; sourceTree = "<group>"; };
 		C75E1A142617CA6000B7D646 /* Isomorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Isomorphic.swift; path = ../../MiniCut.playground/Sources/Utils/Isomorphic.swift; sourceTree = "<group>"; };
 		C75E1A192617CB9900B7D646 /* InvertedBijection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InvertedBijection.swift; path = ../../MiniCut.playground/Sources/Utils/InvertedBijection.swift; sourceTree = "<group>"; };
+		C760F04C2618C0A2006992A1 /* Bordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bordered.swift; path = ../../MiniCut.playground/Sources/View/Controls/Bordered.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +367,7 @@
 				C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */,
 				C7590F55261527E300A02167 /* Label.swift */,
 				C7590F87261615C000A02167 /* Flow.swift */,
+				C760F04C2618C0A2006992A1 /* Bordered.swift */,
 				C7590F57261527E300A02167 /* Stack.swift */,
 				C75E1A0A26179A7A00B7D646 /* Form.swift */,
 			);
@@ -549,6 +552,7 @@
 				C758D413261684F90049301B /* TrimHandle.swift in Sources */,
 				C7590FAB261648CB00A02167 /* TrackClipView.swift in Sources */,
 				C7590F3C261527A700A02167 /* Scaling.swift in Sources */,
+				C760F04D2618C0A2006992A1 /* Bordered.swift in Sources */,
 				C7590F232615277F00A02167 /* Track.swift in Sources */,
 				C7590F40261527A700A02167 /* AnyBijection.swift in Sources */,
 				C75E191B2617734400B7D646 /* StringUtils.swift in Sources */,

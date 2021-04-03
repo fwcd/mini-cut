@@ -34,20 +34,20 @@ final class InspectorClipView: SKNode {
         switch content {
         case .text(let text):
             props += [
-                ("Text", { [unowned self] in
+                ("Text", { [weak self] in
                     let textField = TextField(size: CGSize(width: $0, height: ViewDefaults.textFieldHeight), text: text.text) {
-                        guard case .text(var newText) = content else { return }
+                        guard case .text(var newText) = self?.content else { return }
                         newText.text = $0
-                        content = .text(newText)
+                        self?.content = .text(newText)
                     }
-                    selectionSubscriptions.append(textFieldSelection.register(textField: textField))
+                    self?.selectionSubscriptions.append(textFieldSelection.register(textField: textField))
                     return textField
                 }),
-                ("Size", { [unowned self] in
+                ("Size", { [weak self] in
                     Slider<CGFloat>(value: text.size, range: 1..<300, width: $0) {
-                        guard case .text(var newText) = content else { return }
+                        guard case .text(var newText) = self?.content else { return }
                         newText.size = $0
-                        content = .text(newText)
+                        self?.content = .text(newText)
                     }
                 })
             ]
@@ -56,24 +56,24 @@ final class InspectorClipView: SKNode {
         }
         
         props += [
-            ("X", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) {
-                    clip?.clip.visualOffsetDx = $0
+            ("X", { [weak self] in
+                Slider<Double>(value: self?.clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) {
+                    self?.clip?.clip.visualOffsetDx = $0
                 }
             }),
-            ("Y", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) {
-                    clip?.clip.visualOffsetDy = $0
+            ("Y", { [weak self] in
+                Slider<Double>(value: self?.clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) {
+                    self?.clip?.clip.visualOffsetDy = $0
                 }
             }),
-            ("Scale", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
-                    clip?.clip.visualScale = $0
+            ("Scale", { [weak self] in
+                Slider<Double>(value: self?.clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
+                    self?.clip?.clip.visualScale = $0
                 }
             }),
-            ("Alpha", { [unowned self] in
-                Slider<Double>(value: clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) {
-                    clip?.clip.visualAlpha = $0
+            ("Alpha", { [weak self] in
+                Slider<Double>(value: self?.clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) {
+                    self?.clip?.clip.visualAlpha = $0
                 }
             })
         ]

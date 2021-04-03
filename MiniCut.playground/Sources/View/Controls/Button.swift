@@ -17,11 +17,6 @@ final class Button: SKSpriteNode, SKInputHandler {
         }
     }
     
-    override var isUserInteractionEnabled: Bool {
-        get { true }
-        set { /* ignore */ }
-    }
-    
     init(
         label: SKNode,
         size: CGSize,
@@ -36,6 +31,7 @@ final class Button: SKSpriteNode, SKInputHandler {
         self.activeBgColor = activeBgColor
         self.padding = padding
         self.action = action
+        isUserInteractionEnabled = true
         addChild(label)
     }
     

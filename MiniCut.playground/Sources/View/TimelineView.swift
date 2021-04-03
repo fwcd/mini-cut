@@ -52,11 +52,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         let dxInClip: CGFloat
     }
     
-    public override var isUserInteractionEnabled: Bool {
-        get { true }
-        set { /* ignore */ }
-    }
-    
     init(
         state: MiniCutState,
         textFieldSelection: TextFieldSelectionController,
@@ -72,6 +67,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         self.zoomLevel = zoomLevel
         self.markStride = markStride
         dragState = .inactive
+        isUserInteractionEnabled = true
         
         background = SKSpriteNode(color: ViewDefaults.transparent, size: size)
         addChild(background)

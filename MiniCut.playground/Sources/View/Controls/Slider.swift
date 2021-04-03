@@ -17,11 +17,6 @@ final class Slider<Value>: SKNode, SKInputHandler
     
     private var toViewX: AnyBijection<Value, CGFloat>!
     
-    override var isUserInteractionEnabled: Bool {
-        get { true }
-        set { /* ignore */ }
-    }
-    
     init(
         value: Value,
         range: Range<Value>,
@@ -39,6 +34,7 @@ final class Slider<Value>: SKNode, SKInputHandler
         self.knobInactiveBgColor = knobInactiveBgColor
         self.knobActiveBgColor = knobActiveBgColor
         self.action = action
+        isUserInteractionEnabled = true
         
         toViewX = InverseTranslation(offset: range.lowerBound)
             .then(InverseScaling(divisor: range.upperBound - range.lowerBound))

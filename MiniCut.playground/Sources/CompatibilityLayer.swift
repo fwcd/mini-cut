@@ -49,6 +49,13 @@ import AppKit
 public typealias Image = NSImage
 public typealias Color = NSColor
 
+func runFilePicker() -> [URL] {
+    let panel = NSOpenPanel()
+    let result = panel.runModal()
+    guard result == .OK else { return [] }
+    return panel.urls
+}
+
 extension NSImage {
     public convenience init(fromCG cgImage: CGImage) {
         self.init(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
@@ -109,6 +116,12 @@ import UIKit
 
 public typealias Image = UIImage
 public typealias Color = UIColor
+
+func runFilePicker() -> [URL] {
+    // TODO: Implement file picker for iOS
+    log.warn("File picker is not yet implemented for iOS!")
+    return []
+}
 
 extension UIImage {
     public convenience init(fromCG cgImage: CGImage) {

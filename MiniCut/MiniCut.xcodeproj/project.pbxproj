@@ -143,6 +143,7 @@
 		C760F04D2618C0A2006992A1 /* Bordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760F04C2618C0A2006992A1 /* Bordered.swift */; };
 		C760F05F2618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
 		C760F0602618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
+		C760F0632618DCE0006992A1 /* Bordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760F04C2618C0A2006992A1 /* Bordered.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -622,6 +623,7 @@
 				C75E19EC26177E0200B7D646 /* Translation.swift in Sources */,
 				C75E192926177CD800B7D646 /* AppDelegate.swift in Sources */,
 				C75E19E726177E0200B7D646 /* Subscription.swift in Sources */,
+				C760F0632618DCE0006992A1 /* Bordered.swift in Sources */,
 				C75E19DB26177DFC00B7D646 /* ClipContent.swift in Sources */,
 				C75E19DF26177DFC00B7D646 /* Library.swift in Sources */,
 				C75E19E626177E0200B7D646 /* Logger.swift in Sources */,

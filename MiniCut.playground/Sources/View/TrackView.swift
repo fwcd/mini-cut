@@ -21,10 +21,10 @@ final class TrackView: SKSpriteNode {
         let trackControlsWidth = ViewDefaults.trackControlsWidth
         let controls = TrackControlsView(track: track, size: CGSize(width: trackControlsWidth, height: size.height))
         controls.topLeftPosition = CGPoint(x: -(size.width / 2), y: size.height / 2)
-        addChild(controls)
-        
         let clips = SKNode()
+        
         addChild(clips)
+        addChild(controls)
         
         clipsSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
             guard let track = $0[id] else { return }

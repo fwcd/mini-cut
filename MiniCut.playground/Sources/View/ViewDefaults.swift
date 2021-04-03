@@ -29,6 +29,7 @@ public enum ViewDefaults {
     public static let tertiary: Color = Color(white: 1, alpha: 0.2)
     public static let quaternary: Color = Color(white: 1, alpha: 0.1)
     public static let background: Color = Color(white: 0.15, alpha: 1)
+    public static let translucentBackground: Color = background.withAlphaComponent(0.5)
     public static let transparent: Color = Color(white: 0, alpha: 0)
     public static let inactiveBgColor: Color = tertiary
     public static let activeBgColor: Color = quaternary

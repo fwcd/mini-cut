@@ -37,9 +37,20 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var size: CGSize!
     private var background: SKSpriteNode!
     private var marks: SKNode!
+    private var gettingStartedHint: SKNode?
     private var cursor: TimelineCursor!
     private var tracks: SKNode!
-    private var trackNodes: [UUID: TrackView] = [:]
+    private var trackNodes: [UUID: TrackView] = [:] {
+        didSet {
+            if trackNodes.isEmpty {
+                if let hint = gettingStartedHint {
+                    addChild(hint)
+                }
+            } else {
+                gettingStartedHint?.removeFromParent()
+            }
+        }
+    }
     
     private var dragState: DragState? = nil
     
@@ -105,6 +116,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         timelineZoomSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { [unowned self] _ in updatePositionRelated() }
         timelineOffsetSubscription = state.timelineOffsetDidChange.subscribeFiring(state.timelineOffset) { [unowned self] _ in updatePositionRelated() }
         cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] _ in updatePositionRelated() }
+        
+        gettingStartedHint = Label("Create a track with '+' and drag a clip from the library to get started!", fontSize: ViewDefaults.hintFontSize, fontColor: ViewDefaults.hintFontColor)
+        addChild(gettingStartedHint!)
     }
     
     required init?(coder aDecoder: NSCoder) {

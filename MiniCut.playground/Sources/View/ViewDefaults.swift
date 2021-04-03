@@ -38,6 +38,7 @@ public enum ViewDefaults {
     public static let knobInactiveBgColor: Color = primary
     public static let knobActiveBgColor: Color = secondary
     public static let formLabelFontColor: Color = secondary
+    public static let hintFontColor: Color = tertiary
     public static let cursorColor: Color = Color(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
     public static let trimHandleColor: Color = .yellow
 }

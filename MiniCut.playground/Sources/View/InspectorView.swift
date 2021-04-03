@@ -37,7 +37,7 @@ final class InspectorView: SKSpriteNode {
                 content.addChild(Label(
                     "Select a timeline clip",
                     fontSize: ViewDefaults.hintFontSize,
-                    fontColor: ViewDefaults.tertiary
+                    fontColor: ViewDefaults.hintFontColor
                 ))
             }
         }

@@ -60,7 +60,7 @@ final class LibraryView: SKSpriteNode {
         
         switch activeTab {
         case .clips:
-            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, size: contentSize)
+            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .video, size: contentSize)
         case .titles:
             node = LibraryStaticClipsView(clips: [
                 Clip(name: "Text", content: .text(.init(text: "Text"))),
@@ -75,9 +75,7 @@ final class LibraryView: SKSpriteNode {
                 Clip(name: "White", content: .color(.init(color: .white))),
             ], dragNDrop: dragNDrop, size: contentSize)
         case .sounds:
-            node = LibraryStaticClipsView(clips: [
-                // TODO
-            ], dragNDrop: dragNDrop, size: contentSize)
+            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .audio, size: contentSize)
         }
         
         content.addChild(node)

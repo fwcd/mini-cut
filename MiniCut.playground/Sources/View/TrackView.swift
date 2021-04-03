@@ -3,6 +3,7 @@ import SpriteKit
 
 /// A visual representation of a single track.
 final class TrackView: SKSpriteNode {
+    private var state: MiniCutState!
     private var clipsSubscription: Subscription!
     
     private(set) var clipNodes: [UUID: TrackClipView] = [:]
@@ -11,10 +12,10 @@ final class TrackView: SKSpriteNode {
         state: MiniCutState,
         id: UUID,
         size: CGSize,
-        marked: Bool,
-        toViewScale: AnyBijection<TimeInterval, CGFloat>
+        marked: Bool
     ) {
         super.init(texture: nil, color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
+        self.state = state
         
         let track = state.timeline[id] ?? Track(id: id, name: "<undefined>")
         let trackControlsWidth = ViewDefaults.trackControlsWidth
@@ -25,12 +26,10 @@ final class TrackView: SKSpriteNode {
         let clips = SKNode()
         addChild(clips)
         
-        let toClipX = (toViewScale + (trackControlsWidth - (size.width / 2))).erase()
-        
         clipsSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
             guard let track = $0[id] else { return }
             clips.diffUpdate(nodes: &clipNodes, with: track.clips) {
-                TrackClipView(state: state, trackId: id, id: $0.id, height: size.height, toViewScale: toViewScale, toClipX: toClipX)
+                TrackClipView(state: state, trackId: id, id: $0.id, parentWidth: size.width, height: size.height)
             }
         }
     }

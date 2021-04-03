@@ -10,14 +10,24 @@ final class TrackClipView: SKSpriteNode {
     
     private var state: MiniCutState!
     private var clipSubscription: Subscription!
+    private var zoomLevelSubscription: Subscription!
     private var selectionSubscription: Subscription!
     
+    private var parentWidth: CGFloat!
     private var thumbSize: CGSize!
     private var thumb: SKNode!
     private var leftHandle: TrimHandle!
     private var rightHandle: TrimHandle!
     
-    private var toViewScale: AnyBijection<TimeInterval, CGFloat>!
+    private var toViewScale: AnyBijection<TimeInterval, CGFloat> {
+        Scaling(factor: state.zoomLevel)
+            .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
+            .erase()
+    }
+    private var toViewX: AnyBijection<TimeInterval, CGFloat> {
+        (toViewScale + (ViewDefaults.trackControlsWidth - (parentWidth / 2))).erase()
+    }
+    
     private var dragState: DragState? = nil
     var isTrimming: Bool { dragState != nil }
     
@@ -36,15 +46,14 @@ final class TrackClipView: SKSpriteNode {
         state: MiniCutState,
         trackId: UUID,
         id: UUID,
-        height: CGFloat,
-        toViewScale: AnyBijection<TimeInterval, CGFloat>,
-        toClipX: AnyBijection<TimeInterval, CGFloat>
+        parentWidth: CGFloat,
+        height: CGFloat
     ) {
         super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
         self.trackId = trackId
         self.id = id
         self.state = state
-        self.toViewScale = toViewScale
+        self.parentWidth = parentWidth
         
         let handleSize = CGSize(width: ViewDefaults.trimHandleWidth, height: height)
         leftHandle = TrimHandle(side: .left, in: handleSize)
@@ -53,13 +62,13 @@ final class TrackClipView: SKSpriteNode {
         leftHandle.zPosition = trimHandleZPosition
         rightHandle.zPosition = trimHandleZPosition
         
-        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
-            guard let clip = $0[trackId]?[id] else { return }
+        let updateClip = { [unowned self] in
+            guard let clip = state.timeline[trackId]?[id] else { return }
             
             color = clip.clip.content.color
             size = CGSize(width: toViewScale.apply(clip.clip.length), height: height)
             
-            centerLeftPosition = CGPoint(x: toClipX.apply(clip.offset), y: 0)
+            centerLeftPosition = CGPoint(x: toViewX.apply(clip.offset), y: 0)
             leftHandle.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
             rightHandle.centerRightPosition = CGPoint(x: (size.width / 2), y: 0)
             
@@ -81,6 +90,14 @@ final class TrackClipView: SKSpriteNode {
                     thumb.removeFromParent()
                 }
             }
+        }
+        
+        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in
+            updateClip()
+        }
+        
+        zoomLevelSubscription = state.zoomLevelDidChange.subscribeFiring(state.zoomLevel) { _ in
+            updateClip()
         }
         
         selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) { [unowned self] in

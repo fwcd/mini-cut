@@ -80,7 +80,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         tracksSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] tl in
             tracks.diffUpdate(nodes: &trackNodes, with: tl.tracks) {
-                TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0, toViewScale: toViewScale)
+                TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0)
             }
         }
         

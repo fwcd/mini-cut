@@ -21,6 +21,7 @@ public enum ViewDefaults {
     public static let trimHandleThickness: CGFloat = 6
     public static let sliderKnobRadius: CGFloat = 10
     public static let sliderTrackThickness: CGFloat = 5
+    public static let smallButtonSize: CGFloat = 14
     
     // MARK: Color scheme
     

@@ -30,7 +30,7 @@ final class LibraryView: SKSpriteNode {
         self.dragNDrop = dragNDrop
         
         let tabs = Tab.allCases.map { tab in
-            (tab, Button(tab.rawValue, height: 14, fontSize: 14) { [unowned self] _ in
+            (tab, Button(tab.rawValue, height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
                 activeTab = tab
             })
         }

@@ -126,6 +126,7 @@ extension SKView {
 #elseif canImport(UIKit)
 
 import UIKit
+import MobileCoreServices
 
 public typealias Image = UIImage
 public typealias Color = UIColor
@@ -133,6 +134,28 @@ public typealias Color = UIColor
 extension UIImage {
     public convenience init(fromCG cgImage: CGImage) {
         self.init(cgImage: cgImage)
+    }
+}
+
+private var imagePickerDelegates: [UIImagePickerController: ImagePickerDelegate] = [:]
+
+private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private let completion: ([URL]) -> Void
+    
+    init(completion: @escaping ([URL]) -> Void) {
+        self.completion = completion
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        completion([])
+        picker.dismiss(animated: true, completion: nil)
+        imagePickerDelegates[picker] = nil
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        completion((info[.mediaURL] as? URL).map { [$0] } ?? [])
+        picker.dismiss(animated: true, completion: nil)
+        imagePickerDelegates[picker] = nil
     }
 }
 
@@ -156,9 +179,17 @@ extension SKNode {
     }
     
     public func runFilePicker(_ completion: @escaping ([URL]) -> Void) {
-        // TODO: Implement file picker for iOS
-        log.warn("File picker is not yet implemented for iOS!")
-        completion([])
+        let picker = UIImagePickerController()
+        let delegate = ImagePickerDelegate(completion: completion)
+        imagePickerDelegates[picker] = delegate
+        picker.mediaTypes = [kUTTypeMovie as String]
+        picker.delegate = delegate
+        if let root = scene?.view?.window?.rootViewController {
+            root.present(picker, animated: true, completion: nil)
+        } else {
+            log.warn("No window found!")
+            completion([])
+        }
     }
 }
 

@@ -10,7 +10,7 @@ final class LibraryView: SKSpriteNode {
     private var contentSize: CGSize!
     
     private var tabNodes: [Tab: Button] = [:]
-    private var activeTab: Tab = .clips {
+    private var activeTab: Tab = .video {
         didSet {
             updateContent()
             updateTabs()
@@ -18,10 +18,10 @@ final class LibraryView: SKSpriteNode {
     }
     
     private enum Tab: String, CaseIterable {
-        case clips = "Clips"
-        case titles = "Titles"
-        case colors = "Colors"
-        case sounds = "Sounds"
+        case video = "Video"
+        case title = "Title"
+        case color = "Color"
+        case audio = "Audio"
     }
     
     init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
@@ -59,13 +59,13 @@ final class LibraryView: SKSpriteNode {
         let node: SKNode
         
         switch activeTab {
-        case .clips:
+        case .video:
             node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .video, size: contentSize)
-        case .titles:
+        case .title:
             node = LibraryStaticClipsView(clips: [
                 Clip(name: "Text", content: .text(.init(text: "Text"))),
             ], dragNDrop: dragNDrop, size: contentSize)
-        case .colors:
+        case .color:
             node = LibraryStaticClipsView(clips: [
                 Clip(name: "Black", content: .color(.init(color: .black))),
                 Clip(name: "Blue", content: .color(.init(color: .blue))),
@@ -74,7 +74,7 @@ final class LibraryView: SKSpriteNode {
                 Clip(name: "Yellow", content: .color(.init(color: .yellow))),
                 Clip(name: "White", content: .color(.init(color: .white))),
             ], dragNDrop: dragNDrop, size: contentSize)
-        case .sounds:
+        case .audio:
             node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .audio, size: contentSize)
         }
         

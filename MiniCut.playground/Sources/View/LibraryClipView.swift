@@ -17,7 +17,7 @@ final class LibraryClipView: SKNode, DragSource {
         
         addChild(Stack.vertical([
             generateThumbnail(from: clip, size: size),
-            Label(clip.name, fontSize: ViewDefaults.thumbnailLabelFontSize, fontColor: ViewDefaults.secondary)
+            Label(clip.name.truncated(to: 15), fontSize: ViewDefaults.thumbnailLabelFontSize, fontColor: ViewDefaults.secondary)
         ]))
     }
     

@@ -43,7 +43,7 @@ struct Clip: Identifiable {
     
     init(url: URL) {
         let asset = AVAsset(url: url)
-        self.init(name: url.lastPathComponent, content: .video(.init(asset: asset)))
+        self.init(name: url.lastPathComponent.split(separator: ".").first.map(String.init) ?? "", content: .video(.init(asset: asset)))
     }
     
     init?(bundleName: String, extension: String) {

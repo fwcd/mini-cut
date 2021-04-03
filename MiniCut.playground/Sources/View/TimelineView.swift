@@ -12,6 +12,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var timelineZoomSubscription: Subscription!
     private var timelineOffsetSubscription: Subscription!
     
+    /// How wide the hitbox of the timeline cursor is (i.e. in which radius of the cursor the user may 'grab' it).
+    private var cursorHitboxWidth: CGFloat = 25
+    
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
     var markStride: Int! {
         didSet { updateMarks() }
@@ -129,7 +132,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         
         state.selection = nil
         
-        if cursor.contains(point) {
+        if abs(cursor.position.x - point.x) <= cursorHitboxWidth {
             dragState = .cursor
             return
         }

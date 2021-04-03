@@ -51,6 +51,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private struct ScrollDragState {
         let startX: CGFloat
         let startOffset: TimeInterval
+        var moved: Bool = false
     }
     
     private struct ClipDragState {
@@ -142,9 +143,11 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     
     func inputDragged(to point: CGPoint) {
         switch dragState! {
-        case .scrolling(let scroll):
-            let newOffset = scroll.startOffset - toViewScale.inverseApply(point.x - scroll.startX)
+        case .scrolling(var scrollState):
+            let newOffset = scrollState.startOffset - toViewScale.inverseApply(point.x - scrollState.startX)
             state.timelineOffset = newOffset
+            scrollState.moved = true
+            dragState = .scrolling(scrollState)
         case .cursor:
             state.cursor = TimeInterval(toViewX.inverseApply(point.x))
         case .clip(var clipState):
@@ -178,9 +181,16 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     func inputUp(at point: CGPoint) {
-        if case .trimming(let clip) = dragState {
+        switch dragState {
+        case .scrolling(let scrollState):
+            // If user just taps the timeline, move the cursor there
+            if !scrollState.moved {
+                dragState = .cursor
+                inputDragged(to: point)
+            }
+        case .trimming(let clip):
             clip.finishTrimming()
-        } else {
+        default:
             inputDragged(to: point)
         }
         dragState = .inactive

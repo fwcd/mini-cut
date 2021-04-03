@@ -61,6 +61,11 @@ public final class MiniCutScene: SKScene, SKInputHandler {
                 Button(iconTexture: forwardIcon) { [unowned self] _ in
                     state.cursor += 10
                 }
+            ],
+            trailing: [
+                Slider<Double>(value: state.zoomLevel, range: 1..<40, width: 100) { [unowned self] in
+                    state.zoomLevel = $0
+                }
             ]
         )
 

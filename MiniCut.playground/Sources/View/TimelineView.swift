@@ -9,18 +9,15 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var textFieldSelection: TextFieldSelectionController!
     private var cursorSubscription: Subscription!
     private var tracksSubscription: Subscription!
+    private var zoomLevelSubscription: Subscription!
     
-    /// How zoomed-in the clips and marks on the timeline shall appear.
-    var zoomLevel: Double! {
-        didSet { updateMarks() }
-    }
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
     var markStride: Int! {
         didSet { updateMarks() }
     }
     
     private var toViewScale: AnyBijection<TimeInterval, CGFloat> {
-        Scaling(factor: zoomLevel)
+        Scaling(factor: state.zoomLevel)
             .then(AnyBijection(CGFloat.init(_:), TimeInterval.init(_:)))
             .erase()
     }
@@ -64,7 +61,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         self.state = state
         self.textFieldSelection = textFieldSelection
         self.size = size
-        self.zoomLevel = zoomLevel
         self.markStride = markStride
         dragState = .inactive
         isUserInteractionEnabled = true
@@ -86,6 +82,10 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             tracks.diffUpdate(nodes: &trackNodes, with: tl.tracks) {
                 TrackView(state: state, id: $0.id, size: trackSize, marked: tl.tracks.count % 2 == 0, toViewScale: toViewScale)
             }
+        }
+        
+        zoomLevelSubscription = state.zoomLevelDidChange.subscribeFiring(state.zoomLevel) { [unowned self] _ in
+            updateMarks()
         }
         
         cursor = TimelineCursor(height: size.height)
@@ -191,6 +191,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     
     private func updateMarks() {
+        marks.removeAllChildren()
         for i in stride(from: 0, to: Int(toViewScale.inverseApply(size.width - ViewDefaults.trackControlsWidth)), by: markStride) {
             let mark = TimelineMark(height: size.height)
             mark.position = CGPoint(x: toViewX.apply(TimeInterval(i)), y: 0)

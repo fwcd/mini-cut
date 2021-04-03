@@ -7,6 +7,7 @@ struct Clip: Identifiable {
     static var defaultLength: TimeInterval = 10
     
     var id: UUID
+    var name: String
     var content: ClipContent
     
     private var _start: TimeInterval
@@ -28,11 +29,13 @@ struct Clip: Identifiable {
     
     init(
         id: UUID = UUID(),
+        name: String = "<unnamed>",
         content: ClipContent,
         start: TimeInterval = 0,
         length: TimeInterval? = nil
     ) {
         self.id = id
+        self.name = name
         self.content = content
         _start = max(0, start)
         _length = max(0, length ?? content.duration ?? Self.defaultLength)
@@ -40,7 +43,7 @@ struct Clip: Identifiable {
     
     init(url: URL) {
         let asset = AVAsset(url: url)
-        self.init(content: .video(.init(asset: asset)))
+        self.init(name: url.lastPathComponent, content: .video(.init(asset: asset)))
     }
     
     init?(bundleName: String, extension: String) {

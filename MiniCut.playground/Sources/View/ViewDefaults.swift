@@ -12,6 +12,7 @@ public enum ViewDefaults {
     public static let symbolSize: CGFloat = fontSize
     public static let thumbnailSize: CGSize = CGSize(width: 70, height: 39.375)
     public static let thumbnailFontSize: CGFloat = 18
+    public static let thumbnailLabelFontSize: CGFloat = 12
     public static let textFieldHeight: CGFloat = 24
     public static let textFieldFontSize: CGFloat = 18
     public static let hintFontSize: CGFloat = 16

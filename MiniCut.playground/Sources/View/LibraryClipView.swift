@@ -15,7 +15,10 @@ final class LibraryClipView: SKNode, DragSource {
         self.clip = clip
         self.size = size
         
-        addChild(generateThumbnail(from: clip, size: size))
+        addChild(Stack.vertical([
+            generateThumbnail(from: clip, size: size),
+            Label(clip.name, fontSize: ViewDefaults.thumbnailLabelFontSize, fontColor: ViewDefaults.secondary)
+        ]))
     }
     
     required init?(coder aDecoder: NSCoder) {

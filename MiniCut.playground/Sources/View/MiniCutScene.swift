@@ -7,6 +7,7 @@ private let playIcon = SKTexture(imageNamed: "iconPlay.png")
 private let pauseIcon = SKTexture(imageNamed: "iconPause.png")
 private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
 private let plusIcon = SKTexture(imageNamed: "iconPlus.png")
+private let trashIcon = SKTexture(imageNamed: "iconTrash.png")
 
 /// The application's primary view.
 public final class MiniCutScene: SKScene, SKInputHandler {
@@ -48,6 +49,11 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             leading: [
                 Button(iconTexture: plusIcon) { [unowned self] _ in
                     state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
+                },
+                Button(iconTexture: trashIcon) { [unowned self] _ in
+                    if !state.timeline.tracks.isEmpty {
+                        state.timeline.tracks.removeLast()
+                    }
                 }
             ],
             centered: [

@@ -141,6 +141,8 @@
 		C75E1A1A2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
 		C75E1A1B2617CB9900B7D646 /* InvertedBijection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E1A192617CB9900B7D646 /* InvertedBijection.swift */; };
 		C760F04D2618C0A2006992A1 /* Bordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760F04C2618C0A2006992A1 /* Bordered.swift */; };
+		C760F05F2618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
+		C760F0602618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,6 +223,7 @@
 		C75E1A142617CA6000B7D646 /* Isomorphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Isomorphic.swift; path = ../../MiniCut.playground/Sources/Utils/Isomorphic.swift; sourceTree = "<group>"; };
 		C75E1A192617CB9900B7D646 /* InvertedBijection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InvertedBijection.swift; path = ../../MiniCut.playground/Sources/Utils/InvertedBijection.swift; sourceTree = "<group>"; };
 		C760F04C2618C0A2006992A1 /* Bordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bordered.swift; path = ../../MiniCut.playground/Sources/View/Controls/Bordered.swift; sourceTree = "<group>"; };
+		C760F05E2618DC45006992A1 /* iconTrash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconTrash.png; path = ../../MiniCut.playground/Resources/iconTrash.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +388,7 @@
 				C7590F5F261528AA00A02167 /* iconPlay.png */,
 				C7590FA62616426400A02167 /* iconBackToStart.png */,
 				C7590FA52616426400A02167 /* iconPlus.png */,
+				C760F05E2618DC45006992A1 /* iconTrash.png */,
 			);
 			name = PlaygroundResources;
 			sourceTree = "<group>";
@@ -502,6 +506,7 @@
 				C7590F63261528AB00A02167 /* iconForward.png in Resources */,
 				C7590F65261528AB00A02167 /* iconPlay.png in Resources */,
 				C7590EF4261524F900A02167 /* Assets.xcassets in Resources */,
+				C760F05F2618DC45006992A1 /* iconTrash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +523,7 @@
 				C75E19F426177E6300B7D646 /* iconForward.png in Resources */,
 				C75E19F626177E6300B7D646 /* iconPlay.png in Resources */,
 				C75E193626177CDB00B7D646 /* Main.storyboard in Resources */,
+				C760F0602618DC45006992A1 /* iconTrash.png in Resources */,
 				C75E19F826177E6300B7D646 /* iconBackToStart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

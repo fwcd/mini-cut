@@ -20,6 +20,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     private var isPlayingSubscription: Subscription!
     private var timelineDnDSubscription: Subscription!
     
+    private var timeline: TimelineView!
+    
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
         
@@ -81,7 +83,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         let panelWidth = (initialFrame.width - videoWidth - ViewDefaults.padding) / 2
         let timelineHeight = initialFrame.height - videoHeight - toolbar.calculateAccumulatedFrame().height - title.calculateAccumulatedFrame().height - 4 * ViewDefaults.padding
 
-        let timeline = TimelineView(
+        timeline = TimelineView(
             state: state,
             textFieldSelection: textFieldSelection,
             size: CGSize(width: initialFrame.width, height: timelineHeight)
@@ -121,6 +123,11 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     func inputUp(at point: CGPoint) {
         if dragNDrop.handleInputUp(at: point) { return }
+    }
+    
+    func inputScrolled(deltaX: CGFloat, deltaY: CGFloat, deltaZ: CGFloat) {
+        // This event has to be manually forwarded
+        timeline.inputScrolled(deltaX: deltaX, deltaY: deltaY, deltaZ: deltaZ)
     }
     
     func inputKeyDown(with keys: [KeyboardKey]) {

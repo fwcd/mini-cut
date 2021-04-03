@@ -12,6 +12,9 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var timelineZoomSubscription: Subscription!
     private var timelineOffsetSubscription: Subscription!
     
+    /// How responsive the timeline is to scroll events.
+    private var scrollSpeed: Double = 4
+    
     /// How wide the hitbox of the timeline cursor is (i.e. in which radius of the cursor the user may 'grab' it).
     private var cursorHitboxWidth: CGFloat = 25
     
@@ -194,6 +197,10 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             inputDragged(to: point)
         }
         dragState = .inactive
+    }
+    
+    func inputScrolled(deltaX: CGFloat, deltaY: CGFloat, deltaZ: CGFloat) {
+        state.timelineOffset -= scrollSpeed * toViewScale.inverseApply(deltaX)
     }
     
     func onHover(value: Any, at position: CGPoint) {

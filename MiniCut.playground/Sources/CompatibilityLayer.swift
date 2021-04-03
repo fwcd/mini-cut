@@ -21,6 +21,8 @@ protocol SKInputHandler {
     
     func inputUp(at point: CGPoint)
     
+    func inputScrolled(deltaX: CGFloat, deltaY: CGFloat, deltaZ: CGFloat)
+    
     func inputKeyDown(with keys: [KeyboardKey])
     
     func inputKeyUp(with keys: [KeyboardKey])
@@ -32,6 +34,8 @@ extension SKInputHandler {
     func inputDragged(to point: CGPoint) {}
     
     func inputUp(at point: CGPoint) {}
+    
+    func inputScrolled(deltaX: CGFloat, deltaY: CGFloat, deltaZ: CGFloat) {}
     
     func inputKeyDown(with keys: [KeyboardKey]) {}
     
@@ -89,6 +93,13 @@ extension SKNode {
     public dynamic override func keyUp(with event: NSEvent) {
         log.debug("Key up on \(self)")
         (self as? SKInputHandler)?.inputKeyUp(with: keyboardKeys(from: event))
+    }
+}
+
+extension SKView {
+    public override func scrollWheel(with event: NSEvent) {
+        log.debug("Scrolled")
+        (scene as? SKInputHandler)?.inputScrolled(deltaX: event.deltaX, deltaY: event.deltaY, deltaZ: event.deltaZ)
     }
 }
 

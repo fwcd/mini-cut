@@ -66,7 +66,7 @@ final class TrackClipView: SKSpriteNode {
         let updateClip = { [unowned self] in
             guard let clip = state.timeline[trackId]?[id] else { return }
             
-            color = clip.clip.content.color
+            color = clip.clip.color
             size = CGSize(width: toViewScale.apply(clip.clip.length), height: height)
             
             centerLeftPosition = CGPoint(x: toViewX.apply(clip.offset), y: 0)

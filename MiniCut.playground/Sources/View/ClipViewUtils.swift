@@ -21,7 +21,7 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
             switch clip.content {
             case .image(let image):
                 texture = SKTexture(image: image.image)
-            case .video(let video):
+            case .audiovisual(let video):
                 let gen = AVAssetImageGenerator(asset: video.asset)
                 let duration = video.asset.duration
                 let cgThumb = try gen.copyCGImage(at: CMTime(seconds: offset, preferredTimescale: duration.timescale), actualTime: nil)
@@ -42,7 +42,7 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
         return SKSpriteNode(texture: texture, size: size)
     }
     
-    let baseNode = SKSpriteNode(color: clip.content.color, size: size)
+    let baseNode = SKSpriteNode(color: clip.color, size: size)
     
     switch clip.content {
     case .text(let text):

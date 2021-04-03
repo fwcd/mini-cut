@@ -4,8 +4,7 @@ import AVFoundation
 /// Some form of audiovisual content.
 enum ClipContent {
     case text(ClipText)
-    case video(ClipVideo)
-    case audio(ClipAudio)
+    case audiovisual(ClipAV)
     case image(ClipImage)
     case color(ClipColor)
     
@@ -15,11 +14,7 @@ enum ClipContent {
         var color: Color = .white
     }
     
-    struct ClipVideo {
-        var asset: AVAsset
-    }
-    
-    struct ClipAudio {
+    struct ClipAV {
         var asset: AVAsset
     }
     
@@ -33,24 +28,10 @@ enum ClipContent {
     
     var duration: TimeInterval? {
         switch self {
-        case .video(let video):
-            return video.asset.duration.seconds
-        case .audio(let audio):
-            return audio.asset.duration.seconds
+        case .audiovisual(let av):
+            return av.asset.duration.seconds
         default:
             return nil
-        }
-    }
-    var color: Color {
-        switch self {
-        case .text(_):
-            return Color(red: 0.6, green: 0.3, blue: 0.7, alpha: 1) // purple-ish
-        case .audio(_):
-            return Color(red: 0, green: 0.5, blue: 0, alpha: 1) // green-ish
-        case .color(let color):
-            return color.color
-        default:
-            return Color(red: 0, green: 0.4, blue: 0.7, alpha: 1) // blue-ish
         }
     }
 }

@@ -34,7 +34,7 @@ final class VideoClipView: SKNode {
         guard let clip = state.timeline[trackId]?[id] else { return }
         
         switch clip.clip.content {
-        case .video(let content):
+        case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
             let video = SKVideoNode(avPlayer: player)
             video.size = size

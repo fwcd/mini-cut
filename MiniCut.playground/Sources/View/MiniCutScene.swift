@@ -42,21 +42,27 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             }
         }
         
-        let toolbar = Stack.horizontal([
-            Button(iconTexture: backToStartIcon) { [unowned self] _ in
-                state.cursor = 0
-            },
-            Button(iconTexture: backIcon) { [unowned self] _ in
-                state.cursor -= 10
-            },
-            playButton,
-            Button(iconTexture: forwardIcon) { [unowned self] _ in
-                state.cursor += 10
-            },
-            Button(iconTexture: plusIcon) { [unowned self] _ in
-                state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
-            }
-        ])
+        let toolbar = Bordered(
+            .horizontal,
+            length: initialFrame.width,
+            leading: [
+                Button(iconTexture: plusIcon) { [unowned self] _ in
+                    state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
+                }
+            ],
+            centered: [
+                Button(iconTexture: backToStartIcon) { [unowned self] _ in
+                    state.cursor = 0
+                },
+                Button(iconTexture: backIcon) { [unowned self] _ in
+                    state.cursor -= 10
+                },
+                playButton,
+                Button(iconTexture: forwardIcon) { [unowned self] _ in
+                    state.cursor += 10
+                }
+            ]
+        )
 
         let aspectRatio: CGFloat = 16 / 9
         let videoHeight = initialFrame.height / 2.5

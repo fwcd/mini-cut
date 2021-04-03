@@ -11,7 +11,7 @@ final class MiniCutState {
     }
     private var _cursor: TimeInterval = 0 {
         willSet { cursorWillChange.fire(newValue) }
-        didSet { cursorDidChange.fire(cursor) }
+        didSet { cursorDidChange.fire(_cursor) }
     }
     var cursor: TimeInterval {
         get { _cursor }
@@ -22,6 +22,14 @@ final class MiniCutState {
     }
     var timelineZoom: Double = 10 {
         didSet { timelineZoomDidChange.fire(timelineZoom) }
+    }
+    private var _timelineOffset: TimeInterval = 0 {
+        willSet { cursorWillChange.fire(newValue) }
+        didSet { cursorDidChange.fire(_timelineOffset) }
+    }
+    var timelineOffset: TimeInterval {
+        get { _timelineOffset }
+        set { _timelineOffset = max(0, newValue) }
     }
     var isPlaying: Bool = false {
         willSet { isPlayingWillChange.fire(newValue) }
@@ -37,6 +45,7 @@ final class MiniCutState {
     var cursorDidChange = ListenerList<TimeInterval>()
     var selectionDidChange = ListenerList<Selection?>()
     var timelineZoomDidChange = ListenerList<Double>()
+    var timelineOffsetDidChange = ListenerList<Double>()
     var isPlayingDidChange = ListenerList<Bool>()
     
     init() {}

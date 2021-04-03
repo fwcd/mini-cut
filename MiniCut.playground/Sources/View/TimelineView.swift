@@ -23,7 +23,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     }
     private var toViewX: AnyBijection<TimeInterval, CGFloat> {
         toViewScale
-            .then(InverseTranslation(offset: (size.width / 2) - ViewDefaults.trackControlsWidth))
+            .then(Translation(offset: -(size.width / 2) + ViewDefaults.trackControlsWidth - toViewScale.apply(state.timelineOffset)))
             .erase()
     }
     

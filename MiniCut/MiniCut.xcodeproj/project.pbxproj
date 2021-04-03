@@ -144,6 +144,8 @@
 		C760F05F2618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
 		C760F0602618DC45006992A1 /* iconTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F05E2618DC45006992A1 /* iconTrash.png */; };
 		C760F0632618DCE0006992A1 /* Bordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760F04C2618C0A2006992A1 /* Bordered.swift */; };
+		C760F0672618E553006992A1 /* iconSkipToEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F0662618E553006992A1 /* iconSkipToEnd.png */; };
+		C760F0682618E553006992A1 /* iconSkipToEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F0662618E553006992A1 /* iconSkipToEnd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +227,7 @@
 		C75E1A192617CB9900B7D646 /* InvertedBijection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InvertedBijection.swift; path = ../../MiniCut.playground/Sources/Utils/InvertedBijection.swift; sourceTree = "<group>"; };
 		C760F04C2618C0A2006992A1 /* Bordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bordered.swift; path = ../../MiniCut.playground/Sources/View/Controls/Bordered.swift; sourceTree = "<group>"; };
 		C760F05E2618DC45006992A1 /* iconTrash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconTrash.png; path = ../../MiniCut.playground/Resources/iconTrash.png; sourceTree = "<group>"; };
+		C760F0662618E553006992A1 /* iconSkipToEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconSkipToEnd.png; path = ../../MiniCut.playground/Resources/iconSkipToEnd.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +391,7 @@
 				C7590F5E261528AA00A02167 /* iconPause.png */,
 				C7590F5F261528AA00A02167 /* iconPlay.png */,
 				C7590FA62616426400A02167 /* iconBackToStart.png */,
+				C760F0662618E553006992A1 /* iconSkipToEnd.png */,
 				C7590FA52616426400A02167 /* iconPlus.png */,
 				C760F05E2618DC45006992A1 /* iconTrash.png */,
 			);
@@ -503,6 +507,7 @@
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,
 				C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */,
+				C760F0672618E553006992A1 /* iconSkipToEnd.png in Resources */,
 				C7590F64261528AB00A02167 /* iconPause.png in Resources */,
 				C7590F63261528AB00A02167 /* iconForward.png in Resources */,
 				C7590F65261528AB00A02167 /* iconPlay.png in Resources */,
@@ -517,6 +522,7 @@
 			files = (
 				C75E19F326177E6300B7D646 /* iconPlus.png in Resources */,
 				C75E19F126177E6300B7D646 /* iconPause.png in Resources */,
+				C760F0682618E553006992A1 /* iconSkipToEnd.png in Resources */,
 				C75E19F226177E6300B7D646 /* iconBack.png in Resources */,
 				C75E19F526177E6300B7D646 /* bigBuckBunny.mp4 in Resources */,
 				C75E19F726177E6300B7D646 /* bigBuckBunnyLicense.txt in Resources */,

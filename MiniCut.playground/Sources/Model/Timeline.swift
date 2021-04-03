@@ -6,6 +6,11 @@ struct Timeline {
     /// First element is highest on the z-axis (topmost).
     var tracks: [Track] = []
     
+    /// The 'ending' time offset in the timeline.
+    var maxOffset: TimeInterval {
+        tracks.compactMap { $0.clips.map { $0.offset + $0.clip.length }.max() }.max() ?? 0
+    }
+    
     subscript(id: UUID) -> Track? {
         get { tracks.first { $0.id == id } }
         set {

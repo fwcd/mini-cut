@@ -6,6 +6,7 @@ private let backIcon = SKTexture(imageNamed: "iconBack.png")
 private let playIcon = SKTexture(imageNamed: "iconPlay.png")
 private let pauseIcon = SKTexture(imageNamed: "iconPause.png")
 private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
+private let skipToEndIcon = SKTexture(imageNamed: "iconSkipToEnd.png")
 private let plusIcon = SKTexture(imageNamed: "iconPlus.png")
 private let trashIcon = SKTexture(imageNamed: "iconTrash.png")
 
@@ -61,6 +62,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             centered: [
                 Button(iconTexture: backToStartIcon) { [unowned self] _ in
                     state.cursor = 0
+                    state.timelineOffset = 0
                 },
                 Button(iconTexture: backIcon) { [unowned self] _ in
                     state.cursor -= 10
@@ -68,6 +70,11 @@ public final class MiniCutScene: SKScene, SKInputHandler {
                 playButton,
                 Button(iconTexture: forwardIcon) { [unowned self] _ in
                     state.cursor += 10
+                },
+                Button(iconTexture: skipToEndIcon) { [unowned self] _ in
+                    let end = state.timeline.maxOffset
+                    state.cursor = end
+                    state.timelineOffset = end
                 }
             ],
             trailing: [

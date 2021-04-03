@@ -1,6 +1,8 @@
 import Foundation
 import SpriteKit
 
+private let trackControlsZPosition: CGFloat = 75
+
 /// A visual representation of a single track.
 final class TrackView: SKSpriteNode {
     private var state: MiniCutState!
@@ -21,6 +23,7 @@ final class TrackView: SKSpriteNode {
         let trackControlsWidth = ViewDefaults.trackControlsWidth
         let controls = TrackControlsView(track: track, size: CGSize(width: trackControlsWidth, height: size.height))
         controls.topLeftPosition = CGPoint(x: -(size.width / 2), y: size.height / 2)
+        controls.zPosition = trackControlsZPosition
         let clips = SKNode()
         
         addChild(clips)

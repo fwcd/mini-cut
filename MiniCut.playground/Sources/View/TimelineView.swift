@@ -9,7 +9,8 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var textFieldSelection: TextFieldSelectionController!
     private var cursorSubscription: Subscription!
     private var tracksSubscription: Subscription!
-    private var zoomLevelSubscription: Subscription!
+    private var timelineZoomSubscription: Subscription!
+    private var timelineOffsetSubscription: Subscription!
     
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
     var markStride: Int! {
@@ -37,10 +38,16 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var dragState: DragState? = nil
     
     private enum DragState {
+        case scrolling(ScrollDragState)
         case cursor
         case clip(ClipDragState)
         case trimming(TrackClipView)
         case inactive
+    }
+    
+    private struct ScrollDragState {
+        let startX: CGFloat
+        let startOffset: TimeInterval
     }
     
     private struct ClipDragState {
@@ -84,17 +91,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             }
         }
         
-        zoomLevelSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { [unowned self] _ in
-            updateMarks()
-        }
-        
         cursor = TimelineCursor(height: size.height)
         cursor.zPosition = cursorZPosition
         addChild(cursor)
         
-        cursorSubscription = state.cursorWillChange.subscribeFiring(state.cursor) { [unowned self] in
-            cursor.position = CGPoint(x: toViewX.apply($0), y: cursor.position.y)
-        }
+        timelineZoomSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { [unowned self] _ in updatePositionRelated() }
+        timelineOffsetSubscription = state.timelineOffsetDidChange.subscribeFiring(state.timelineOffset) { [unowned self] _ in updatePositionRelated() }
+        cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] _ in updatePositionRelated() }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,11 +128,20 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         }
         
         state.selection = nil
-        dragState = .cursor
+        
+        if cursor.contains(point) {
+            dragState = .cursor
+            return
+        }
+        
+        dragState = .scrolling(ScrollDragState(startX: point.x, startOffset: state.timelineOffset))
     }
     
     func inputDragged(to point: CGPoint) {
         switch dragState! {
+        case .scrolling(let scroll):
+            let newOffset = scroll.startOffset - toViewScale.inverseApply(point.x - scroll.startX)
+            state.timelineOffset = newOffset
         case .cursor:
             state.cursor = TimeInterval(toViewX.inverseApply(point.x))
         case .clip(var clipState):
@@ -188,6 +200,15 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         } else {
             // TODO: Warn when no tracks exist
         }
+    }
+    
+    private func updatePositionRelated() {
+        updateCursor()
+        updateMarks()
+    }
+    
+    private func updateCursor() {
+        cursor.position = CGPoint(x: toViewX.apply(state.cursor), y: cursor.position.y)
     }
     
     private func updateMarks() {

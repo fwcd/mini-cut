@@ -10,7 +10,8 @@ final class TrackClipView: SKSpriteNode {
     
     private var state: MiniCutState!
     private var clipSubscription: Subscription!
-    private var zoomLevelSubscription: Subscription!
+    private var timelineZoomSubscription: Subscription!
+    private var timelineOffsetSubscription: Subscription!
     private var selectionSubscription: Subscription!
     
     private var parentWidth: CGFloat!
@@ -25,7 +26,7 @@ final class TrackClipView: SKSpriteNode {
             .erase()
     }
     private var toViewX: AnyBijection<TimeInterval, CGFloat> {
-        (toViewScale + (ViewDefaults.trackControlsWidth - (parentWidth / 2))).erase()
+        (toViewScale + (ViewDefaults.trackControlsWidth - (parentWidth / 2) - toViewScale.apply(state.timelineOffset))).erase()
     }
     
     private var dragState: DragState? = nil
@@ -92,13 +93,9 @@ final class TrackClipView: SKSpriteNode {
             }
         }
         
-        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in
-            updateClip()
-        }
-        
-        zoomLevelSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { _ in
-            updateClip()
-        }
+        clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updateClip() }
+        timelineZoomSubscription = state.timelineZoomDidChange.subscribeFiring(state.timelineZoom) { _ in updateClip() }
+        timelineOffsetSubscription = state.timelineOffsetDidChange.subscribeFiring(state.timelineOffset) { _ in updateClip() }
         
         selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) { [unowned self] in
             if let selection = $0, selection.trackId == trackId && selection.clipId == id {

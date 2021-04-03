@@ -24,8 +24,8 @@ final class MiniCutState {
         didSet { timelineZoomDidChange.fire(timelineZoom) }
     }
     private var _timelineOffset: TimeInterval = 0 {
-        willSet { cursorWillChange.fire(newValue) }
-        didSet { cursorDidChange.fire(_timelineOffset) }
+        willSet { timelineOffsetDidChange.fire(newValue) }
+        didSet { timelineOffsetDidChange.fire(_timelineOffset) }
     }
     var timelineOffset: TimeInterval {
         get { _timelineOffset }

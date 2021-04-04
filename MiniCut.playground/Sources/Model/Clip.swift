@@ -28,6 +28,9 @@ struct Clip: Identifiable {
     var visualScale: Double = 1
     var visualAlpha: Double = 1
     
+    /// Playback speed factor, 1 corresponds to normal playback rate. Only applies to audiovisual content.
+    var speed: Double = 1
+    
     init(
         id: UUID = UUID(),
         name: String = "<unnamed>",

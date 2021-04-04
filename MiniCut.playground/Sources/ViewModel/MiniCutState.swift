@@ -52,8 +52,10 @@ final class MiniCutState {
     
     /// Cuts the currently selected clip.
     func cut() {
-        if let selection = selection, let clip = timeline[selection.trackId]?[selection.clipId] {
-            timeline[selection.trackId]?.cut(clipId: selection.clipId, at: cursor - clip.offset)
+        if let sel = selection,
+           let clip = timeline[sel.trackId]?[sel.clipId],
+           let (leftId, _) = timeline[sel.trackId]?.cut(clipId: sel.clipId, at: cursor - clip.offset) {
+            selection?.clipId = leftId
         }
     }
 }

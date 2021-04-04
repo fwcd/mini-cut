@@ -1,5 +1,7 @@
 import Foundation
 
+private let log = Logger(name: "Model.Track")
+
 /// A sequence of offset clips.
 struct Track: Identifiable {
     var id: UUID = UUID()
@@ -24,21 +26,31 @@ struct Track: Identifiable {
     }
     
     /// Splits the clip at the given offset (within the clip) into two clips.
-    mutating func cut(clipId: UUID, at offset: TimeInterval) {
-        if self[clipId]?.isPlaying(at: offset) ?? false, let clip = remove(clipId: clipId) {
-            var left = clip
-            var right = clip
-            
-            left.id = UUID()
-            left.clip.length = offset
-            
-            right.id = UUID()
-            right.offset += offset
-            right.clip.start += offset
-            right.clip.length -= offset
-            
-            insert(clip: left)
-            insert(clip: right)
+    @discardableResult
+    mutating func cut(clipId: UUID, at offset: TimeInterval) -> (leftId: UUID, rightId: UUID)? {
+        guard self[clipId]?.clip.contains(offset: offset) ?? false else {
+            log.warn("Could not cut, not playing at offset \(offset)")
+            return nil
         }
+        guard let clip = remove(clipId: clipId) else {
+            log.warn("Could not cut, invalid clip id: \(clipId)")
+            return nil
+        }
+        
+        var left = clip
+        var right = clip
+        
+        left.id = UUID()
+        left.clip.length = offset
+        
+        right.id = UUID()
+        right.offset += offset
+        right.clip.start += offset
+        right.clip.length -= offset
+        
+        insert(clip: left)
+        insert(clip: right)
+        
+        return (left.id, right.id)
     }
 }

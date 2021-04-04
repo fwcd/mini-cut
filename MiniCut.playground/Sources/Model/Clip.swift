@@ -73,6 +73,10 @@ struct Clip: Identifiable {
         guard let url = Bundle.main.url(forResource: bundleName, withExtension: `extension`) else { return nil }
         self.init(url: url)
     }
+    
+    func contains(offset: TimeInterval) -> Bool {
+        offset >= start && offset < start + length
+    }
 }
 
 private func categoryOf(asset: AVAsset) -> ClipCategory {

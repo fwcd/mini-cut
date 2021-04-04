@@ -148,6 +148,10 @@
 		C760F0682618E553006992A1 /* iconSkipToEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = C760F0662618E553006992A1 /* iconSkipToEnd.png */; };
 		C7B1CA9D2619325400EA822A /* ClipCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CA9C2619325400EA822A /* ClipCategory.swift */; };
 		C7B1CA9E2619325400EA822A /* ClipCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CA9C2619325400EA822A /* ClipCategory.swift */; };
+		C7B1CAA22619389500EA822A /* IconTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAA12619389500EA822A /* IconTextures.swift */; };
+		C7B1CAA32619389500EA822A /* IconTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAA12619389500EA822A /* IconTextures.swift */; };
+		C7B1CAA72619391F00EA822A /* iconAudio.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAA62619391F00EA822A /* iconAudio.png */; };
+		C7B1CAA82619391F00EA822A /* iconAudio.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAA62619391F00EA822A /* iconAudio.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -231,6 +235,8 @@
 		C760F05E2618DC45006992A1 /* iconTrash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconTrash.png; path = ../../MiniCut.playground/Resources/iconTrash.png; sourceTree = "<group>"; };
 		C760F0662618E553006992A1 /* iconSkipToEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconSkipToEnd.png; path = ../../MiniCut.playground/Resources/iconSkipToEnd.png; sourceTree = "<group>"; };
 		C7B1CA9C2619325400EA822A /* ClipCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipCategory.swift; path = ../../MiniCut.playground/Sources/Model/ClipCategory.swift; sourceTree = "<group>"; };
+		C7B1CAA12619389500EA822A /* IconTextures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconTextures.swift; path = ../../MiniCut.playground/Sources/View/IconTextures.swift; sourceTree = "<group>"; };
+		C7B1CAA62619391F00EA822A /* iconAudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconAudio.png; path = ../../MiniCut.playground/Resources/iconAudio.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +371,7 @@
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
 				C7590FB126165B3A00A02167 /* ClipViewUtils.swift */,
+				C7B1CAA12619389500EA822A /* IconTextures.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -398,6 +405,7 @@
 				C760F0662618E553006992A1 /* iconSkipToEnd.png */,
 				C7590FA52616426400A02167 /* iconPlus.png */,
 				C760F05E2618DC45006992A1 /* iconTrash.png */,
+				C7B1CAA62619391F00EA822A /* iconAudio.png */,
 			);
 			name = PlaygroundResources;
 			sourceTree = "<group>";
@@ -507,6 +515,7 @@
 				C7590FA72616426500A02167 /* iconPlus.png in Resources */,
 				C7590F9C26162AEE00A02167 /* LaunchScreen.storyboard in Resources */,
 				C7590F67261528AB00A02167 /* bigBuckBunny.mp4 in Resources */,
+				C7B1CAA72619391F00EA822A /* iconAudio.png in Resources */,
 				C7590FA82616426500A02167 /* iconBackToStart.png in Resources */,
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,
@@ -534,6 +543,7 @@
 				C75E19F426177E6300B7D646 /* iconForward.png in Resources */,
 				C75E19F626177E6300B7D646 /* iconPlay.png in Resources */,
 				C75E193626177CDB00B7D646 /* Main.storyboard in Resources */,
+				C7B1CAA82619391F00EA822A /* iconAudio.png in Resources */,
 				C760F0602618DC45006992A1 /* iconTrash.png in Resources */,
 				C75E19F826177E6300B7D646 /* iconBackToStart.png in Resources */,
 			);
@@ -553,6 +563,7 @@
 				C75E1A1026179F2600B7D646 /* Slider.swift in Sources */,
 				C7590FB52616698C00A02167 /* VideoClipView.swift in Sources */,
 				C7590F4C261527CB00A02167 /* MiniCutScene.swift in Sources */,
+				C7B1CAA22619389500EA822A /* IconTextures.swift in Sources */,
 				C758D416261688250049301B /* Selection.swift in Sources */,
 				C75E1A012617880E00B7D646 /* TextFieldSelectionController.swift in Sources */,
 				C75E1917261768E000B7D646 /* LibraryStaticClipsView.swift in Sources */,
@@ -618,6 +629,7 @@
 				C75E1A1126179F2600B7D646 /* Slider.swift in Sources */,
 				C75E19C126177DDA00B7D646 /* TimelineView.swift in Sources */,
 				C75E19DA26177DFC00B7D646 /* Clip.swift in Sources */,
+				C7B1CAA32619389500EA822A /* IconTextures.swift in Sources */,
 				C75E19DE26177DFC00B7D646 /* Track.swift in Sources */,
 				C75E1A022617880E00B7D646 /* TextFieldSelectionController.swift in Sources */,
 				C75E19EE26177E0200B7D646 /* IdentityBijection.swift in Sources */,

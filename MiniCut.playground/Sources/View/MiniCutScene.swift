@@ -1,15 +1,6 @@
 import Foundation
 import SpriteKit
 
-private let backToStartIcon = SKTexture(imageNamed: "iconBackToStart.png")
-private let backIcon = SKTexture(imageNamed: "iconBack.png")
-private let playIcon = SKTexture(imageNamed: "iconPlay.png")
-private let pauseIcon = SKTexture(imageNamed: "iconPause.png")
-private let forwardIcon = SKTexture(imageNamed: "iconForward.png")
-private let skipToEndIcon = SKTexture(imageNamed: "iconSkipToEnd.png")
-private let plusIcon = SKTexture(imageNamed: "iconPlus.png")
-private let trashIcon = SKTexture(imageNamed: "iconTrash.png")
-
 /// The application's primary view.
 public final class MiniCutScene: SKScene, SKInputHandler {
     private var state = MiniCutState()
@@ -34,44 +25,40 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         // Initialize the app's core views
         
         let title = Label("MiniCut", fontSize: ViewDefaults.titleFontSize, fontName: "Helvetica Light")
-        let playButton = Button(iconTexture: playIcon) { [unowned self] _ in
+        let playButton = Button(iconTexture: IconTextures.play) { [unowned self] _ in
             state.isPlaying = !state.isPlaying
         }
         
         isPlayingSubscription = state.isPlayingWillChange.subscribeFiring(state.isPlaying) {
-            if $0 {
-                (playButton.label as! SKSpriteNode).texture = pauseIcon
-            } else {
-                (playButton.label as! SKSpriteNode).texture = playIcon
-            }
+            (playButton.label as! SKSpriteNode).texture = $0 ? IconTextures.pause : IconTextures.play
         }
         
         let toolbar = Bordered(
             .horizontal,
             length: initialFrame.width,
             leading: [
-                Button(iconTexture: plusIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.plus) { [unowned self] _ in
                     state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
                 },
-                Button(iconTexture: trashIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.trash) { [unowned self] _ in
                     if !state.timeline.tracks.isEmpty {
                         state.timeline.tracks.removeLast()
                     }
                 }
             ],
             centered: [
-                Button(iconTexture: backToStartIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.backToStart) { [unowned self] _ in
                     state.cursor = 0
                     state.timelineOffset = 0
                 },
-                Button(iconTexture: backIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.back) { [unowned self] _ in
                     state.cursor -= 10
                 },
                 playButton,
-                Button(iconTexture: forwardIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.forward) { [unowned self] _ in
                     state.cursor += 10
                 },
-                Button(iconTexture: skipToEndIcon) { [unowned self] _ in
+                Button(iconTexture: IconTextures.skipToEnd) { [unowned self] _ in
                     let end = state.timeline.maxOffset
                     state.cursor = end
                     state.timelineOffset = end

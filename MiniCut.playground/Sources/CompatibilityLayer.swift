@@ -97,6 +97,7 @@ extension SKNode {
     
     public func runFilePicker(_ completion: @escaping ([URL]) -> Void) {
         let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = true
         if let window = scene?.view?.window {
             panel.beginSheetModal(for: window) {
                 if $0 == .OK {

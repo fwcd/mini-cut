@@ -152,6 +152,8 @@
 		C7B1CAA32619389500EA822A /* IconTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAA12619389500EA822A /* IconTextures.swift */; };
 		C7B1CAA72619391F00EA822A /* iconAudio.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAA62619391F00EA822A /* iconAudio.png */; };
 		C7B1CAA82619391F00EA822A /* iconAudio.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAA62619391F00EA822A /* iconAudio.png */; };
+		C7B1CAAC26194B3E00EA822A /* iconScissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAAB26194B3E00EA822A /* iconScissors.png */; };
+		C7B1CAAD26194B3E00EA822A /* iconScissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAAB26194B3E00EA822A /* iconScissors.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -237,6 +239,7 @@
 		C7B1CA9C2619325400EA822A /* ClipCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClipCategory.swift; path = ../../MiniCut.playground/Sources/Model/ClipCategory.swift; sourceTree = "<group>"; };
 		C7B1CAA12619389500EA822A /* IconTextures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconTextures.swift; path = ../../MiniCut.playground/Sources/View/IconTextures.swift; sourceTree = "<group>"; };
 		C7B1CAA62619391F00EA822A /* iconAudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconAudio.png; path = ../../MiniCut.playground/Resources/iconAudio.png; sourceTree = "<group>"; };
+		C7B1CAAB26194B3E00EA822A /* iconScissors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconScissors.png; path = ../../MiniCut.playground/Resources/iconScissors.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +409,7 @@
 				C7590FA52616426400A02167 /* iconPlus.png */,
 				C760F05E2618DC45006992A1 /* iconTrash.png */,
 				C7B1CAA62619391F00EA822A /* iconAudio.png */,
+				C7B1CAAB26194B3E00EA822A /* iconScissors.png */,
 			);
 			name = PlaygroundResources;
 			sourceTree = "<group>";
@@ -518,6 +522,7 @@
 				C7B1CAA72619391F00EA822A /* iconAudio.png in Resources */,
 				C7590FA82616426500A02167 /* iconBackToStart.png in Resources */,
 				C7590F66261528AB00A02167 /* bigBuckBunnyLicense.txt in Resources */,
+				C7B1CAAC26194B3E00EA822A /* iconScissors.png in Resources */,
 				C7590F68261528AB00A02167 /* iconBack.png in Resources */,
 				C7590F6C26152B0A00A02167 /* Main.storyboard in Resources */,
 				C760F0672618E553006992A1 /* iconSkipToEnd.png in Resources */,
@@ -540,6 +545,7 @@
 				C75E19F526177E6300B7D646 /* bigBuckBunny.mp4 in Resources */,
 				C75E19F726177E6300B7D646 /* bigBuckBunnyLicense.txt in Resources */,
 				C75E193326177CDB00B7D646 /* Assets.xcassets in Resources */,
+				C7B1CAAD26194B3E00EA822A /* iconScissors.png in Resources */,
 				C75E19F426177E6300B7D646 /* iconForward.png in Resources */,
 				C75E19F626177E6300B7D646 /* iconPlay.png in Resources */,
 				C75E193626177CDB00B7D646 /* Main.storyboard in Resources */,

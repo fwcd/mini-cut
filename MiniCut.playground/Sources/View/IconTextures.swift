@@ -10,4 +10,5 @@ enum IconTextures {
     static let plus = SKTexture(imageNamed: "iconPlus.png")
     static let trash = SKTexture(imageNamed: "iconTrash.png")
     static let audio = SKTexture(imageNamed: "iconAudio.png")
+    static let scissors = SKTexture(imageNamed: "iconScissors.png")
 }

@@ -55,28 +55,30 @@ final class InspectorClipView: SKNode {
             break
         }
         
-        props += [
-            ("X", { [weak self] in
-                Slider<Double>(value: self?.clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) {
-                    self?.clip?.clip.visualOffsetDx = $0
-                }
-            }),
-            ("Y", { [weak self] in
-                Slider<Double>(value: self?.clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) {
-                    self?.clip?.clip.visualOffsetDy = $0
-                }
-            }),
-            ("Scale", { [weak self] in
-                Slider<Double>(value: self?.clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
-                    self?.clip?.clip.visualScale = $0
-                }
-            }),
-            ("Alpha", { [weak self] in
-                Slider<Double>(value: self?.clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) {
-                    self?.clip?.clip.visualAlpha = $0
-                }
-            })
-        ]
+        if clip?.clip.category != .audio {
+            props += [
+                ("X", { [weak self] in
+                    Slider<Double>(value: self?.clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) {
+                        self?.clip?.clip.visualOffsetDx = $0
+                    }
+                }),
+                ("Y", { [weak self] in
+                    Slider<Double>(value: self?.clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) {
+                        self?.clip?.clip.visualOffsetDy = $0
+                    }
+                }),
+                ("Scale", { [weak self] in
+                    Slider<Double>(value: self?.clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) {
+                        self?.clip?.clip.visualScale = $0
+                    }
+                }),
+                ("Alpha", { [weak self] in
+                    Slider<Double>(value: self?.clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) {
+                        self?.clip?.clip.visualAlpha = $0
+                    }
+                })
+            ]
+        }
         
         let form = Form(size: size, childs: props)
         form.position = CGPoint(x: -(size.width / 2), y: size.height / 2)

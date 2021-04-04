@@ -36,24 +36,29 @@ final class VideoClipView: SKNode {
         switch clip.clip.content {
         case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+            
             let video = SKVideoNode(avPlayer: player)
             video.size = size
             addChild(video)
             
             let updatePlayer = { [weak self] in
                 guard let currentClip = state.timeline[trackId]?[id] else { return }
-                let relative = (state.cursor - currentClip.offset) + currentClip.clip.start
+                let originalRelative = (state.cursor - currentClip.offset) + currentClip.clip.start
+                let relative = originalRelative * currentClip.clip.speed
+                self?.player.rate = Float(currentClip.clip.speed)
                 self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
             }
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }
             cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updatePlayer() }
             
-            isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
+            isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [weak self] in
+                guard let speed = state.timeline[trackId]?[id]?.clip.speed else { return }
                 if $0 {
-                    video.play()
+                    self?.player.play()
+                    self?.player.rate = Float(speed)
                 } else {
-                    video.pause()
+                    self?.player.pause()
                 }
             }
         case .text(let text):

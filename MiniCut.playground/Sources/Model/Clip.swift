@@ -12,24 +12,31 @@ struct Clip: Identifiable {
     var content: ClipContent
     
     private var _start: TimeInterval
-    private var _length: TimeInterval
+    private var _originalLength: TimeInterval
     
+    /// Start offset within the clip (i.e. nonzero means that the clip is trimmed).
     var start: TimeInterval {
         get { _start }
         set { _start = max(0, newValue) }
     }
+    /// Original length of the clip's content.
+    var originalLength: TimeInterval {
+        get { _originalLength }
+        set { _originalLength = min(max(0, newValue), content.duration.map { $0 - start } ?? .infinity) }
+    }
+    /// Playback speed factor, 1 corresponds to normal playback rate.
+    /// Only applies to audiovisual content. Shall never be 0.
+    var speed: Double = 1
+    /// Playback length, i.e. original length divided by speed.
     var length: TimeInterval {
-        get { _length }
-        set { _length = min(max(0, newValue), content.duration.map { $0 - start } ?? .infinity) }
+        get { originalLength / speed }
+        set { originalLength = newValue * speed }
     }
     
     var visualOffsetDx: Double = 0 // Normalized
     var visualOffsetDy: Double = 0
     var visualScale: Double = 1
     var visualAlpha: Double = 1
-    
-    /// Playback speed factor, 1 corresponds to normal playback rate. Only applies to audiovisual content.
-    var speed: Double = 1
     
     init(
         id: UUID = UUID(),
@@ -44,7 +51,7 @@ struct Clip: Identifiable {
         self.category = category
         self.content = content
         _start = max(0, start)
-        _length = max(0, length ?? content.duration ?? Self.defaultLength)
+        _originalLength = max(0, length ?? content.duration ?? Self.defaultLength)
     }
     
     init(url: URL) {

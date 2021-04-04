@@ -6,7 +6,7 @@ final class Form: SKNode {
     init(size: CGSize, padding: CGFloat = ViewDefaults.padding, childs: [(String, (CGFloat) -> SKNode)]) {
         super.init()
         
-        let labelWidth = 0.2 * size.width
+        let labelWidth = 0.25 * size.width
         let valueWidth = size.width - labelWidth - (padding * 2)
         
         var y: CGFloat = 0

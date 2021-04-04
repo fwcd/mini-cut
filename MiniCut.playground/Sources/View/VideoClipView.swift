@@ -43,8 +43,8 @@ final class VideoClipView: SKNode {
             
             let updatePlayer = { [weak self] in
                 guard let currentClip = state.timeline[trackId]?[id] else { return }
-                let relative = (state.cursor - currentClip.offset) + currentClip.clip.start
-                self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
+                let clipOffset = currentClip.clipOffset(for: state.cursor)
+                self?.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
             }
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }

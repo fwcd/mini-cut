@@ -36,7 +36,6 @@ final class VideoClipView: SKNode {
         switch clip.clip.content {
         case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
-            player.volume = Float(clip.clip.volume)
             
             let video = SKVideoNode(avPlayer: player)
             video.size = size
@@ -45,18 +44,20 @@ final class VideoClipView: SKNode {
             let updatePlayer = { [weak self] in
                 guard let currentClip = state.timeline[trackId]?[id] else { return }
                 let relative = (state.cursor - currentClip.offset) + currentClip.clip.start
-                self?.player.volume = Float(clip.clip.volume)
                 self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
             }
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }
             cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updatePlayer() }
             
-            isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) {
+            isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [weak self] in
+                guard let currentClip = state.timeline[trackId]?[id] else { return }
                 if $0 {
-                    video.play()
+                    // Changing the volume seems to only be possible while paused
+                    self?.player.volume = Float(currentClip.clip.volume)
+                    self?.player.play()
                 } else {
-                    video.pause()
+                    self?.player.pause()
                 }
             }
         case .text(let text):

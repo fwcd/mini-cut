@@ -54,7 +54,7 @@ final class InspectorClipView: SKNode {
         case .audiovisual(_):
             props += [
                 ("Volume", { [weak self] in
-                    Slider<Double>(value: self?.clip?.clip.volume ?? 1, range: 0..<2, width: $0) {
+                    Slider<Double>(value: self?.clip?.clip.volume ?? 1, range: 0..<1, width: $0) {
                         self?.clip?.clip.volume = $0
                     }
                 })

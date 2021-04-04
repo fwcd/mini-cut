@@ -125,4 +125,15 @@ extension SKNode {
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
         }
     }
+    
+    func setVisibility(of child: SKNode, to shouldBeVisible: Bool) {
+        let isVisible = child.parent != nil
+        if isVisible != shouldBeVisible {
+            if shouldBeVisible {
+                addChild(child)
+            } else {
+                child.removeFromParent()
+            }
+        }
+    }
 }

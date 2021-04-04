@@ -94,8 +94,10 @@ final class TrackClipView: SKSpriteNode {
             
             label.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
             
-            labelThumb.isHidden = size.width < labelThumb.calculateAccumulatedFrame().width
-            labelText.isHidden = size.width < label.calculateAccumulatedFrame().width
+            let thumbWidth = labelThumb.calculateAccumulatedFrame().width
+            let textWidth = labelText.calculateAccumulatedFrame().width
+            label.setVisibility(of: labelThumb, to: size.width >= thumbWidth)
+            label.setVisibility(of: labelText, to: size.width >= textWidth + thumbWidth)
         }
         
         clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updateClip() }

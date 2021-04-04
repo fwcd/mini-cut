@@ -18,7 +18,7 @@ public enum ViewDefaults {
     public static let hintFontSize: CGFloat = 16
     public static let trackHeight: CGFloat = 36
     public static let trackControlsWidth: CGFloat = 100
-    public static let trackSpacing: CGFloat = 2
+    public static let trackSpacing: CGFloat = 0
     public static let trimHandleWidth: CGFloat = 10
     public static let trimHandleThickness: CGFloat = 6
     public static let sliderKnobRadius: CGFloat = 10

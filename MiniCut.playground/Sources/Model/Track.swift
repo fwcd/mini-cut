@@ -25,11 +25,11 @@ struct Track: Identifiable {
         return clip
     }
     
-    /// Splits the clip at the given offset (within the clip) into two clips.
+    /// Splits the clip at the given (track-level) offset into two clips.
     @discardableResult
-    mutating func cut(clipId: UUID, at offset: TimeInterval) -> (leftId: UUID, rightId: UUID)? {
-        guard self[clipId]?.clip.contains(offset: offset) ?? false else {
-            log.warn("Could not cut, not playing at offset \(offset)")
+    mutating func cut(clipId: UUID, at trackOffset: TimeInterval) -> (leftId: UUID, rightId: UUID)? {
+        guard self[clipId]?.isPlaying(at: trackOffset) ?? false else {
+            log.warn("Could not cut, not playing at offset \(trackOffset)")
             return nil
         }
         guard let clip = remove(clipId: clipId) else {
@@ -40,13 +40,15 @@ struct Track: Identifiable {
         var left = clip
         var right = clip
         
+        let relativeOffset = clip.relativeOffset(for: trackOffset)
+        
         left.id = UUID()
-        left.clip.length = offset
+        left.clip.length = relativeOffset
         
         right.id = UUID()
-        right.offset += offset
-        right.clip.start += offset
-        right.clip.length -= offset
+        right.offset += relativeOffset
+        right.clip.start += relativeOffset
+        right.clip.length -= relativeOffset
         
         insert(clip: left)
         insert(clip: right)

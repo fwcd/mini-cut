@@ -28,6 +28,9 @@ struct Clip: Identifiable {
     var visualScale: Double = 1
     var visualAlpha: Double = 1
     
+    /// 1 is normal volume, 0 is silence, other values are proportional
+    var volume: Double = 1
+    
     init(
         id: UUID = UUID(),
         name: String = "<unnamed>",

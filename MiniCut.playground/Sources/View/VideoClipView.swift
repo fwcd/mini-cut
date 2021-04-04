@@ -36,6 +36,8 @@ final class VideoClipView: SKNode {
         switch clip.clip.content {
         case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+            player.volume = Float(clip.clip.volume)
+            
             let video = SKVideoNode(avPlayer: player)
             video.size = size
             addChild(video)
@@ -43,6 +45,7 @@ final class VideoClipView: SKNode {
             let updatePlayer = { [weak self] in
                 guard let currentClip = state.timeline[trackId]?[id] else { return }
                 let relative = (state.cursor - currentClip.offset) + currentClip.clip.start
+                self?.player.volume = Float(clip.clip.volume)
                 self?.player.seek(to: CMTime(seconds: relative, preferredTimescale: 1000))
             }
             

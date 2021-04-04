@@ -49,4 +49,11 @@ final class MiniCutState {
     var isPlayingDidChange = ListenerList<Bool>()
     
     init() {}
+    
+    /// Cuts the currently selected clip.
+    func cut() {
+        if let selection = selection, let clip = timeline[selection.trackId]?[selection.clipId] {
+            timeline[selection.trackId]?.cut(clipId: selection.clipId, at: cursor - clip.offset)
+        }
+    }
 }

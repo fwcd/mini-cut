@@ -44,6 +44,9 @@ public final class MiniCutScene: SKScene, SKInputHandler {
                     if !state.timeline.tracks.isEmpty {
                         state.timeline.tracks.removeLast()
                     }
+                },
+                Button(iconTexture: IconTextures.scissors) { [unowned self] _ in
+                    state.cut()
                 }
             ],
             centered: [

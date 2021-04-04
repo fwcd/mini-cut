@@ -31,6 +31,19 @@ struct Clip: Identifiable {
     /// 1 is normal volume, 0 is silence, other values are proportional
     var volume: Double = 1
     
+    var color: Color {
+        switch (content, category) {
+        case (.text(_), _):
+            return Color(red: 0.6, green: 0.3, blue: 0.7, alpha: 1) // purple-ish
+        case (.audiovisual(_), .audio):
+            return Color(red: 0, green: 0.5, blue: 0, alpha: 1) // green-ish
+        case (.color(let color), _):
+            return color.color
+        default:
+            return Color(red: 0, green: 0.4, blue: 0.7, alpha: 1) // blue-ish
+        }
+    }
+    
     init(
         id: UUID = UUID(),
         name: String = "<unnamed>",
@@ -59,19 +72,6 @@ struct Clip: Identifiable {
     init?(bundleName: String, extension: String) {
         guard let url = Bundle.main.url(forResource: bundleName, withExtension: `extension`) else { return nil }
         self.init(url: url)
-    }
-    
-    var color: Color {
-        switch (content, category) {
-        case (.text(_), _):
-            return Color(red: 0.6, green: 0.3, blue: 0.7, alpha: 1) // purple-ish
-        case (.audiovisual(_), .audio):
-            return Color(red: 0, green: 0.5, blue: 0, alpha: 1) // green-ish
-        case (.color(let color), _):
-            return color.color
-        default:
-            return Color(red: 0, green: 0.4, blue: 0.7, alpha: 1) // blue-ish
-        }
     }
 }
 

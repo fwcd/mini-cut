@@ -22,4 +22,23 @@ struct Track: Identifiable {
         self[clipId] = nil
         return clip
     }
+    
+    /// Splits the clip at the given offset (within the clip) into two clips.
+    mutating func cut(clipId: UUID, at offset: TimeInterval) {
+        if self[clipId]?.isPlaying(at: offset) ?? false, let clip = remove(clipId: clipId) {
+            var left = clip
+            var right = clip
+            
+            left.id = UUID()
+            left.clip.length = offset
+            
+            right.id = UUID()
+            right.offset += offset
+            right.clip.start += offset
+            right.clip.length -= offset
+            
+            insert(clip: left)
+            insert(clip: right)
+        }
+    }
 }

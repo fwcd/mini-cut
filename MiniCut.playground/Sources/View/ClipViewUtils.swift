@@ -18,10 +18,10 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
         if let cached = cache[key] {
             texture = cached
         } else {
-            switch clip.content {
-            case .image(let image):
+            switch (clip.content, clip.category) {
+            case (.image(let image), _):
                 texture = SKTexture(image: image.image)
-            case .audiovisual(let video):
+            case (.audiovisual(let video), .video):
                 let gen = AVAssetImageGenerator(asset: video.asset)
                 let duration = video.asset.duration
                 let cgThumb = try gen.copyCGImage(at: CMTime(seconds: offset, preferredTimescale: duration.timescale), actualTime: nil)
@@ -42,15 +42,17 @@ func generateThumbnail(from clip: Clip, at offset: TimeInterval? = nil, size: CG
         return SKSpriteNode(texture: texture, size: size)
     }
     
-    let baseNode = SKSpriteNode(color: clip.color, size: size)
+    let node = SKSpriteNode(color: clip.color, size: size)
     
-    switch clip.content {
-    case .text(let text):
-        let node = SKNode()
-        node.addChild(baseNode)
+    switch (clip.content, clip.category) {
+    case (.text(let text), _):
         node.addChild(Label(text.text.truncated(to: 7), fontSize: ViewDefaults.thumbnailFontSize))
-        return node
+    case (.audiovisual(_), .audio):
+        let sideLength = min(size.width, size.height)
+        node.addChild(SKSpriteNode(texture: IconTextures.audio, size: CGSize(width: sideLength, height: sideLength)))
     default:
-        return baseNode
+        break
     }
+    
+    return node
 }

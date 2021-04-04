@@ -50,6 +50,7 @@ final class TrackClipView: SKSpriteNode {
         id: UUID,
         parentWidth: CGFloat,
         height: CGFloat,
+        clipPadding: CGFloat = ViewDefaults.clipPadding,
         labelPadding: CGFloat = ViewDefaults.clipLabelPadding
     ) {
         super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
@@ -69,7 +70,7 @@ final class TrackClipView: SKSpriteNode {
             guard let clip = state.timeline[trackId]?[id] else { return }
             
             color = clip.clip.color
-            size = CGSize(width: toViewScale.apply(clip.clip.length), height: height)
+            size = CGSize(width: toViewScale.apply(clip.clip.length) - clipPadding, height: height - clipPadding)
             
             centerLeftPosition = CGPoint(x: toViewX.apply(clip.offset), y: 0)
             leftHandle.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)

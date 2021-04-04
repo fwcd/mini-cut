@@ -51,6 +51,14 @@ final class InspectorClipView: SKNode {
                     }
                 })
             ]
+        case .audiovisual(_):
+            props += [
+                ("Speed", { [weak self] in
+                    Slider<Double>(value: self?.clip?.clip.speed ?? 1, range: 0.25..<4, width: $0) {
+                        self?.clip?.clip.speed = $0
+                    }
+                })
+            ]
         default:
             break
         }

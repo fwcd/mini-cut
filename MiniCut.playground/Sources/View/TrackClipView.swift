@@ -15,8 +15,9 @@ final class TrackClipView: SKSpriteNode {
     private var selectionSubscription: Subscription!
     
     private var parentWidth: CGFloat!
-    private var thumbSize: CGSize!
-    private var thumb: SKNode!
+    private var label: SKNode!
+    private var labelThumb: SKNode!
+    private var labelText: SKNode!
     private var leftHandle: TrimHandle!
     private var rightHandle: TrimHandle!
     
@@ -48,7 +49,8 @@ final class TrackClipView: SKSpriteNode {
         trackId: UUID,
         id: UUID,
         parentWidth: CGFloat,
-        height: CGFloat
+        height: CGFloat,
+        labelPadding: CGFloat = ViewDefaults.clipLabelPadding
     ) {
         super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
         self.trackId = trackId
@@ -73,24 +75,27 @@ final class TrackClipView: SKSpriteNode {
             leftHandle.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
             rightHandle.centerRightPosition = CGPoint(x: (size.width / 2), y: 0)
             
-            if thumb == nil {
+            if label == nil {
+                label = SKNode()
+                addChild(label)
+                
                 let aspectRatio: CGFloat = 16 / 9
-                thumbSize = CGSize(width: aspectRatio * height, height: height)
-                thumb = generateThumbnail(from: clip.clip, size: thumbSize)
+                let thumbSize = CGSize(width: aspectRatio * height, height: height)
+                labelThumb = generateThumbnail(from: clip.clip, size: thumbSize)
+                label.addChild(labelThumb)
+                
+                labelText = Label(clip.clip.name, fontSize: ViewDefaults.thumbnailLabelFontSize)
+                labelText.position = CGPoint(
+                    x: (thumbSize.width / 2) + labelPadding + (labelText.frame.width / 2),
+                    y: (thumbSize.height / 2) - labelPadding - (labelText.frame.height / 2)
+                )
+                label.addChild(labelText)
             }
             
-            thumb.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
+            label.centerLeftPosition = CGPoint(x: -(size.width / 2), y: 0)
             
-            let thumbShown = thumb.parent != nil
-            let thumbShouldBeShown = size.width >= thumbSize.width
-            
-            if thumbShown != thumbShouldBeShown {
-                if thumbShouldBeShown {
-                    addChild(thumb)
-                } else {
-                    thumb.removeFromParent()
-                }
-            }
+            labelThumb.isHidden = size.width < labelThumb.calculateAccumulatedFrame().width
+            labelText.isHidden = size.width < label.calculateAccumulatedFrame().width
         }
         
         clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updateClip() }

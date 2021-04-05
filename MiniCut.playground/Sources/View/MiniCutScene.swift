@@ -54,7 +54,10 @@ public final class MiniCutScene: SKScene, SKInputHandler {
                     state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
                 },
                 Button(controller: genericDrags, iconTexture: IconTextures.trash) { [unowned self] _ in
-                    if !state.timeline.tracks.isEmpty {
+                    if let selection = state.selection {
+                        state.timeline[selection.trackId]?.remove(clipId: selection.clipId)
+                        state.selection = nil
+                    } else if !state.timeline.tracks.isEmpty {
                         state.timeline.tracks.removeLast()
                     }
                 },

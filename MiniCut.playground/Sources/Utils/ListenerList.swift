@@ -3,6 +3,7 @@ import Foundation
 /// A facility for pub-sub-style communication.
 class ListenerList<Event> {
     private var listeners: [UUID: (Event) -> Void] = [:]
+    private var recursivelyInvoked = Set<UUID>()
     private var silenced = Set<UUID>()
     
     /// Subscribes a listener to this list. Make sure to store the Subscription
@@ -45,7 +46,12 @@ class ListenerList<Event> {
     
     func fire(_ event: Event) {
         for (id, listener) in listeners where !silenced.contains(id) {
+            if recursivelyInvoked.contains(id) {
+                fatalError("Listener \(id) recursively invoked itself, which is forbidden. Please use silencing to resxolve the listener cycle!")
+            }
+            recursivelyInvoked.insert(id)
             listener(event)
+            recursivelyInvoked.remove(id)
         }
     }
 }

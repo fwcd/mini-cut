@@ -8,6 +8,7 @@ final class InspectorView: SKSpriteNode {
     init(
         state: MiniCutState,
         textFieldSelection: TextFieldSelectionController,
+        genericDrags: GenericDragController,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding
     ) {
@@ -29,6 +30,7 @@ final class InspectorView: SKSpriteNode {
                 content.addChild(InspectorClipView(
                     state: state,
                     textFieldSelection: textFieldSelection,
+                    genericDrags: genericDrags,
                     trackId: selection.trackId,
                     clipId: selection.clipId,
                     size: contentSize

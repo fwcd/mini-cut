@@ -22,6 +22,7 @@ final class InspectorClipView: SKNode {
     init(
         state: MiniCutState,
         textFieldSelection: TextFieldSelectionController,
+        genericDrags: GenericDragController,
         trackId: UUID,
         clipId: UUID,
         size: CGSize
@@ -39,18 +40,16 @@ final class InspectorClipView: SKNode {
             case .text(let text):
                 props += [
                     ("Text", {
-                        let textField = TextField(size: CGSize(width: $0, height: ViewDefaults.textFieldHeight), text: text.text) { text in
+                        TextField(controller: textFieldSelection, size: CGSize(width: $0, height: ViewDefaults.textFieldHeight), text: text.text) { text in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 guard case .text(var newText) = self.content else { return }
                                 newText.text = text
                                 self.content = .text(newText)
                             }
                         }
-                        self.selectionSubscriptions.append(textFieldSelection.register(textField: textField))
-                        return textField
                     }),
                     ("Size", {
-                        Slider<CGFloat>(value: text.size, range: 1..<300, width: $0) { size in
+                        Slider<CGFloat>(controller: genericDrags, value: text.size, range: 1..<300, width: $0) { size in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 guard case .text(var newText) = self.content else { return }
                                 newText.size = size
@@ -62,7 +61,7 @@ final class InspectorClipView: SKNode {
             case .audiovisual(_):
                 props += [
                     ("Volume", {
-                        Slider<Double>(value: self.clip?.clip.volume ?? 1, range: 0..<1, width: $0) { volume in
+                        Slider<Double>(controller: genericDrags, value: self.clip?.clip.volume ?? 1, range: 0..<1, width: $0) { volume in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 self.clip?.clip.volume = volume
                             }
@@ -76,28 +75,28 @@ final class InspectorClipView: SKNode {
             if self.clip?.clip.category != .audio {
                 props += [
                     ("X", {
-                        Slider<Double>(value: self.clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) { dx in
+                        Slider<Double>(controller: genericDrags, value: self.clip?.clip.visualOffsetDx ?? 0, range: -1..<1, width: $0) { dx in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 self.clip?.clip.visualOffsetDx = dx
                             }
                         }
                     }),
                     ("Y", {
-                        Slider<Double>(value: self.clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) { dy in
+                        Slider<Double>(controller: genericDrags, value: self.clip?.clip.visualOffsetDy ?? 0, range: -1..<1, width: $0) { dy in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 self.clip?.clip.visualOffsetDy = dy
                             }
                         }
                     }),
                     ("Scale", {
-                        Slider<Double>(value: self.clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) { scale in
+                        Slider<Double>(controller: genericDrags, value: self.clip?.clip.visualScale ?? 1, range: 0..<4, width: $0) { scale in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 self.clip?.clip.visualScale = scale
                             }
                         }
                     }),
                     ("Alpha", {
-                        Slider<Double>(value: self.clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) { alpha in
+                        Slider<Double>(controller: genericDrags, value: self.clip?.clip.visualAlpha ?? 1, range: 0..<1, width: $0) { alpha in
                             state.timelineDidChange.silencing(self.clipSubscription) {
                                 self.clip?.clip.visualAlpha = alpha
                             }

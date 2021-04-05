@@ -10,6 +10,7 @@ final class LibraryClipsView: SKNode {
     init(
         state: MiniCutState,
         dragNDrop: DragNDropController,
+        genericDrags: GenericDragController,
         category: ClipCategory? = nil,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding
@@ -34,7 +35,7 @@ final class LibraryClipsView: SKNode {
             clipsWrapper.addChild(clips)
         }
         
-        let importButton = Button("Import...", height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
+        let importButton = Button(controller: genericDrags, "Import...", height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
             runFilePicker { urls in
                 state.library.clips += urls.map(Clip.init(url:))
             }

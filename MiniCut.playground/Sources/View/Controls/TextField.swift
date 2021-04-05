@@ -5,9 +5,10 @@ private let log = Logger(name: "View.Controls.TextField")
 
 /// A UI element that lets the user enter text.
 final class TextField: SKSpriteNode {
-    private var label: SKLabelNode!
+    private var controllerSubscription: Subscription!
     
-    private var onChange: ((String) -> Void)?
+    private var label: SKLabelNode!
+    private let onChange: ((String) -> Void)?
     
     /// Whether the text field is selected. Should only be set
     /// from TextFieldSelectionController, not manually.
@@ -16,6 +17,7 @@ final class TextField: SKSpriteNode {
     }
     
     init(
+        controller: TextFieldSelectionController,
         size: CGSize,
         text: String = "",
         fontSize: CGFloat = ViewDefaults.textFieldFontSize,
@@ -23,8 +25,10 @@ final class TextField: SKSpriteNode {
         fontColor: Color = ViewDefaults.primary,
         onChange: ((String) -> Void)? = nil
     ) {
-        super.init(texture: nil, color: ViewDefaults.fieldInactiveBgColor, size: size)
         self.onChange = onChange
+        
+        super.init(texture: nil, color: ViewDefaults.fieldInactiveBgColor, size: size)
+        controllerSubscription = controller.register(textField: self)
         
         label = SKLabelNode(text: text)
         label.fontSize = fontSize

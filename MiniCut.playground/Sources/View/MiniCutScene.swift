@@ -5,6 +5,7 @@ import SpriteKit
 public final class MiniCutScene: SKScene, SKInputHandler {
     private var state = MiniCutState()
     
+    private var genericDrags: GenericDragController!
     private var dragNDrop: DragNDropController!
     private var textFieldSelection: TextFieldSelectionController!
     private var handledKeyEvent: Bool = false
@@ -18,6 +19,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     private var dragState: DragState = .inactive
     
     private enum DragState {
+        case generic
         case video
         case timeline
         case dragNDrop
@@ -27,6 +29,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
         
+        genericDrags = GenericDragController(parent: self)
         dragNDrop = DragNDropController(parent: self)
         textFieldSelection = TextFieldSelectionController(parent: self)
         
@@ -35,7 +38,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         // Initialize the app's core views
         
         let title = Label("MiniCut", fontSize: ViewDefaults.titleFontSize, fontName: "Helvetica Light")
-        let playButton = Button(iconTexture: IconTextures.play) { [unowned self] _ in
+        let playButton = Button(controller: genericDrags, iconTexture: IconTextures.play) { [unowned self] _ in
             state.isPlaying = !state.isPlaying
         }
         
@@ -47,38 +50,38 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             .horizontal,
             length: initialFrame.width,
             leading: [
-                Button(iconTexture: IconTextures.plus) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.plus) { [unowned self] _ in
                     state.timeline.tracks.append(Track(name: "Track \(state.timeline.tracks.count + 1)"))
                 },
-                Button(iconTexture: IconTextures.trash) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.trash) { [unowned self] _ in
                     if !state.timeline.tracks.isEmpty {
                         state.timeline.tracks.removeLast()
                     }
                 },
-                Button(iconTexture: IconTextures.scissors) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.scissors) { [unowned self] _ in
                     state.cut()
                 }
             ],
             centered: [
-                Button(iconTexture: IconTextures.backToStart) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.backToStart) { [unowned self] _ in
                     state.cursor = 0
                     state.timelineOffset = 0
                 },
-                Button(iconTexture: IconTextures.back) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.back) { [unowned self] _ in
                     state.cursor -= 10
                 },
                 playButton,
-                Button(iconTexture: IconTextures.forward) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.forward) { [unowned self] _ in
                     state.cursor += 10
                 },
-                Button(iconTexture: IconTextures.skipToEnd) { [unowned self] _ in
+                Button(controller: genericDrags, iconTexture: IconTextures.skipToEnd) { [unowned self] _ in
                     let end = state.timeline.maxOffset
                     state.cursor = end
                     state.timelineOffset = end
                 }
             ],
             trailing: [
-                Slider<Double>(value: state.timelineZoom, range: 1..<40, width: 100) { [unowned self] in
+                Slider<Double>(controller: genericDrags, value: state.timelineZoom, range: 1..<40, width: 100) { [unowned self] in
                     state.timelineZoom = $0
                 }
             ]
@@ -99,9 +102,9 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([
-                LibraryView(state: state, dragNDrop: dragNDrop, size: CGSize(width: panelWidth, height: videoHeight)),
+                LibraryView(state: state, dragNDrop: dragNDrop, genericDrags: genericDrags, size: CGSize(width: panelWidth, height: videoHeight)),
                 video,
-                InspectorView(state: state, textFieldSelection: textFieldSelection, size: CGSize(width: panelWidth, height: videoHeight))
+                InspectorView(state: state, textFieldSelection: textFieldSelection, genericDrags: genericDrags, size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
             timeline
@@ -121,7 +124,9 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     }
     
     func inputDown(at point: CGPoint) {
-        if dragNDrop.handleInputDown(at: point) {
+        if genericDrags.handleInputDown(at: point) {
+            dragState = .generic
+        } else if dragNDrop.handleInputDown(at: point) {
             dragState = .dragNDrop
         } else if textFieldSelection.handleInputDown(at: point) {
             dragState = .inactive
@@ -138,8 +143,10 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     func inputDragged(to point: CGPoint) {
         switch dragState {
+        case .generic:
+            genericDrags.handleInputDragged(to: point)
         case .dragNDrop:
-            dragNDrop.handleInputDragged(at: point)
+            dragNDrop.handleInputDragged(to: point)
         case .timeline:
             timeline.inputDragged(to: convert(point, to: timeline))
         case .video:
@@ -151,6 +158,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     func inputUp(at point: CGPoint) {
         switch dragState {
+        case .generic:
+            genericDrags.handleInputUp(at: point)
         case .dragNDrop:
             dragNDrop.handleInputUp(at: point)
         case .timeline:

@@ -8,16 +8,19 @@ final class Slider<Value>: SKNode, SKInputHandler
           Value == Value.Factor,
           Value == Value.Isomorphism.Input,
           Value.Isomorphism.Output == CGFloat {
-    private var width: CGFloat!
+    private var controllerSubscription: Subscription!
+    
+    private let width: CGFloat
     private var knob: SKShapeNode!
     
-    private var knobInactiveBgColor: Color!
-    private var knobActiveBgColor: Color!
-    private var action: ((Value) -> Void)?
+    private let knobInactiveBgColor: Color
+    private let knobActiveBgColor: Color
+    private let action: ((Value) -> Void)?
     
     private var toViewX: AnyBijection<Value, CGFloat>!
     
     init(
+        controller: GenericDragController,
         value: Value,
         range: Range<Value>,
         width: CGFloat,
@@ -29,12 +32,13 @@ final class Slider<Value>: SKNode, SKInputHandler
         sliderKnobRadius
         action: ((Value) -> Void)? = nil
     ) {
-        super.init()
         self.width = width
         self.knobInactiveBgColor = knobInactiveBgColor
         self.knobActiveBgColor = knobActiveBgColor
         self.action = action
-        isUserInteractionEnabled = true
+        
+        super.init()
+        controllerSubscription = controller.register(node: self)
         
         toViewX = InverseTranslation(offset: range.lowerBound)
             .then(InverseScaling(divisor: range.upperBound - range.lowerBound))

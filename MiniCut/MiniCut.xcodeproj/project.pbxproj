@@ -156,6 +156,8 @@
 		C7B1CAAD26194B3E00EA822A /* iconScissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAAB26194B3E00EA822A /* iconScissors.png */; };
 		C7B1CAB1261B434900EA822A /* ResizeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAB0261B434800EA822A /* ResizeHandle.swift */; };
 		C7B1CAB2261B434900EA822A /* ResizeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAB0261B434800EA822A /* ResizeHandle.swift */; };
+		C7B1CAC4261B5E8B00EA822A /* GenericDragController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAC3261B5E8B00EA822A /* GenericDragController.swift */; };
+		C7B1CAC5261B5E8B00EA822A /* GenericDragController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAC3261B5E8B00EA822A /* GenericDragController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,6 +245,7 @@
 		C7B1CAA62619391F00EA822A /* iconAudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconAudio.png; path = ../../MiniCut.playground/Resources/iconAudio.png; sourceTree = "<group>"; };
 		C7B1CAAB26194B3E00EA822A /* iconScissors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconScissors.png; path = ../../MiniCut.playground/Resources/iconScissors.png; sourceTree = "<group>"; };
 		C7B1CAB0261B434800EA822A /* ResizeHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResizeHandle.swift; path = ../../MiniCut.playground/Sources/View/ResizeHandle.swift; sourceTree = "<group>"; };
+		C7B1CAC3261B5E8B00EA822A /* GenericDragController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenericDragController.swift; path = ../../MiniCut.playground/Sources/View/Controls/GenericDragController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +393,7 @@
 				C75E1A0F26179F2600B7D646 /* Slider.swift */,
 				C75E19FB2617846700B7D646 /* TextField.swift */,
 				C75E1A002617880D00B7D646 /* TextFieldSelectionController.swift */,
+				C7B1CAC3261B5E8B00EA822A /* GenericDragController.swift */,
 				C7590F55261527E300A02167 /* Label.swift */,
 				C7590F87261615C000A02167 /* Flow.swift */,
 				C760F04C2618C0A2006992A1 /* Bordered.swift */,
@@ -604,6 +608,7 @@
 				C7590F992616279600A02167 /* DragNDropController.swift in Sources */,
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
 				C75E1A0B26179A7A00B7D646 /* Form.swift in Sources */,
+				C7B1CAC4261B5E8B00EA822A /* GenericDragController.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,
 				C7B1CAB1261B434900EA822A /* ResizeHandle.swift in Sources */,
 				C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */,
@@ -671,6 +676,7 @@
 				C75E19BA26177DDA00B7D646 /* InspectorView.swift in Sources */,
 				C75E19CE26177DE600B7D646 /* Stack.swift in Sources */,
 				C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */,
+				C7B1CAC5261B5E8B00EA822A /* GenericDragController.swift in Sources */,
 				C75E19BF26177DDA00B7D646 /* MiniCutScene.swift in Sources */,
 				C7B1CAB2261B434900EA822A /* ResizeHandle.swift in Sources */,
 				C75E19B926177DDA00B7D646 /* TimelineCursor.swift in Sources */,

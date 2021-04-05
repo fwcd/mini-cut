@@ -5,6 +5,7 @@ import SpriteKit
 final class LibraryView: SKSpriteNode {
     private let state: MiniCutState
     private let dragNDrop: DragNDropController
+    private let genericDrags: GenericDragController
     
     private var content: SKNode!
     private var contentSize: CGSize!
@@ -24,14 +25,20 @@ final class LibraryView: SKSpriteNode {
         case audio = "Audio"
     }
     
-    init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
+    init(
+        state: MiniCutState,
+        dragNDrop: DragNDropController,
+        genericDrags: GenericDragController,
+        size: CGSize
+    ) {
         self.state = state
         self.dragNDrop = dragNDrop
+        self.genericDrags = genericDrags
         
         super.init(texture: nil, color: ViewDefaults.quaternary, size: size)
         
         let tabs = Tab.allCases.map { tab in
-            (tab, Button(tab.rawValue, height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
+            (tab, Button(controller: genericDrags, tab.rawValue, height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in
                 activeTab = tab
             })
         }
@@ -61,7 +68,7 @@ final class LibraryView: SKSpriteNode {
         
         switch activeTab {
         case .video:
-            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .video, size: contentSize)
+            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, genericDrags: genericDrags, category: .video, size: contentSize)
         case .title:
             node = LibraryStaticClipsView(clips: [
                 Clip(name: "Text", content: .text(.init(text: "Text"))),
@@ -76,7 +83,7 @@ final class LibraryView: SKSpriteNode {
                 Clip(name: "White", content: .color(.init(color: .white))),
             ], dragNDrop: dragNDrop, size: contentSize)
         case .audio:
-            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, category: .audio, size: contentSize)
+            node = LibraryClipsView(state: state, dragNDrop: dragNDrop, genericDrags: genericDrags, category: .audio, size: contentSize)
         }
         
         content.addChild(node)

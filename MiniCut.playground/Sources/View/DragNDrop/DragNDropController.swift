@@ -61,7 +61,7 @@ final class DragNDropController {
     }
     
     @discardableResult
-    func handleInputDragged(at point: CGPoint) -> Bool {
+    func handleInputDragged(to point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
         
         hoverNode?.position = point

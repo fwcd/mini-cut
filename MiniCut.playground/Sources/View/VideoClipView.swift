@@ -12,6 +12,7 @@ final class VideoClipView: SKNode {
     private let state: MiniCutState
     let trackId: UUID
     let id: UUID
+    let zIndex: Int
     
     private var clipSubscription: Subscription?
     private var transformSubscription: Subscription?
@@ -48,6 +49,7 @@ final class VideoClipView: SKNode {
         self.trackId = trackId
         self.id = id
         self.size = size
+        self.zIndex = zIndex
         
         super.init()
         

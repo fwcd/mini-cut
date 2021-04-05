@@ -90,7 +90,7 @@ final class VideoView: SKSpriteNode, SKInputHandler {
     }
     
     func inputDown(at point: CGPoint) {
-        if let node = videoClipNodes.values.filter({ $0.contains(point) }).max(by: { $0.zPosition < $1.zPosition }), let nodeParent = node.parent {
+        if let node = videoClipNodes.values.filter({ $0.contains(point) }).max(by: { $0.zIndex < $1.zIndex }), let nodeParent = node.parent {
             state.selection = Selection(trackId: node.trackId, clipId: node.id)
             node.tryBeginResizing(at: convert(point, to: nodeParent))
             if node.isResizing {

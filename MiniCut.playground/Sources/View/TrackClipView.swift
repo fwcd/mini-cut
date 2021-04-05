@@ -5,16 +5,16 @@ private let trimHandleZPosition: CGFloat = 50
 
 /// A visual representation of a track's controls.
 final class TrackClipView: SKSpriteNode {
-    private var trackId: UUID!
-    private var id: UUID!
+    private let state: MiniCutState
+    private let trackId: UUID
+    private let id: UUID
     
-    private var state: MiniCutState!
-    private var clipSubscription: Subscription!
-    private var timelineZoomSubscription: Subscription!
-    private var timelineOffsetSubscription: Subscription!
-    private var selectionSubscription: Subscription!
+    private var clipSubscription: Subscription?
+    private var timelineZoomSubscription: Subscription?
+    private var timelineOffsetSubscription: Subscription?
+    private var selectionSubscription: Subscription?
     
-    private var parentWidth: CGFloat!
+    private let parentWidth: CGFloat
     private var label: SKNode!
     private var labelThumb: SKNode!
     private var labelText: SKNode!
@@ -53,11 +53,12 @@ final class TrackClipView: SKSpriteNode {
         clipPadding: CGFloat = ViewDefaults.clipPadding,
         labelPadding: CGFloat = ViewDefaults.clipLabelPadding
     ) {
-        super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
+        self.state = state
         self.trackId = trackId
         self.id = id
-        self.state = state
         self.parentWidth = parentWidth
+        
+        super.init(texture: nil, color: .clear, size: CGSize(width: 0, height: 0))
         
         let handleSize = CGSize(width: ViewDefaults.trimHandleWidth, height: height)
         leftHandle = TrimHandle(side: .left, in: handleSize)

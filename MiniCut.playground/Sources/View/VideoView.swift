@@ -7,11 +7,12 @@ private let cursorStride: TimeInterval = 0.1
 
 /// A view of the composited video.
 final class VideoView: SKSpriteNode, SKInputHandler {
-    private var state: MiniCutState!
-    private var isPlayingSubscription: Subscription!
-    private var timelineSubscription: Subscription!
-    private var cursorSubscription: Subscription!
-    private var updateStartSubscription: Subscription!
+    private let state: MiniCutState
+    
+    private var isPlayingSubscription: Subscription?
+    private var timelineSubscription: Subscription?
+    private var cursorSubscription: Subscription?
+    private var updateStartSubscription: Subscription?
     
     private var crop: SKCropNode!
     private var videoClipNodes: [UUID: VideoClipView] = [:]
@@ -36,8 +37,9 @@ final class VideoView: SKSpriteNode, SKInputHandler {
     }
     
     init(state: MiniCutState, size: CGSize) {
-        super.init(texture: nil, color: .black, size: size)
         self.state = state
+        
+        super.init(texture: nil, color: .black, size: size)
         
         isUserInteractionEnabled = true
         
@@ -69,7 +71,7 @@ final class VideoView: SKSpriteNode, SKInputHandler {
                 run(.repeatForever(.sequence([
                     .run {
                         let videoCursorSubscriptions = videoClipNodes.values.compactMap(\.cursorSubscription)
-                        state.cursorDidChange.silencing([updateStartSubscription] + videoCursorSubscriptions) {
+                        state.cursorDidChange.silencing([updateStartSubscription].compactMap { $0 } + videoCursorSubscriptions) {
                             state.cursor = startCursor! - startDate!.timeIntervalSinceNow
                         }
                     },

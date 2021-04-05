@@ -4,16 +4,16 @@ import SpriteKit
 
 /// A clip with thumbnail in the user's library.
 final class LibraryClipView: SKNode, DragSource {
-    private var clip: Clip!
-    private var size: CGSize!
-    private var customSize: CGSize!
+    private let clip: Clip
+    private let size: CGSize
     
-    var draggableValue: Any { clip! }
+    var draggableValue: Any { clip }
     
     init(clip: Clip, size: CGSize = ViewDefaults.thumbnailSize) {
-        super.init()
         self.clip = clip
         self.size = size
+        
+        super.init()
         
         addChild(Stack.vertical([
             generateThumbnail(from: clip, size: size),

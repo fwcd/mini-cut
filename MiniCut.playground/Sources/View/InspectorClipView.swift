@@ -3,11 +3,12 @@ import SpriteKit
 
 /// A property inspector view for a single clip.
 final class InspectorClipView: SKNode {
-    private var state: MiniCutState!
+    private let state: MiniCutState
+    private let trackId: UUID
+    private let clipId: UUID
+    
     private var selectionSubscriptions: [Subscription] = []
     private var clipSubscription: Subscription?
-    private var trackId: UUID!
-    private var clipId: UUID!
     
     private var clip: OffsetClip? {
         get { state.timeline[trackId]?[clipId] }
@@ -25,10 +26,10 @@ final class InspectorClipView: SKNode {
         clipId: UUID,
         size: CGSize
     ) {
-        super.init()
         self.state = state
         self.trackId = trackId
         self.clipId = clipId
+        super.init()
         
         clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] _ in
             guard let self = self else { return }

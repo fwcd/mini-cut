@@ -9,15 +9,24 @@ private let log = Logger(name: "View.VideoClipView")
 
 /// A view of a single clip's video.
 final class VideoClipView: SKNode {
-    private var state: MiniCutState!
+    private let state: MiniCutState
+    let trackId: UUID
+    let id: UUID
+    
     private var clipSubscription: Subscription?
     private var transformSubscription: Subscription?
     private var selectionSubscription: Subscription?
     private var isPlayingSubscription: Subscription?
     private(set) var cursorSubscription: Subscription?
     
-    let trackId: UUID
-    let id: UUID
+    private var clip: OffsetClip? {
+        get { state.timeline[trackId]?[id] }
+        set { state.timeline[trackId]?[id] = newValue }
+    }
+    private var content: ClipContent? {
+        get { clip?.clip.content }
+        set { clip?.clip.content = newValue! }
+    }
     
     private var player: AVPlayer!
     
@@ -29,11 +38,11 @@ final class VideoClipView: SKNode {
     }
     
     init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
+        self.state = state
         self.trackId = trackId
         self.id = id
         
         super.init()
-        self.state = state
         
         zPosition = CGFloat(100 + zIndex)
         
@@ -48,9 +57,7 @@ final class VideoClipView: SKNode {
         // (or: we can, but it won't be detected, if the clip's ID stays the same)
         // However, since this is probably an uncommon use case, we ignore it for now.
         
-        guard let clip = state.timeline[trackId]?[id] else { return }
-        
-        switch clip.clip.content {
+        switch content {
         case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
             
@@ -59,8 +66,8 @@ final class VideoClipView: SKNode {
             contentWrapper.addChild(video)
             
             let updatePlayer = { [weak self] in
-                guard let self = self, let currentClip = state.timeline[trackId]?[id] else { return }
-                let clipOffset = currentClip.clipOffset(for: state.cursor)
+                guard let self = self, let clip = self.clip else { return }
+                let clipOffset = clip.clipOffset(for: state.cursor)
                 self.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
             }
             
@@ -68,10 +75,10 @@ final class VideoClipView: SKNode {
             cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updatePlayer() }
             
             isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [weak self] in
-                guard let self = self, let currentClip = state.timeline[trackId]?[id] else { return }
+                guard let self = self, let clip = self.clip else { return }
                 if $0 {
                     // Changing the volume seems to only be possible while paused
-                    self.player.volume = Float(currentClip.clip.volume)
+                    self.player.volume = Float(clip.clip.volume)
                     self.player.play()
                 } else {
                     self.player.pause()
@@ -107,14 +114,14 @@ final class VideoClipView: SKNode {
         addChild(handleWrapper)
         
         transformSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
-            guard let self = self, let currentClip = $0[trackId]?[id]?.clip else { return }
+            guard let self = self, let clip = $0[trackId]?[id]?.clip else { return }
             
             contentWrapper.position = CGPoint(
-                x: CGFloat(currentClip.visualOffsetDx) * size.width,
-                y: CGFloat(currentClip.visualOffsetDy) * size.height
+                x: CGFloat(clip.visualOffsetDx) * size.width,
+                y: CGFloat(clip.visualOffsetDy) * size.height
             )
-            contentWrapper.setScale(CGFloat(currentClip.visualScale))
-            contentWrapper.alpha = CGFloat(currentClip.visualAlpha)
+            contentWrapper.setScale(CGFloat(clip.visualScale))
+            contentWrapper.alpha = CGFloat(clip.visualAlpha)
             
             for (corner, handle) in handleNodes {
                 handle.position = self.convert(contentWrapper[cornerPosition: corner], to: handleWrapper)

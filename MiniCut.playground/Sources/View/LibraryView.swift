@@ -3,8 +3,8 @@ import SpriteKit
 
 /// A view of resources available for use in the project.
 final class LibraryView: SKSpriteNode {
-    private var state: MiniCutState!
-    private var dragNDrop: DragNDropController!
+    private let state: MiniCutState
+    private let dragNDrop: DragNDropController
     
     private var content: SKNode!
     private var contentSize: CGSize!
@@ -25,9 +25,10 @@ final class LibraryView: SKSpriteNode {
     }
     
     init(state: MiniCutState, dragNDrop: DragNDropController, size: CGSize) {
-        super.init(texture: nil, color: ViewDefaults.quaternary, size: size)
         self.state = state
         self.dragNDrop = dragNDrop
+        
+        super.init(texture: nil, color: ViewDefaults.quaternary, size: size)
         
         let tabs = Tab.allCases.map { tab in
             (tab, Button(tab.rawValue, height: ViewDefaults.smallButtonSize, fontSize: ViewDefaults.smallButtonSize) { [unowned self] _ in

@@ -5,7 +5,7 @@ private let trackControlsZPosition: CGFloat = 75
 
 /// A visual representation of a single track.
 final class TrackView: SKSpriteNode {
-    private var state: MiniCutState!
+    private let state: MiniCutState
     private var clipsSubscription: Subscription!
     
     private(set) var clipNodes: [UUID: TrackClipView] = [:]
@@ -16,8 +16,9 @@ final class TrackView: SKSpriteNode {
         size: CGSize,
         marked: Bool
     ) {
-        super.init(texture: nil, color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
         self.state = state
+        
+        super.init(texture: nil, color: marked ? ViewDefaults.quaternary : ViewDefaults.transparent, size: size)
         
         let track = state.timeline[id] ?? Track(id: id, name: "<undefined>")
         let trackControlsWidth = ViewDefaults.trackControlsWidth

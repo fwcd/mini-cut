@@ -5,8 +5,9 @@ private let cursorZPosition: CGFloat = 100
 
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler, DropTarget {
-    private var state: MiniCutState!
-    private var textFieldSelection: TextFieldSelectionController!
+    private let state: MiniCutState
+    private let textFieldSelection: TextFieldSelectionController
+    
     private var cursorSubscription: Subscription!
     private var tracksSubscription: Subscription!
     private var timelineZoomSubscription: Subscription!
@@ -19,7 +20,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private var cursorHitboxWidth: CGFloat = 25
     
     /// How frequently (actually rarely) a time mark shall be rendered. In seconds.
-    var markStride: Int! {
+    var markStride: Int {
         didSet { updateMarks() }
     }
     
@@ -34,7 +35,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
             .erase()
     }
     
-    private var size: CGSize!
+    private let size: CGSize
     private var background: SKSpriteNode!
     private var marks: SKNode!
     private var gettingStartedHint: SKNode?
@@ -81,12 +82,13 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         zoomLevel: Double = 10.0,
         markStride: Int = 10
     ) {
-        super.init()
-        
         self.state = state
         self.textFieldSelection = textFieldSelection
         self.size = size
         self.markStride = markStride
+        
+        super.init()
+        
         dragState = .inactive
         isUserInteractionEnabled = true
         

@@ -16,9 +16,15 @@ final class VideoClipView: SKNode {
     private var isPlayingSubscription: Subscription?
     private(set) var cursorSubscription: Subscription?
     
+    let trackId: UUID
+    let id: UUID
+    
     private var player: AVPlayer!
     
     init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
+        self.trackId = trackId
+        self.id = id
+        
         super.init()
         self.state = state
         
@@ -124,5 +130,38 @@ final class VideoClipView: SKNode {
     deinit {
         log.info("Dropping")
         player?.replaceCurrentItem(with: nil)
+    }
+    
+    func tryBeginResizing(at parentPoint: CGPoint) {
+//        guard let clip = clip, let parent = parent else { return }
+//        let point = parent.convert(parentPoint, to: self)
+//        
+//        if leftHandle.calculateAccumulatedFrame().contains(point) {
+//            dragState = DragState(side: .left, startPoint: parentPoint, startClip: clip)
+//        } else if rightHandle.calculateAccumulatedFrame().contains(point) {
+//            dragState = DragState(side: .right, startPoint: parentPoint, startClip: clip)
+//        }
+    }
+    
+    func moveResizer(to parentPoint: CGPoint) {
+//        guard let dragState = dragState, var newClip = clip else { return }
+//
+//        let dx = parentPoint.x - dragState.startPoint.x
+//        let delta = toViewScale.inverseApply(dx)
+//
+//        switch dragState.side {
+//        case .left:
+//            newClip.offset = dragState.startClip.offset + delta
+//            newClip.clip.start = dragState.startClip.clip.start + delta
+//            newClip.clip.length = dragState.startClip.clip.length - delta
+//        case .right:
+//            newClip.clip.length = dragState.startClip.clip.length + delta
+//        }
+//
+//        clip = newClip
+    }
+    
+    func finishResizing() {
+//        dragState = nil
     }
 }

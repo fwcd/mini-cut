@@ -6,7 +6,7 @@ private let cursorActionKey = "cursorAction"
 private let cursorStride: TimeInterval = 0.1
 
 /// A view of the composited video.
-final class VideoView: SKSpriteNode {
+final class VideoView: SKSpriteNode, SKInputHandler {
     private var state: MiniCutState!
     private var isPlayingSubscription: Subscription!
     private var timelineSubscription: Subscription!
@@ -22,6 +22,8 @@ final class VideoView: SKSpriteNode {
     init(state: MiniCutState, size: CGSize) {
         super.init(texture: nil, color: .black, size: size)
         self.state = state
+        
+        isUserInteractionEnabled = true
         
         crop = SKCropNode()
         crop.maskNode = SKSpriteNode(color: .white, size: size)
@@ -65,5 +67,21 @@ final class VideoView: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         nil
+    }
+    
+    func inputDown(at point: CGPoint) {
+        if let node = videoClipNodes.values.filter({ $0.contains(point) }).max(by: { $0.zPosition < $1.zPosition }) {
+            state.selection = Selection(trackId: node.trackId, clipId: node.id)
+        } else {
+            state.selection = nil
+        }
+    }
+    
+    func inputDragged(to point: CGPoint) {
+        // TODO
+    }
+    
+    func inputUp(at point: CGPoint) {
+        // TODO
     }
 }

@@ -169,10 +169,22 @@ final class VideoClipView: SKNode {
         guard let dragState = dragState, var newClip = clip else { return }
 
         let dx = parentPoint.x - dragState.startPoint.x
-        let dy = parentPoint.x - dragState.startPoint.y
-        let scale = Double(hypot(dx, dy) / size.height)
+        let dy = parentPoint.y - dragState.startPoint.y
+        let normal = dragState.corner.direction
+        let length = normal.dx * dx + normal.dy * dy
+        let sideLength: CGFloat
+        
+        switch dragState.corner {
+        case .topLeft, .topRight, .bottomLeft, .bottomRight:
+            sideLength = (size.width + size.height) / 2
+        case .centerLeft, .centerRight:
+            sideLength = size.width
+        case .topCenter, .bottomCenter:
+            sideLength = size.height
+        }
 
-        newClip.clip.visualScale += scale
+        let normLength = Double(length / sideLength)
+        newClip.clip.visualScale = dragState.startClip.visualScale * (1 + 2 * normLength)
 
         clip = newClip
     }

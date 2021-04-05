@@ -25,8 +25,18 @@ struct Clip: Identifiable {
     
     var visualOffsetDx: Double = 0 // Normalized
     var visualOffsetDy: Double = 0
-    var visualScale: Double = 1
-    var visualAlpha: Double = 1
+    
+    var _visualScale: Double = 1
+    var _visualAlpha: Double = 1
+    
+    var visualScale: Double {
+        get { _visualScale }
+        set { _visualScale = max(0, newValue) }
+    }
+    var visualAlpha: Double {
+        get { _visualAlpha }
+        set { _visualAlpha = min(1, max(0, newValue)) }
+    }
     
     /// 1 is normal volume, 0 is silence, other values are proportional
     var volume: Double = 1

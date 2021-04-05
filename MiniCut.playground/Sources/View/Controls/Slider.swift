@@ -51,7 +51,7 @@ final class Slider<Value>: SKNode, SKInputHandler
         addChild(track)
         
         knob = SKShapeNode(circleOfRadius: knobRadius)
-        knob.position = CGPoint(x: toViewX.apply(value), y: 0)
+        knob.position = CGPoint(x: max(-(width / 2), min(width / 2, toViewX.apply(value))), y: 0)
         knob.lineWidth = 0
         knob.fillColor = knobInactiveBgColor
         addChild(knob)

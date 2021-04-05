@@ -30,6 +30,7 @@ final class VideoClipView: SKNode {
     }
     
     private let size: CGSize
+    private var actualUnscaledSize: CGSize!
     private var player: AVPlayer!
     private var contentWrapper: SKNode!
     private var handleWrapper: SKNode!
@@ -69,6 +70,7 @@ final class VideoClipView: SKNode {
         switch content {
         case .audiovisual(let content):
             player = AVPlayer(playerItem: AVPlayerItem(asset: content.asset))
+            actualUnscaledSize = size
             
             let video = SKVideoNode(avPlayer: player)
             video.size = size
@@ -95,6 +97,7 @@ final class VideoClipView: SKNode {
             }
         case .text(let text):
             let label = Label(text.text, fontSize: text.size, fontColor: text.color)
+            actualUnscaledSize = label.frame.size
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) {
                 guard case .text(let currentText) = $0[trackId]?[id]?.clip.content else { return }
@@ -106,6 +109,7 @@ final class VideoClipView: SKNode {
             contentWrapper.addChild(label)
         case .color(let color):
             let backdrop = SKSpriteNode(color: color.color, size: size)
+            actualUnscaledSize = size
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) {
                 guard case .color(let currentColor) = $0[trackId]?[id]?.clip.content else { return }
@@ -179,11 +183,11 @@ final class VideoClipView: SKNode {
         
         switch dragState.corner {
         case .topLeft, .topRight, .bottomLeft, .bottomRight:
-            sideLength = (size.width + size.height) / 2
+            sideLength = (actualUnscaledSize.width + actualUnscaledSize.height) / 2
         case .centerLeft, .centerRight:
-            sideLength = size.width
+            sideLength = actualUnscaledSize.width
         case .topCenter, .bottomCenter:
-            sideLength = size.height
+            sideLength = actualUnscaledSize.height
         }
 
         let normLength = Double(length / sideLength)

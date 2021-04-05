@@ -26,6 +26,7 @@ public enum ViewDefaults {
     public static let smallButtonSize: CGFloat = 14
     public static let clipPadding: CGFloat = 2
     public static let clipLabelPadding: CGFloat = 5
+    public static let resizeHandleRadius: CGFloat = 6
     
     // MARK: Color scheme
     
@@ -46,4 +47,5 @@ public enum ViewDefaults {
     public static let hintFontColor: Color = tertiary
     public static let cursorColor: Color = Color(red: 0.7, green: 0.1, blue: 0.1, alpha: 1)
     public static let trimHandleColor: Color = .yellow
+    public static let resizeHandleColor: Color = .yellow
 }

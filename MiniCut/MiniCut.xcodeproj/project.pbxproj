@@ -154,6 +154,8 @@
 		C7B1CAA82619391F00EA822A /* iconAudio.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAA62619391F00EA822A /* iconAudio.png */; };
 		C7B1CAAC26194B3E00EA822A /* iconScissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAAB26194B3E00EA822A /* iconScissors.png */; };
 		C7B1CAAD26194B3E00EA822A /* iconScissors.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B1CAAB26194B3E00EA822A /* iconScissors.png */; };
+		C7B1CAB1261B434900EA822A /* ResizeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAB0261B434800EA822A /* ResizeHandle.swift */; };
+		C7B1CAB2261B434900EA822A /* ResizeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B1CAB0261B434800EA822A /* ResizeHandle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +242,7 @@
 		C7B1CAA12619389500EA822A /* IconTextures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconTextures.swift; path = ../../MiniCut.playground/Sources/View/IconTextures.swift; sourceTree = "<group>"; };
 		C7B1CAA62619391F00EA822A /* iconAudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconAudio.png; path = ../../MiniCut.playground/Resources/iconAudio.png; sourceTree = "<group>"; };
 		C7B1CAAB26194B3E00EA822A /* iconScissors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconScissors.png; path = ../../MiniCut.playground/Resources/iconScissors.png; sourceTree = "<group>"; };
+		C7B1CAB0261B434800EA822A /* ResizeHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResizeHandle.swift; path = ../../MiniCut.playground/Sources/View/ResizeHandle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +374,7 @@
 				C7590FA226163B7000A02167 /* TrackControlsView.swift */,
 				C7590F46261527CB00A02167 /* VideoView.swift */,
 				C7590FB42616698C00A02167 /* VideoClipView.swift */,
+				C7B1CAB0261B434800EA822A /* ResizeHandle.swift */,
 				C7590F45261527CB00A02167 /* ViewDefaults.swift */,
 				C7590F8A2616184F00A02167 /* ViewUtils.swift */,
 				C7590FB126165B3A00A02167 /* ClipViewUtils.swift */,
@@ -601,6 +605,7 @@
 				C7590F282615279200A02167 /* MiniCutState.swift in Sources */,
 				C75E1A0B26179A7A00B7D646 /* Form.swift in Sources */,
 				C7590F242615277F00A02167 /* ClipContent.swift in Sources */,
+				C7B1CAB1261B434900EA822A /* ResizeHandle.swift in Sources */,
 				C7590F7726152C0200A02167 /* MiniCutViewController.swift in Sources */,
 				C7590F37261527A700A02167 /* ListenerList.swift in Sources */,
 				C7590F192615276100A02167 /* CompatibilityLayer.swift in Sources */,
@@ -667,6 +672,7 @@
 				C75E19CE26177DE600B7D646 /* Stack.swift in Sources */,
 				C75E1A0C26179A7A00B7D646 /* Form.swift in Sources */,
 				C75E19BF26177DDA00B7D646 /* MiniCutScene.swift in Sources */,
+				C7B1CAB2261B434900EA822A /* ResizeHandle.swift in Sources */,
 				C75E19B926177DDA00B7D646 /* TimelineCursor.swift in Sources */,
 				C75E19E326177E0200B7D646 /* Bijection.swift in Sources */,
 				C75E19DD26177DFC00B7D646 /* OffsetClip.swift in Sources */,

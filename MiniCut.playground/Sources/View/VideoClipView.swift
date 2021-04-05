@@ -75,9 +75,9 @@ final class VideoClipView: SKNode {
             contentWrapper.addChild(video)
             
             let updatePlayer = { [weak self] in
-                guard let self = self, let clip = self.clip else { return }
+                guard let clip = self?.clip else { return }
                 let clipOffset = clip.clipOffset(for: state.cursor)
-                self.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
+                self?.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
             }
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }
@@ -137,7 +137,8 @@ final class VideoClipView: SKNode {
             }
         }
         
-        selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) {
+        selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) { [weak self] in
+            guard let self = self else { return }
             let isSelected = $0.map { $0.trackId == trackId && $0.clipId == id } ?? false
             
             for handle in self.handleNodes.values {

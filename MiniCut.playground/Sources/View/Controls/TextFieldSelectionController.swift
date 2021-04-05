@@ -46,6 +46,7 @@ final class TextFieldSelectionController {
         return node.contains(self.point(point, in: nodeParent))
     }
     
+    @discardableResult
     func handleInputDown(at point: CGPoint) -> Bool {
         for (id, node) in nodes {
             if self.node(node, contains: point) {
@@ -58,6 +59,7 @@ final class TextFieldSelectionController {
         return false
     }
     
+    @discardableResult
     func handleInputKeyDown(with keys: [KeyboardKey]) -> Bool {
         if let node = selection.flatMap({ nodes[$0] }) {
             node.enter(keys: keys)

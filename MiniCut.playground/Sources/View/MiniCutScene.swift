@@ -13,6 +13,15 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     private var timelineDnDSubscription: Subscription!
     
     private var timeline: TimelineView!
+    private var video: VideoView!
+    
+    private var dragState: DragState = .inactive
+    
+    private enum DragState {
+        case video
+        case dragNDrop
+        case inactive
+    }
     
     public override func didMove(to view: SKView) {
         let initialFrame = view.frame.size
@@ -85,11 +94,12 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             textFieldSelection: textFieldSelection,
             size: CGSize(width: initialFrame.width, height: timelineHeight)
         )
+        video = VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight))
         let content = Stack.vertical(useFixedPositions: true, [
             title,
             Stack.horizontal([
                 LibraryView(state: state, dragNDrop: dragNDrop, size: CGSize(width: panelWidth, height: videoHeight)),
-                VideoView(state: state, size: CGSize(width: videoWidth, height: videoHeight)),
+                video,
                 InspectorView(state: state, textFieldSelection: textFieldSelection, size: CGSize(width: panelWidth, height: videoHeight))
             ]),
             toolbar,
@@ -110,16 +120,38 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     }
     
     func inputDown(at point: CGPoint) {
-        if dragNDrop.handleInputDown(at: point) { return }
-        if textFieldSelection.handleInputDown(at: point) { return }
+        if dragNDrop.handleInputDown(at: point) {
+            dragState = .dragNDrop
+        } else if textFieldSelection.handleInputDown(at: point) {
+            dragState = .inactive
+        } else if video.frame.contains(convert(point, to: video.parent!)) {
+            video.inputDown(at: convert(point, to: video))
+            dragState = .video
+        } else {
+            dragState = .inactive
+        }
     }
     
     func inputDragged(to point: CGPoint) {
-        if dragNDrop.handleInputDragged(at: point) { return }
+        switch dragState {
+        case .dragNDrop:
+            dragNDrop.handleInputDragged(at: point)
+        case .video:
+            video.inputDragged(to: convert(point, to: video))
+        default:
+            break
+        }
     }
     
     func inputUp(at point: CGPoint) {
-        if dragNDrop.handleInputUp(at: point) { return }
+        switch dragState {
+        case .dragNDrop:
+            dragNDrop.handleInputUp(at: point)
+        case .video:
+            video.inputUp(at: convert(point, to: video))
+        default:
+            break
+        }
     }
     
     func inputScrolled(deltaX: CGFloat, deltaY: CGFloat, deltaZ: CGFloat) {

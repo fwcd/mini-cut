@@ -28,19 +28,26 @@ final class VideoClipView: SKNode {
         set { clip?.clip.content = newValue! }
     }
     
+    private let size: CGSize
     private var player: AVPlayer!
+    private var contentWrapper: SKNode!
+    private var handleWrapper: SKNode!
+    private var handleNodes: [Corner: SKNode] = [:]
     
     private var dragState: DragState? = nil
     var isResizing: Bool { dragState != nil }
     
     private struct DragState {
         let corner: Corner
+        let startPoint: CGPoint
+        let startClip: Clip
     }
     
     init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
         self.state = state
         self.trackId = trackId
         self.id = id
+        self.size = size
         
         super.init()
         
@@ -48,7 +55,7 @@ final class VideoClipView: SKNode {
         
         log.info("Creating")
         
-        let contentWrapper = SKNode()
+        contentWrapper = SKNode()
         addChild(contentWrapper)
         
         // We don't attach the entire thing as a timeline listener since we don't want to create a
@@ -109,30 +116,30 @@ final class VideoClipView: SKNode {
             break
         }
         
-        let handleNodes = [Corner: SKNode](uniqueKeysWithValues: Corner.allCases.map { ($0, ResizeHandle()) })
-        let handleWrapper = SKNode()
+        handleNodes = [Corner: SKNode](uniqueKeysWithValues: Corner.allCases.map { ($0, ResizeHandle()) })
+        handleWrapper = SKNode()
         addChild(handleWrapper)
         
         transformSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
             guard let self = self, let clip = $0[trackId]?[id]?.clip else { return }
             
-            contentWrapper.position = CGPoint(
+            self.contentWrapper.position = CGPoint(
                 x: CGFloat(clip.visualOffsetDx) * size.width,
                 y: CGFloat(clip.visualOffsetDy) * size.height
             )
-            contentWrapper.setScale(CGFloat(clip.visualScale))
-            contentWrapper.alpha = CGFloat(clip.visualAlpha)
+            self.contentWrapper.setScale(CGFloat(clip.visualScale))
+            self.contentWrapper.alpha = CGFloat(clip.visualAlpha)
             
-            for (corner, handle) in handleNodes {
-                handle.position = self.convert(contentWrapper[cornerPosition: corner], to: handleWrapper)
+            for (corner, handle) in self.handleNodes {
+                handle.position = self.convert(self.contentWrapper[cornerPosition: corner], to: self.handleWrapper)
             }
         }
         
         selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) {
             let isSelected = $0.map { $0.trackId == trackId && $0.clipId == id } ?? false
             
-            for handle in handleNodes.values {
-                handleWrapper.setVisibility(of: handle, to: isSelected)
+            for handle in self.handleNodes.values {
+                self.handleWrapper.setVisibility(of: handle, to: isSelected)
             }
         }
     }
@@ -147,35 +154,30 @@ final class VideoClipView: SKNode {
     }
     
     func tryBeginResizing(at parentPoint: CGPoint) {
-//        guard let clip = clip, let parent = parent else { return }
-//        let point = parent.convert(parentPoint, to: self)
-//        
-//        if leftHandle.calculateAccumulatedFrame().contains(point) {
-//            dragState = DragState(side: .left, startPoint: parentPoint, startClip: clip)
-//        } else if rightHandle.calculateAccumulatedFrame().contains(point) {
-//            dragState = DragState(side: .right, startPoint: parentPoint, startClip: clip)
-//        }
+        guard let clip = clip, let parent = parent else { return }
+        let handlePoint = parent.convert(parentPoint, to: handleWrapper)
+        
+        for (corner, handle) in self.handleNodes {
+            if handle.calculateAccumulatedFrame().contains(handlePoint) {
+                dragState = DragState(corner: corner, startPoint: parentPoint, startClip: clip.clip)
+                break
+            }
+        }
     }
     
     func moveResizer(to parentPoint: CGPoint) {
-//        guard let dragState = dragState, var newClip = clip else { return }
-//
-//        let dx = parentPoint.x - dragState.startPoint.x
-//        let delta = toViewScale.inverseApply(dx)
-//
-//        switch dragState.side {
-//        case .left:
-//            newClip.offset = dragState.startClip.offset + delta
-//            newClip.clip.start = dragState.startClip.clip.start + delta
-//            newClip.clip.length = dragState.startClip.clip.length - delta
-//        case .right:
-//            newClip.clip.length = dragState.startClip.clip.length + delta
-//        }
-//
-//        clip = newClip
+        guard let dragState = dragState, var newClip = clip else { return }
+
+        let dx = parentPoint.x - dragState.startPoint.x
+        let dy = parentPoint.x - dragState.startPoint.y
+        let scale = Double(hypot(dx, dy) / size.height)
+
+        newClip.clip.visualScale += scale
+
+        clip = newClip
     }
     
     func finishResizing() {
-//        dragState = nil
+        dragState = nil
     }
 }

@@ -41,7 +41,9 @@ final class VideoView: SKSpriteNode, SKInputHandler {
         
         super.init(texture: nil, color: .black, size: size)
         
-        isUserInteractionEnabled = true
+        // We don't enable user interaction here, instead we forward
+        // events from MiniCutScene. This is due to the crop node making
+        // nodes that aren't visible interactable.
         
         crop = SKCropNode()
         crop.maskNode = SKSpriteNode(color: .white, size: size)

@@ -42,6 +42,7 @@ final class DragNDropController {
         return node.contains(self.point(point, in: nodeParent))
     }
     
+    @discardableResult
     func handleInputDown(at point: CGPoint) -> Bool {
         for node in nodes.values {
             if self.node(node, contains: point), let source = node as? DragSource {
@@ -59,6 +60,7 @@ final class DragNDropController {
         return false
     }
     
+    @discardableResult
     func handleInputDragged(at point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
         
@@ -80,6 +82,7 @@ final class DragNDropController {
         return false
     }
     
+    @discardableResult
     func handleInputUp(at point: CGPoint) -> Bool {
         guard let inFlight = inFlight else { return false }
         

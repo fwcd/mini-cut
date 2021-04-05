@@ -19,6 +19,22 @@ final class VideoView: SKSpriteNode, SKInputHandler {
     private var startDate: Date?
     private var startCursor: TimeInterval?
     
+    private var dragState: DragState = .inactive
+    
+    private enum DragState {
+        case resizing(VideoClipView)
+        case clip(ClipDragState)
+        case inactive
+    }
+    
+    private struct ClipDragState {
+        let trackId: UUID
+        let clipId: UUID
+        let startPoint: CGPoint
+        let startOffsetDx: Double
+        let startOffsetDy: Double
+    }
+    
     init(state: MiniCutState, size: CGSize) {
         super.init(texture: nil, color: .black, size: size)
         self.state = state
@@ -70,18 +86,52 @@ final class VideoView: SKSpriteNode, SKInputHandler {
     }
     
     func inputDown(at point: CGPoint) {
-        if let node = videoClipNodes.values.filter({ $0.contains(point) }).max(by: { $0.zPosition < $1.zPosition }) {
+        if let node = videoClipNodes.values.filter({ $0.contains(point) }).max(by: { $0.zPosition < $1.zPosition }), let nodeParent = node.parent {
             state.selection = Selection(trackId: node.trackId, clipId: node.id)
+            node.tryBeginResizing(at: convert(point, to: nodeParent))
+            if node.isResizing {
+                dragState = .resizing(node)
+            } else if let clip = state.timeline[node.trackId]?[node.id] {
+                dragState = .clip(ClipDragState(
+                    trackId: node.trackId,
+                    clipId: node.id,
+                    startPoint: point,
+                    startOffsetDx: clip.clip.visualOffsetDx,
+                    startOffsetDy: clip.clip.visualOffsetDy
+                ))
+            } else {
+                dragState = .inactive
+            }
         } else {
+            dragState = .inactive
             state.selection = nil
         }
     }
     
     func inputDragged(to point: CGPoint) {
-        // TODO
+        switch dragState {
+        case .resizing(let node):
+            if let nodeParent = node.parent {
+                node.moveResizer(to: convert(point, to: nodeParent))
+            }
+        case .clip(let clipState):
+            if var clip = state.timeline[clipState.trackId]?[clipState.clipId] {
+                clip.clip.visualOffsetDx = Double((point.x - clipState.startPoint.x) / size.width) + clipState.startOffsetDx
+                clip.clip.visualOffsetDy = Double((point.y - clipState.startPoint.y) / size.height) + clipState.startOffsetDy
+                state.timeline[clipState.trackId]?[clipState.clipId] = clip
+            }
+        default:
+            break
+        }
     }
     
     func inputUp(at point: CGPoint) {
-        // TODO
+        switch dragState {
+        case .resizing(let node):
+            node.finishResizing()
+        default:
+            break
+        }
+        dragState = .inactive
     }
 }

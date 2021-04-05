@@ -21,6 +21,13 @@ final class VideoClipView: SKNode {
     
     private var player: AVPlayer!
     
+    private var dragState: DragState? = nil
+    var isResizing: Bool { dragState != nil }
+    
+    private struct DragState {
+        let corner: Corner
+    }
+    
     init(state: MiniCutState, trackId: UUID, id: UUID, size: CGSize, zIndex: Int) {
         self.trackId = trackId
         self.id = id

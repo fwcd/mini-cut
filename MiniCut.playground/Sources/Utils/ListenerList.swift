@@ -23,10 +23,14 @@ class ListenerList<Event> {
     
     /// Performs an action without notifying the listener from the given subscription.
     /// This can be useful to avoid cyclic listener invocations.
-    func silencing(_ subscription: Subscription, _ action: () -> Void) {
-        silenced.insert(subscription.id)
+    func silencing(_ subscription: Subscription?, _ action: () -> Void) {
+        if let id = subscription?.id {
+            silenced.insert(id)
+        }
         action()
-        silenced.remove(subscription.id)
+        if let id = subscription?.id {
+            silenced.remove(id)
+        }
     }
     
     func silencing(_ subscriptions: [Subscription], _ action: () -> Void) {

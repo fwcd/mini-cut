@@ -4,20 +4,20 @@ import SpriteKit
 private let log = Logger(name: "View.Controls.TextField")
 
 /// A UI element that lets the user enter text.
-final class TextField: SKSpriteNode {
+final class TextField: SKSpriteNode, SKInputHandler, Selectable {
     private var controllerSubscription: Subscription!
     
     private var label: SKLabelNode!
     private let onChange: ((String) -> Void)?
     
     /// Whether the text field is selected. Should only be set
-    /// from TextFieldSelectionController, not manually.
+    /// from GenericSelectionController, not manually.
     var isSelected: Bool = false {
         didSet { updateBackground() }
     }
     
     init(
-        controller: TextFieldSelectionController,
+        controller: GenericSelectionController,
         size: CGSize,
         text: String = "",
         fontSize: CGFloat = ViewDefaults.textFieldFontSize,
@@ -28,7 +28,7 @@ final class TextField: SKSpriteNode {
         self.onChange = onChange
         
         super.init(texture: nil, color: ViewDefaults.fieldInactiveBgColor, size: size)
-        controllerSubscription = controller.register(textField: self)
+        controllerSubscription = controller.register(node: self)
         
         label = SKLabelNode(text: text)
         label.fontSize = fontSize
@@ -46,7 +46,7 @@ final class TextField: SKSpriteNode {
         color = isSelected ? ViewDefaults.fieldActiveBgColor : ViewDefaults.fieldInactiveBgColor
     }
     
-    func enter(keys: [KeyboardKey]) {
+    func inputKeyDown(with keys: [KeyboardKey]) {
         let newText = edit(label.text ?? "", with: keys)
         log.debug("Contents: '\(newText)'")
         onChange?(newText)

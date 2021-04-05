@@ -7,7 +7,7 @@ final class InspectorView: SKSpriteNode {
     
     init(
         state: MiniCutState,
-        textFieldSelection: TextFieldSelectionController,
+        textFieldSelection: GenericSelectionController,
         genericDrags: GenericDragController,
         size: CGSize,
         padding: CGFloat = ViewDefaults.padding

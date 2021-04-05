@@ -1,22 +1,22 @@
 import Foundation
 import SpriteKit
 
-private let log = Logger(name: "View.Controls.TextFieldSelectionController")
+private let log = Logger(name: "View.Controls.GenericSelectionController")
 
-/// Manages text fields from which at any point of time only one may be selected.
-final class TextFieldSelectionController {
+/// Manages nodes from which at any point of time only one may be selected.
+final class GenericSelectionController {
     private weak var parent: SKNode!
-    private var nodes: [UUID: TextField] = [:]
+    private var nodes: [UUID: SKNode] = [:]
     var selection: UUID? = nil {
         willSet {
             if selection != newValue {
-                if let previousId = selection {
+                if let previousId = selection, let selectable = nodes[previousId] as? Selectable {
                     log.debug("Deselected \(previousId)")
-                    nodes[previousId]?.isSelected = false
+                    selectable.isSelected = false
                 }
-                if let id = newValue {
+                if let id = newValue, let selectable = nodes[id] as? Selectable {
                     log.debug("Selected \(id)")
-                    nodes[id]?.isSelected = true
+                    selectable.isSelected = true
                 }
             }
         }
@@ -26,12 +26,9 @@ final class TextFieldSelectionController {
         self.parent = parent
     }
     
-    /// Registers the given text field. Make sure to store a strong reference
-    /// to the subscription as the text field will be removed internally once
-    /// it is dropped.
-    func register(textField: TextField) -> Subscription {
+    func register<N>(node: N) -> Subscription where N: SKNode & Selectable {
         let id = UUID()
-        nodes[id] = textField
+        nodes[id] = node
         return Subscription(id: id) { [weak self] in
             self?.nodes[id] = nil
         }
@@ -61,8 +58,8 @@ final class TextFieldSelectionController {
     
     @discardableResult
     func handleInputKeyDown(with keys: [KeyboardKey]) -> Bool {
-        if let node = selection.flatMap({ nodes[$0] }) {
-            node.enter(keys: keys)
+        if let node = selection.flatMap({ nodes[$0] }), let handler = node as? SKInputHandler {
+            handler.inputKeyDown(with: keys)
             return true
         }
         return false

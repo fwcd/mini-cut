@@ -6,7 +6,7 @@ private let cursorZPosition: CGFloat = 100
 /// A visual representation of a project's timeline.
 final class TimelineView: SKNode, SKInputHandler, DropTarget {
     private let state: MiniCutState
-    private let textFieldSelection: TextFieldSelectionController
+    private let textFieldSelection: GenericSelectionController
     
     private var cursorSubscription: Subscription!
     private var tracksSubscription: Subscription!
@@ -77,7 +77,7 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
     
     init(
         state: MiniCutState,
-        textFieldSelection: TextFieldSelectionController,
+        textFieldSelection: GenericSelectionController,
         size: CGSize,
         zoomLevel: Double = 10.0,
         markStride: Int = 10

@@ -15,13 +15,13 @@ final class DragNDropController {
     
     /// Registers a node as a drag source. The drag source will
     /// be removed once the returned Subscription is dropped.
-    func register<N>(source node: N) -> Subscription where N: SKNode, N: DragSource {
+    func register<N>(source node: N) -> Subscription where N: SKNode & DragSource {
         register(node: node)
     }
     
     /// Registers a node as a drop target. The drop target will
     /// be removed once the returned Subscription is dropped.
-    func register<N>(target node: N) -> Subscription where N: SKNode, N: DropTarget {
+    func register<N>(target node: N) -> Subscription where N: SKNode & DropTarget {
         register(node: node)
     }
     

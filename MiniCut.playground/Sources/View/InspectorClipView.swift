@@ -21,7 +21,7 @@ final class InspectorClipView: SKNode {
     
     init(
         state: MiniCutState,
-        textFieldSelection: TextFieldSelectionController,
+        textFieldSelection: GenericSelectionController,
         genericDrags: GenericDragController,
         trackId: UUID,
         clipId: UUID,

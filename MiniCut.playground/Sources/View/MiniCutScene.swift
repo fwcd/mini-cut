@@ -7,7 +7,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     private var genericDrags: GenericDragController!
     private var dragNDrop: DragNDropController!
-    private var textFieldSelection: TextFieldSelectionController!
+    private var textFieldSelection: GenericSelectionController!
     private var handledKeyEvent: Bool = false
     
     private var isPlayingSubscription: Subscription!
@@ -31,7 +31,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         
         genericDrags = GenericDragController(parent: self)
         dragNDrop = DragNDropController(parent: self)
-        textFieldSelection = TextFieldSelectionController(parent: self)
+        textFieldSelection = GenericSelectionController(parent: self)
         
         backgroundColor = ViewDefaults.background
         

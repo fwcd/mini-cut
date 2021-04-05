@@ -90,7 +90,6 @@ final class TimelineView: SKNode, SKInputHandler, DropTarget {
         super.init()
         
         dragState = .inactive
-        isUserInteractionEnabled = true
         
         background = SKSpriteNode(color: ViewDefaults.transparent, size: size)
         addChild(background)

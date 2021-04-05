@@ -19,6 +19,7 @@ public final class MiniCutScene: SKScene, SKInputHandler {
     
     private enum DragState {
         case video
+        case timeline
         case dragNDrop
         case inactive
     }
@@ -124,6 +125,9 @@ public final class MiniCutScene: SKScene, SKInputHandler {
             dragState = .dragNDrop
         } else if textFieldSelection.handleInputDown(at: point) {
             dragState = .inactive
+        } else if timeline.contains(convert(point, to: timeline.parent!)) {
+            timeline.inputDown(at: convert(point, to: timeline))
+            dragState = .timeline
         } else if video.frame.contains(convert(point, to: video.parent!)) {
             video.inputDown(at: convert(point, to: video))
             dragState = .video
@@ -136,6 +140,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         switch dragState {
         case .dragNDrop:
             dragNDrop.handleInputDragged(at: point)
+        case .timeline:
+            timeline.inputDragged(to: convert(point, to: timeline))
         case .video:
             video.inputDragged(to: convert(point, to: video))
         default:
@@ -147,6 +153,8 @@ public final class MiniCutScene: SKScene, SKInputHandler {
         switch dragState {
         case .dragNDrop:
             dragNDrop.handleInputUp(at: point)
+        case .timeline:
+            timeline.inputUp(at: convert(point, to: timeline))
         case .video:
             video.inputUp(at: convert(point, to: video))
         default:

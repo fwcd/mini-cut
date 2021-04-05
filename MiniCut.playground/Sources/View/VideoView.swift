@@ -53,18 +53,17 @@ final class VideoView: SKSpriteNode, SKInputHandler {
             startDate = Date()
             startCursor = $0
         }
-        cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { [unowned self] in
-            let playing = state.timeline.playingClips(at: $0)
+        
+        let updateClips = { [unowned self] in
+            let playing = state.timeline.playingClips(at: state.cursor)
             crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
                 VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size, zIndex: $0.zIndex)
             }
         }
-        timelineSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [unowned self] in
-            let playing = $0.playingClips(at: state.cursor)
-            crop.diffUpdate(nodes: &videoClipNodes, with: playing) {
-                VideoClipView(state: state, trackId: $0.trackId, id: $0.clip.id, size: size, zIndex: $0.zIndex)
-            }
-        }
+        
+        cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updateClips() }
+        timelineSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updateClips() }
+        
         isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [unowned self] in
             if $0 {
                 startDate = Date()

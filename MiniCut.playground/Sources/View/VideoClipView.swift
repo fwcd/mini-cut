@@ -187,7 +187,7 @@ final class VideoClipView: SKNode {
         }
 
         let normLength = Double(length / sideLength)
-        newClip.clip.visualScale = dragState.startClip.visualScale * (1 + 2 * normLength)
+        newClip.clip.visualScale = dragState.startClip.visualScale + (2 * normLength)
 
         clip = newClip
     }

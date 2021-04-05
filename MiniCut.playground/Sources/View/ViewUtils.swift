@@ -1,5 +1,16 @@
 import SpriteKit
 
+enum Corner: CaseIterable, Hashable {
+    case topLeft
+    case topCenter
+    case topRight
+    case centerLeft
+    case centerRight
+    case bottomLeft
+    case bottomCenter
+    case bottomRight
+}
+
 extension SKNode {
     /// Performs an efficient update of the given nodes that only adds/removes
     /// what has changed between the nodes and the model items.
@@ -123,6 +134,33 @@ extension SKNode {
         set {
             let oldValue = centerRightPosition
             move(dx: newValue.x - oldValue.x, dy: newValue.y - oldValue.y)
+        }
+    }
+    
+    subscript(cornerPosition corner: Corner) -> CGPoint {
+        get {
+            switch corner {
+            case .topLeft: return topLeftPosition
+            case .topCenter: return topCenterPosition
+            case .topRight: return topRightPosition
+            case .centerLeft: return centerLeftPosition
+            case .centerRight: return centerRightPosition
+            case .bottomLeft: return bottomLeftPosition
+            case .bottomCenter: return bottomCenterPosition
+            case .bottomRight: return bottomRightPosition
+            }
+        }
+        set {
+            switch corner {
+            case .topLeft: topLeftPosition = newValue
+            case .topCenter: topCenterPosition = newValue
+            case .topRight: topRightPosition = newValue
+            case .centerLeft: centerLeftPosition = newValue
+            case .centerRight: centerRightPosition = newValue
+            case .bottomLeft: bottomLeftPosition = newValue
+            case .bottomCenter: bottomCenterPosition = newValue
+            case .bottomRight: bottomRightPosition = newValue
+            }
         }
     }
     

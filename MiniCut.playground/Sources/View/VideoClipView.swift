@@ -12,6 +12,7 @@ final class VideoClipView: SKNode {
     private var state: MiniCutState!
     private var clipSubscription: Subscription?
     private var transformSubscription: Subscription?
+    private var selectionSubscription: Subscription?
     private var isPlayingSubscription: Subscription?
     private(set) var cursorSubscription: Subscription?
     
@@ -24,6 +25,9 @@ final class VideoClipView: SKNode {
         zPosition = CGFloat(100 + zIndex)
         
         log.info("Creating")
+        
+        let contentWrapper = SKNode()
+        addChild(contentWrapper)
         
         // We don't attach the entire thing as a timeline listener since we don't want to create a
         // new video node every time the timeline changes. Unfortunately this also means
@@ -39,25 +43,25 @@ final class VideoClipView: SKNode {
             
             let video = SKVideoNode(avPlayer: player)
             video.size = size
-            addChild(video)
+            contentWrapper.addChild(video)
             
             let updatePlayer = { [weak self] in
-                guard let currentClip = state.timeline[trackId]?[id] else { return }
+                guard let self = self, let currentClip = state.timeline[trackId]?[id] else { return }
                 let clipOffset = currentClip.clipOffset(for: state.cursor)
-                self?.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
+                self.player.seek(to: CMTime(seconds: clipOffset, preferredTimescale: 1000))
             }
             
             clipSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { _ in updatePlayer() }
             cursorSubscription = state.cursorDidChange.subscribeFiring(state.cursor) { _ in updatePlayer() }
             
             isPlayingSubscription = state.isPlayingDidChange.subscribeFiring(state.isPlaying) { [weak self] in
-                guard let currentClip = state.timeline[trackId]?[id] else { return }
+                guard let self = self, let currentClip = state.timeline[trackId]?[id] else { return }
                 if $0 {
                     // Changing the volume seems to only be possible while paused
-                    self?.player.volume = Float(currentClip.clip.volume)
-                    self?.player.play()
+                    self.player.volume = Float(currentClip.clip.volume)
+                    self.player.play()
                 } else {
-                    self?.player.pause()
+                    self.player.pause()
                 }
             }
         case .text(let text):
@@ -70,7 +74,7 @@ final class VideoClipView: SKNode {
                 label.fontColor = currentText.color
             }
             
-            addChild(label)
+            contentWrapper.addChild(label)
         case .color(let color):
             let backdrop = SKSpriteNode(color: color.color, size: size)
             
@@ -79,20 +83,37 @@ final class VideoClipView: SKNode {
                 backdrop.color = currentColor.color
             }
             
-            addChild(backdrop)
+            contentWrapper.addChild(backdrop)
         default:
             // TODO: Deal with other clip types
             break
         }
         
+        let handleNodes = [Corner: SKNode](uniqueKeysWithValues: Corner.allCases.map { ($0, ResizeHandle()) })
+        let handleWrapper = SKNode()
+        addChild(handleWrapper)
+        
         transformSubscription = state.timelineDidChange.subscribeFiring(state.timeline) { [weak self] in
-            guard let currentClip = $0[trackId]?[id]?.clip else { return }
-            self?.position = CGPoint(
+            guard let self = self, let currentClip = $0[trackId]?[id]?.clip else { return }
+            
+            contentWrapper.position = CGPoint(
                 x: CGFloat(currentClip.visualOffsetDx) * size.width,
                 y: CGFloat(currentClip.visualOffsetDy) * size.height
             )
-            self?.setScale(CGFloat(currentClip.visualScale))
-            self?.alpha = CGFloat(currentClip.visualAlpha)
+            contentWrapper.setScale(CGFloat(currentClip.visualScale))
+            contentWrapper.alpha = CGFloat(currentClip.visualAlpha)
+            
+            for (corner, handle) in handleNodes {
+                handle.position = self.convert(contentWrapper[cornerPosition: corner], to: handleWrapper)
+            }
+        }
+        
+        selectionSubscription = state.selectionDidChange.subscribeFiring(state.selection) {
+            let isSelected = $0.map { $0.trackId == trackId && $0.clipId == id } ?? false
+            
+            for handle in handleNodes.values {
+                handleWrapper.setVisibility(of: handle, to: isSelected)
+            }
         }
     }
     

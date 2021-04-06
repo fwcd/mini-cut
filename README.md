@@ -2,6 +2,8 @@
 
 MiniCut is a tiny video editor for macOS and iOS.
 
+![Screenshot](Images/screenshot.png)
+
 ## Description
 
 "MiniCut" is a tiny video editor, inspired by iMovie. Using MiniCut, users can import, edit and compose video and audio clips, along with titles and custom backgrounds. It provides a familiar interface with a multi-track timeline, a library browser, an interactive live preview and an inspector, making it easy and intuitive for users to create their own movies.
